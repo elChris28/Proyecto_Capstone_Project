@@ -27,13 +27,4 @@ Sistema inteligente basado en NLP + Naive Bayes para gestión de inventario vete
 pip install -r requirements.txt
 python main.py
 
----
 
-# 🚀 7. RESULTADO FINAL EN GITHUB
-
-Tu repo va a verse como:
-
-✔ Proyecto profesional  
-✔ Con documentación  
-✔ Con IA explicada  
-✔ Listo para sustentación  
