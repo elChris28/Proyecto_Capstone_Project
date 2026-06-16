@@ -1,7 +1,7 @@
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "abc123",
+    "password": "TU_CONTRASEÑA",
     "database": "inventario_ml"
 }
 
