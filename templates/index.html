@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Inteligente</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div>
+            <h1>🐾 VetAssistant IA</h1>
+            <p>Veterinaria Santa Cruz</p>
+        </div>
+
+        <div style="display:flex; gap:8px;">
+            <a class="dashboard-btn" href="{{ url_for('dashboard') }}">
+                📊 Dashboard
+            </a>
+
+            <a href="{{ url_for('clear_chat') }}" class="clear-btn">
+                🧹 Limpiar
+            </a>
+        </div>
+    </div>
+
+    <!-- BOTONES RÁPIDOS -->
+    <div class="quick-buttons">
+
+        <button type="button" onclick="setPregunta('cuanto stock hay del producto')">
+            📦 Stock
+        </button>
+
+        <button type="button" onclick="setPregunta('donde esta el producto')">
+            📍 Ubicación
+        </button>
+
+        <button type="button" onclick="setPregunta('cuando vence el producto')">
+            📅 Vencimiento
+        </button>
+
+        <button type="button" onclick="setPregunta('productos criticos')">
+            ⚠️ Críticos
+        </button>
+
+    </div>
+
+    <!-- CHAT -->
+    <div class="chat" id="chat-box">
+
+        {% for mensaje in chat %}
+
+            <div class="msg {{ mensaje.tipo }}">
+                {{ mensaje.mensaje | safe }}
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- INPUT -->
+    <form method="POST" class="input-box" id="chat-form">
+
+        <input 
+            type="text"
+            name="pregunta"
+            id="pregunta"
+            placeholder="Pregunta sobre stock, ubicación o vencimientos..."
+            required
+        >
+
+        <button type="submit" class="send" id="btn-send">➤</button>
+        <button type="button" id="btn-microfono" class="mic">🎤</button>
+
+    </form>
+
+    <!-- AYUDA -->
+    <div class="help-text">
+        Ejemplos: stock de amoxicilina | dónde está el collar | productos por vencer
+    </div>
+
+</div>
+
+<!-- JS PRINCIPAL -->
+<script>
+
+// =========================
+// BOTONES RÁPIDOS
+// =========================
+function setPregunta(texto) {
+    const input = document.getElementById("pregunta");
+    input.value = texto;
+    input.focus();
+}
+
+// =========================
+// LOADING ENVIAR
+// =========================
+document.getElementById("chat-form").addEventListener("submit", function () {
+
+    const btn = document.getElementById("btn-send");
+    btn.innerText = "⌛";
+    btn.disabled = true;
+
+});
+
+// =========================
+// MICRÓFONO
+// =========================
+const btnMicrofono = document.getElementById("btn-microfono");
+const inputPregunta = document.getElementById("pregunta");
+
+let reconocimiento;
+
+if ('webkitSpeechRecognition' in window) {
+
+    reconocimiento = new webkitSpeechRecognition();
+    reconocimiento.lang = "es-ES";
+    reconocimiento.continuous = false;
+    reconocimiento.interimResults = false;
+
+    btnMicrofono.addEventListener("click", () => {
+        reconocimiento.start();
+    });
+
+    reconocimiento.onstart = () => {
+        btnMicrofono.innerHTML = "🎙️";
+    };
+
+    reconocimiento.onresult = (event) => {
+        const texto = event.results[0][0].transcript;
+        inputPregunta.value = texto;
+        document.getElementById("chat-form").submit();
+    };
+
+    reconocimiento.onend = () => {
+        btnMicrofono.innerHTML = "🎤";
+    };
+
+} else {
+    btnMicrofono.disabled = true;
+    btnMicrofono.innerText = "❌";
+}
+
+// =========================
+// AUTO SCROLL CHAT
+// =========================
+const chatBox = document.getElementById("chat-box");
+chatBox.scrollTop = chatBox.scrollHeight;
+
+</script>
+
+</body>
+</html>

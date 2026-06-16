@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Métricas</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard-container">
+
+    <!-- HEADER -->
+    <div class="dashboard-header">
+        <div>
+            <h1>📊 Dashboard de Métricas</h1>
+            <p>Veterinaria Santa Cruz - Asistente Inteligente de Inventario</p>
+        </div>
+
+        <a class="btn-volver" href="{{ url_for('index') }}">
+            ⬅ Volver al asistente
+        </a>
+    </div>
+
+    <!-- MÉTRICAS IA -->
+    <section class="dashboard-section">
+        <h2>Métricas del Modelo IA</h2>
+
+        <div class="metricas-grid">
+
+            <div class="metrica-card">
+                <span>Accuracy</span>
+                <strong>{{ accuracy }}%</strong>
+                <p>Exactitud del modelo</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Precisión</span>
+                <strong>{{ precision }}%</strong>
+                <p>Control de falsos positivos</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Recall</span>
+                <strong>{{ recall }}%</strong>
+                <p>Detección de intenciones</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>F1-Score</span>
+                <strong>{{ f1 }}%</strong>
+                <p>Balance general</p>
+            </div>
+
+            <div class="metrica-card total">
+                <span>Total consultas</span>
+                <strong>{{ total_consultas }}</strong>
+                <p>Interacciones registradas</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <section class="dashboard-section">
+        <h2>📌 Insights del Sistema</h2>
+
+        <div class="metricas-grid">
+
+            <div class="metrica-card">
+                <span>Stock crítico</span>
+                <strong>{{ stock_critico|length }}</strong>
+                <p>Requieren reposición</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Productos por vencer</span>
+                <strong>{{ productos_por_vencer|length }}</strong>
+                <p>Control de caducidad</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Top productos</span>
+                <strong>{{ productos_mas_buscados|length }}</strong>
+                <p>Más consultados</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GRÁFICO -->
+    <section class="dashboard-section">
+        <h2>📊 Distribución de Intenciones</h2>
+
+        <canvas id="graficoIntenciones"></canvas>
+    </section>
+
+    <!-- CONSULTAS POR INTENCIÓN -->
+    <section class="dashboard-section">
+        <h2>Consultas por Intención</h2>
+
+        <div class="tabla-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Intención</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for item in consultas_por_intencion %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td><span class="badge">{{ item[1] }}</span></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2">Sin datos</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS MÁS BUSCADOS -->
+    <section class="dashboard-section">
+        <h2>Productos Más Buscados</h2>
+
+        <div class="tabla-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Búsquedas</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for item in productos_mas_buscados %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td><span class="badge">{{ item[1] }}</span></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2">Sin datos</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- STOCK CRÍTICO -->
+    <section class="dashboard-section">
+        <h2>Productos con Stock Crítico</h2>
+
+        <div class="tabla-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Stock Actual</th>
+                    <th>Stock Mínimo</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for item in stock_critico %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td class="stock-alerta">{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Sin productos críticos</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- VENCIMIENTOS -->
+    <section class="dashboard-section">
+        <h2>Productos Próximos a Vencer</h2>
+
+        <div class="tabla-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Lote</th>
+                    <th>Fecha de Vencimiento</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for item in productos_por_vencer %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Sin productos próximos a vencer</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<!-- GRÁFICO SCRIPT -->
+<script>
+const labels = JSON.parse('{{ labels | tojson | safe }}' || '[]');
+const values = JSON.parse('{{ values | tojson | safe }}' || '[]');
+
+const ctx = document.getElementById('graficoIntenciones');
+
+if (ctx && labels.length > 0) {
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Consultas por Intención',
+                data: values,
+                backgroundColor: [
+                    '#0f766e',
+                    '#1d4ed8',
+                    '#dc2626',
+                    '#f59e0b',
+                    '#10b981',
+                    '#6366f1'
+                ],
+                borderRadius: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+} else {
+    console.log("No hay datos para el gráfico");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+/* =============================== */
+/* GENERAL DEL DASHBOARD */
+/* =============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+body.dashboard-page {
+    min-height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #e8f5f1, #f7fbff);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+    padding: 30px 0 60px 0;
+}
+
+/* =============================== */
+/* CONTENEDOR PRINCIPAL */
+/* =============================== */
+
+.dashboard-container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+/* =============================== */
+/* CABECERA */
+/* =============================== */
+
+.dashboard-header {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.dashboard-header h1 {
+    font-size: 30px;
+    color: #134e4a;
+    margin-bottom: 8px;
+}
+
+.dashboard-header p {
+    color: #64748b;
+    font-size: 15px;
+}
+
+.btn-volver {
+    text-decoration: none;
+    background: #0f766e;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-volver:hover {
+    background: #115e59;
+    transform: translateY(-2px);
+}
+
+/* =============================== */
+/* SECCIONES */
+/* =============================== */
+
+.dashboard-section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.dashboard-section h2 {
+    font-size: 22px;
+    color: #134e4a;
+    margin-bottom: 18px;
+    padding-left: 12px;
+    border-left: 5px solid #0f766e;
+}
+
+/* =============================== */
+/* TARJETAS DE MÉTRICAS */
+/* =============================== */
+
+.metricas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+}
+
+.metrica-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    transition: 0.2s ease;
+}
+
+.metrica-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.metrica-card span {
+    display: block;
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.metrica-card strong {
+    display: block;
+    font-size: 30px;
+    color: #0f766e;
+    margin-bottom: 8px;
+}
+
+.metrica-card p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.metrica-card.total strong {
+    color: #1d4ed8;
+}
+
+/* =============================== */
+/* TABLAS */
+/* =============================== */
+
+.tabla-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+thead {
+    background: #0f766e;
+}
+
+th {
+    color: white;
+    text-align: left;
+    padding: 14px;
+    font-size: 14px;
+}
+
+td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #334155;
+    font-size: 14px;
+}
+
+tbody tr:hover td {
+    background: #f1f5f9;
+}
+
+.badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: bold;
+}
+
+.stock-alerta {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+canvas {
+    width: 100% !important;
+    max-height: 350px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+/* =============================== */
+/* EFECTO DASHBOARD MÁS MODERNO */
+/* =============================== */
+
+.dashboard-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #0f766e, #1d4ed8);
+    border-radius: 8px;
+}
+/* =============================== */
+/* RESPONSIVE */
+/* =============================== */
+
+@media (max-width: 768px) {
+
+    body.dashboard-page {
+        padding: 16px 0 40px 0;
+    }
+
+    .dashboard-container {
+        width: calc(100% - 24px);
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 24px;
+    }
+
+    .dashboard-header p {
+        font-size: 14px;
+    }
+
+    .btn-volver {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dashboard-section {
+        padding: 20px;
+    }
+
+    .dashboard-section h2 {
+        font-size: 20px;
+    }
+
+    .metrica-card strong {
+        font-size: 26px;
+    }
+}
