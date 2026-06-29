@@ -133,6 +133,33 @@ def obtener_stock_critico():
     return cursor.fetchall()
 
 
+def sugerir_productos(texto, limite=3):
+    texto = normalizar_texto(texto)
+    texto_limpio = limpiar_texto(texto)
+
+    query = "SELECT DISTINCT producto FROM productos"
+    cursor.execute(query)
+
+    productos = cursor.fetchall()
+    lista_productos = [p[0] for p in productos]
+
+    if not lista_productos:
+        return []
+
+    resultados = process.extract(
+        texto_limpio,
+        lista_productos,
+        limit=limite
+    )
+
+    sugerencias = [
+        producto for producto, score in resultados
+        if score >= 50
+    ]
+
+    return sugerencias
+
+
 def guardar_consulta(pregunta, intencion, producto, respuesta):
     try:
         query = """

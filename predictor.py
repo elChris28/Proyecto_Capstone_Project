@@ -114,7 +114,7 @@ def detectar_intenciones_por_reglas(texto):
         intenciones.append("stock")
 
     if re.search(
-        r"\b(donde|ubicacion|ubicad[oa]|estante|zona|almacen|localizar|ubicar|lugar|rack|estanteria|seccion|modulo)\b",
+        r"\b(donde esta|donde se encuentra|donde queda|ubicacion|ubicad[oa]|estante|zona|almacen|localizar|ubicar|lugar|rack|estanteria|seccion|modulo)\b",
         texto
     ):
         intenciones.append("ubicacion")
@@ -126,7 +126,10 @@ def detectar_intenciones_por_reglas(texto):
         intenciones.append("vencimiento")
 
     if re.search(
-        r"\b(dias|faltan|cuanto falta|cuantos dias|dias restantes|tiempo restante|cuanto tiempo)\b",
+        r"\b(cuantos dias|cuanto falta|dias restantes|tiempo restante|cuanto tiempo)\b",
+        texto
+    ) or re.search(
+        r"\bfaltan\b.*\b(vencer|vence|vencimiento|caducar|caduca)\b",
         texto
     ):
         intenciones.append("dias_vencimiento")
