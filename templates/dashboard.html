@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard de Métricas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 
@@ -12,30 +13,85 @@
 
 <body class="dashboard-page">
 
+{% set rendimiento_modelo = ((accuracy + precision + recall + f1) / 4) | round(2) %}
+{% set total_alertas = (stock_critico|length) + (productos_por_vencer|length) %}
+
 <div class="dashboard-container">
 
     <!-- HEADER -->
-    <div class="dashboard-header">
+    <header class="dashboard-header">
         <div>
-            <h1>📊 Dashboard de Métricas</h1>
-            <p>Veterinaria Santa Cruz - Asistente Inteligente de Inventario</p>
+            <span class="dashboard-tag">Panel Analítico</span>
+            <h1>📊 Dashboard de Inventario</h1>
+            <p>Veterinaria Santa Cruz - Asistente Inteligente de Gestión de Inventarios</p>
         </div>
 
         <a class="btn-volver" href="{{ url_for('index') }}">
             ⬅ Volver al asistente
         </a>
-    </div>
+    </header>
+
+    <!-- KPIS PRINCIPALES -->
+    <section class="kpi-grid">
+
+        <div class="kpi-card principal">
+            <div class="kpi-icon">🤖</div>
+            <div>
+                <span>Rendimiento del modelo</span>
+                <strong>{{ rendimiento_modelo }}%</strong>
+                <p>Promedio de Accuracy, Precision, Recall y F1</p>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon">💬</div>
+            <div>
+                <span>Total de consultas</span>
+                <strong>{{ total_consultas }}</strong>
+                <p>Interacciones registradas por el asistente</p>
+            </div>
+        </div>
+
+        <div class="kpi-card alerta">
+            <div class="kpi-icon">⚠️</div>
+            <div>
+                <span>Alertas logísticas</span>
+                <strong>{{ total_alertas }}</strong>
+                <p>Stock crítico + productos próximos a vencer</p>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon">🔎</div>
+            <div>
+                <span>Producto más buscado</span>
+                {% if productos_mas_buscados %}
+                    <strong class="texto-mediano">{{ productos_mas_buscados[0][0] }}</strong>
+                    <p>{{ productos_mas_buscados[0][1] }} búsquedas registradas</p>
+                {% else %}
+                    <strong>Sin datos</strong>
+                    <p>Aún no hay productos consultados</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </section>
 
     <!-- MÉTRICAS IA -->
     <section class="dashboard-section">
-        <h2>Métricas del Modelo IA</h2>
+        <div class="section-title">
+            <div>
+                <h2>🧠 Métricas del Modelo IA</h2>
+                <p>Evaluación del clasificador de intenciones usado por el asistente.</p>
+            </div>
+        </div>
 
         <div class="metricas-grid">
 
             <div class="metrica-card">
                 <span>Accuracy</span>
                 <strong>{{ accuracy }}%</strong>
-                <p>Exactitud del modelo</p>
+                <p>Exactitud general del modelo</p>
             </div>
 
             <div class="metrica-card">
@@ -47,220 +103,314 @@
             <div class="metrica-card">
                 <span>Recall</span>
                 <strong>{{ recall }}%</strong>
-                <p>Detección de intenciones</p>
+                <p>Capacidad de detección</p>
             </div>
 
             <div class="metrica-card">
                 <span>F1-Score</span>
                 <strong>{{ f1 }}%</strong>
-                <p>Balance general</p>
-            </div>
-
-            <div class="metrica-card total">
-                <span>Total consultas</span>
-                <strong>{{ total_consultas }}</strong>
-                <p>Interacciones registradas</p>
+                <p>Balance entre precisión y recall</p>
             </div>
 
         </div>
     </section>
 
-    <!-- INSIGHTS -->
-    <section class="dashboard-section">
-        <h2>📌 Insights del Sistema</h2>
+    <!-- GRÁFICOS -->
+    <section class="charts-grid">
 
-        <div class="metricas-grid">
-
-            <div class="metrica-card">
-                <span>Stock crítico</span>
-                <strong>{{ stock_critico|length }}</strong>
-                <p>Requieren reposición</p>
+        <div class="dashboard-section chart-card">
+            <div class="section-title">
+                <div>
+                    <h2>📊 Distribución de Intenciones</h2>
+                    <p>Consultas agrupadas por intención detectada.</p>
+                </div>
             </div>
 
-            <div class="metrica-card">
-                <span>Productos por vencer</span>
-                <strong>{{ productos_por_vencer|length }}</strong>
-                <p>Control de caducidad</p>
-            </div>
-
-            <div class="metrica-card">
-                <span>Top productos</span>
-                <strong>{{ productos_mas_buscados|length }}</strong>
-                <p>Más consultados</p>
-            </div>
-
+            {% if labels and values %}
+                <canvas id="graficoIntenciones"></canvas>
+            {% else %}
+                <div class="empty-state">Aún no hay datos suficientes para graficar intenciones.</div>
+            {% endif %}
         </div>
-    </section>
 
-    <!-- GRÁFICO -->
-    <section class="dashboard-section">
-        <h2>📊 Distribución de Intenciones</h2>
+        <div class="dashboard-section chart-card">
+            <div class="section-title">
+                <div>
+                    <h2>🚨 Alertas Logísticas</h2>
+                    <p>Productos que requieren atención operativa.</p>
+                </div>
+            </div>
 
-        <canvas id="graficoIntenciones"></canvas>
-    </section>
-
-    <!-- CONSULTAS POR INTENCIÓN -->
-    <section class="dashboard-section">
-        <h2>Consultas por Intención</h2>
-
-        <div class="tabla-responsive">
-            <table>
-                <thead>
-                <tr>
-                    <th>Intención</th>
-                    <th>Total</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                {% for item in consultas_por_intencion %}
-                    <tr>
-                        <td>{{ item[0] }}</td>
-                        <td><span class="badge">{{ item[1] }}</span></td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="2">Sin datos</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            {% if total_alertas > 0 %}
+                <canvas id="graficoAlertas"></canvas>
+            {% else %}
+                <div class="empty-state">No hay alertas logísticas registradas.</div>
+            {% endif %}
         </div>
+
     </section>
 
     <!-- PRODUCTOS MÁS BUSCADOS -->
     <section class="dashboard-section">
-        <h2>Productos Más Buscados</h2>
-
-        <div class="tabla-responsive">
-            <table>
-                <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Búsquedas</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                {% for item in productos_mas_buscados %}
-                    <tr>
-                        <td>{{ item[0] }}</td>
-                        <td><span class="badge">{{ item[1] }}</span></td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="2">Sin datos</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="section-title">
+            <div>
+                <h2>🏷️ Productos Más Buscados</h2>
+                <p>Productos con mayor cantidad de consultas realizadas al asistente.</p>
+            </div>
         </div>
+
+        {% if productos_mas_buscados %}
+            <canvas id="graficoProductos"></canvas>
+        {% else %}
+            <div class="empty-state">Aún no hay productos consultados.</div>
+        {% endif %}
     </section>
 
-    <!-- STOCK CRÍTICO -->
-    <section class="dashboard-section">
-        <h2>Productos con Stock Crítico</h2>
+    <!-- TABLAS DE ANÁLISIS -->
+    <section class="tables-grid">
+        <!-- PRODUCTOS MÁS BUSCADOS TABLA -->
+        <div class="dashboard-section">
+            <div class="section-title">
+                <div>
+                    <h2>Top Productos</h2>
+                    <p>Productos más consultados por los usuarios.</p>
+                </div>
+            </div>
 
-        <div class="tabla-responsive">
-            <table>
-                <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Stock Actual</th>
-                    <th>Stock Mínimo</th>
-                </tr>
-                </thead>
+            <div class="tabla-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Búsquedas</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                {% for item in stock_critico %}
-                    <tr>
-                        <td>{{ item[0] }}</td>
-                        <td class="stock-alerta">{{ item[1] }}</td>
-                        <td>{{ item[2] }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="3">Sin productos críticos</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    <tbody>
+                    {% for item in productos_mas_buscados %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td><span class="badge">{{ item[1] }}</span></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="2">Sin datos</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </section>
 
-    <!-- VENCIMIENTOS -->
-    <section class="dashboard-section">
-        <h2>Productos Próximos a Vencer</h2>
+    <!-- ALERTAS OPERATIVAS -->
+    <section class="tables-grid">
 
-        <div class="tabla-responsive">
-            <table>
-                <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Lote</th>
-                    <th>Fecha de Vencimiento</th>
-                </tr>
-                </thead>
+        <!-- STOCK CRÍTICO -->
+        <div class="dashboard-section">
+            <div class="section-title">
+                <div>
+                    <h2>⚠️ Productos con Stock Crítico</h2>
+                    <p>Productos cuyo stock actual está por debajo o igual al mínimo.</p>
+                </div>
+            </div>
 
-                <tbody>
-                {% for item in productos_por_vencer %}
+            <div class="tabla-responsive">
+                <table>
+                    <thead>
                     <tr>
-                        <td>{{ item[0] }}</td>
-                        <td>{{ item[1] }}</td>
-                        <td>{{ item[2] }}</td>
+                        <th>Producto</th>
+                        <th>Stock Actual</th>
+                        <th>Stock Mínimo</th>
                     </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="3">Sin productos próximos a vencer</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                    {% for item in stock_critico %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td><span class="stock-alerta">{{ item[1] }}</span></td>
+                            <td>{{ item[2] }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Sin productos críticos</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        <!-- VENCIMIENTOS -->
+        <div class="dashboard-section">
+            <div class="section-title">
+                <div>
+                    <h2>⏰ Productos Próximos a Vencer</h2>
+                    <p>Lotes cuya fecha de vencimiento está dentro del rango de control.</p>
+                </div>
+            </div>
+
+            <div class="tabla-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Lote</th>
+                        <th>Fecha de Vencimiento</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for item in productos_por_vencer %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td>{{ item[1] }}</td>
+                            <td><span class="fecha-alerta">{{ item[2] }}</span></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Sin productos próximos a vencer</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </section>
 
 </div>
 
+<div
+    id="dashboard-data"
+    data-labels='{{ labels | tojson | safe }}'
+    data-values='{{ values | tojson | safe }}'
+    data-stock-critico='{{ stock_critico|length }}'
+    data-productos-vencer='{{ productos_por_vencer|length }}'
+    data-productos-labels='{{ productos_mas_buscados | map(attribute=0) | list | tojson | safe }}'
+    data-productos-values='{{ productos_mas_buscados | map(attribute=1) | list | tojson | safe }}'
+    style="display: none;">
+</div>
+
 <!-- GRÁFICO SCRIPT -->
 <script>
-const labels = JSON.parse('{{ labels | tojson | safe }}' || '[]');
-const values = JSON.parse('{{ values | tojson | safe }}' || '[]');
+const dashboardData = document.getElementById("dashboard-data");
 
-const ctx = document.getElementById('graficoIntenciones');
+const labels = JSON.parse(dashboardData.dataset.labels || "[]");
+const values = JSON.parse(dashboardData.dataset.values || "[]");
 
-if (ctx && labels.length > 0) {
-    new Chart(ctx, {
+const stockCriticoCount = Number(dashboardData.dataset.stockCritico || 0);
+const productosPorVencerCount = Number(dashboardData.dataset.productosVencer || 0);
+
+const productosLabels = JSON.parse(dashboardData.dataset.productosLabels || "[]");
+const productosValues = JSON.parse(dashboardData.dataset.productosValues || "[]");
+
+const chartColors = [
+    '#0f766e',
+    '#2563eb',
+    '#f59e0b',
+    '#dc2626',
+    '#7c3aed',
+    '#10b981'
+];
+
+if (document.getElementById('graficoIntenciones') && labels.length > 0) {
+    new Chart(document.getElementById('graficoIntenciones'), {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Consultas por Intención',
+                label: 'Consultas',
                 data: values,
-                backgroundColor: [
-                    '#0f766e',
-                    '#1d4ed8',
-                    '#dc2626',
-                    '#f59e0b',
-                    '#10b981',
-                    '#6366f1'
-                ],
-                borderRadius: 10
+                backgroundColor: chartColors,
+                borderRadius: 12,
+                borderSkipped: false
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
-                legend: { display: false }
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ' Total: ' + context.raw + ' consultas';
+                        }
+                    }
+                }
             },
             scales: {
+                x: {
+                    grid: { display: false }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: { precision: 0 }
                 }
             }
         }
     });
-} else {
-    console.log("No hay datos para el gráfico");
+}
+
+if (document.getElementById('graficoAlertas') && (stockCriticoCount + productosPorVencerCount) > 0) {
+    new Chart(document.getElementById('graficoAlertas'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Stock crítico', 'Próximos a vencer'],
+            datasets: [{
+                data: [stockCriticoCount, productosPorVencerCount],
+                backgroundColor: ['#dc2626', '#f59e0b'],
+                borderWidth: 4,
+                borderColor: '#ffffff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '65%',
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}
+
+if (document.getElementById('graficoProductos') && productosLabels.length > 0) {
+    new Chart(document.getElementById('graficoProductos'), {
+        type: 'bar',
+        data: {
+            labels: productosLabels,
+            datasets: [{
+                label: 'Búsquedas',
+                data: productosValues,
+                backgroundColor: '#2563eb',
+                borderRadius: 12,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: { precision: 0 }
+                },
+                y: {
+                    grid: { display: false }
+                }
+            }
+        }
+    });
 }
 </script>
 

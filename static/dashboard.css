@@ -1,5 +1,5 @@
 /* =============================== */
-/* GENERAL DEL DASHBOARD */
+/* RESET GENERAL */
 /* =============================== */
 
 * {
@@ -16,9 +16,10 @@ html {
 body.dashboard-page {
     min-height: 100vh;
     width: 100%;
-    overflow-y: auto;
     overflow-x: hidden;
-    background: linear-gradient(135deg, #e8f5f1, #f7fbff);
+    background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.18), transparent 35%),
+        linear-gradient(135deg, #eefaf7, #f8fbff);
     font-family: Arial, Helvetica, sans-serif;
     color: #1f2937;
     padding: 30px 0 60px 0;
@@ -29,51 +30,141 @@ body.dashboard-page {
 /* =============================== */
 
 .dashboard-container {
-    width: min(1180px, calc(100% - 40px));
+    width: min(1240px, calc(100% - 40px));
     margin: 0 auto;
 }
 
 /* =============================== */
-/* CABECERA */
+/* HEADER */
 /* =============================== */
 
 .dashboard-header {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 24px 30px;
-    margin-bottom: 24px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(135deg, #0f766e, #134e4a);
+    color: white;
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 26px;
+    box-shadow: 0 18px 40px rgba(15, 118, 110, 0.25);
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 24px;
 }
 
+.dashboard-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
 .dashboard-header h1 {
-    font-size: 30px;
-    color: #134e4a;
+    font-size: 34px;
     margin-bottom: 8px;
 }
 
 .dashboard-header p {
-    color: #64748b;
+    color: #d1fae5;
     font-size: 15px;
 }
 
 .btn-volver {
     text-decoration: none;
-    background: #0f766e;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 12px;
+    background: white;
+    color: #0f766e;
+    padding: 13px 18px;
+    border-radius: 14px;
     font-weight: bold;
     transition: 0.2s ease;
     white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .btn-volver:hover {
-    background: #115e59;
     transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* =============================== */
+/* KPI CARDS */
+/* =============================== */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.kpi-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    padding: 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+    transition: 0.2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+}
+
+.kpi-card.principal {
+    border-left: 6px solid #0f766e;
+}
+
+.kpi-card.alerta {
+    border-left: 6px solid #dc2626;
+}
+
+.kpi-icon {
+    min-width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    background: #ecfdf5;
+    color: #0f766e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+.kpi-card.alerta .kpi-icon {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.kpi-card span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.kpi-card strong {
+    display: block;
+    font-size: 30px;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.kpi-card .texto-mediano {
+    font-size: 19px;
+    line-height: 1.2;
+}
+
+.kpi-card p {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
 }
 
 /* =============================== */
@@ -82,35 +173,61 @@ body.dashboard-page {
 
 .dashboard-section {
     background: #ffffff;
-    border-radius: 18px;
-    padding: 24px 30px;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    padding: 24px;
     margin-bottom: 24px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.07);
+    position: relative;
+    overflow: hidden;
 }
 
-.dashboard-section h2 {
-    font-size: 22px;
-    color: #134e4a;
-    margin-bottom: 18px;
+.dashboard-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #0f766e, #2563eb);
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 20px;
     padding-left: 12px;
-    border-left: 5px solid #0f766e;
+}
+
+.section-title h2 {
+    font-size: 21px;
+    color: #134e4a;
+    margin-bottom: 6px;
+}
+
+.section-title p {
+    color: #64748b;
+    font-size: 14px;
 }
 
 /* =============================== */
-/* TARJETAS DE MÉTRICAS */
+/* MÉTRICAS IA */
 /* =============================== */
 
 .metricas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
+    padding-left: 12px;
 }
 
 .metrica-card {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 18px;
+    border-radius: 18px;
+    padding: 20px;
     text-align: center;
     transition: 0.2s ease;
 }
@@ -129,7 +246,7 @@ body.dashboard-page {
 
 .metrica-card strong {
     display: block;
-    font-size: 30px;
+    font-size: 32px;
     color: #0f766e;
     margin-bottom: 8px;
 }
@@ -139,17 +256,45 @@ body.dashboard-page {
     font-size: 13px;
 }
 
-.metrica-card.total strong {
-    color: #1d4ed8;
+/* =============================== */
+/* GRÁFICOS */
+/* =============================== */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.9fr;
+    gap: 24px;
+}
+
+.chart-card {
+    min-height: 430px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 310px !important;
+    background: #ffffff;
+    border-radius: 14px;
+}
+
+#graficoProductos {
+    height: 340px !important;
 }
 
 /* =============================== */
 /* TABLAS */
 /* =============================== */
 
+.tables-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
 .tabla-responsive {
     width: 100%;
     overflow-x: auto;
+    padding-left: 12px;
 }
 
 table {
@@ -157,7 +302,7 @@ table {
     min-width: 520px;
     border-collapse: collapse;
     background: white;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
 }
 
@@ -173,7 +318,7 @@ th {
 }
 
 td {
-    padding: 13px 14px;
+    padding: 14px;
     border-bottom: 1px solid #e5e7eb;
     color: #334155;
     font-size: 14px;
@@ -193,40 +338,56 @@ tbody tr:hover td {
 }
 
 .stock-alerta {
+    display: inline-block;
     color: #dc2626;
+    background: #fef2f2;
+    padding: 6px 12px;
+    border-radius: 999px;
     font-weight: bold;
 }
 
-canvas {
-    width: 100% !important;
-    max-height: 350px;
-    background: #ffffff;
-    padding: 10px;
-    border-radius: 14px;
+.fecha-alerta {
+    display: inline-block;
+    color: #92400e;
+    background: #fef3c7;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: bold;
 }
 
 /* =============================== */
-/* EFECTO DASHBOARD MÁS MODERNO */
+/* EMPTY STATE */
 /* =============================== */
 
-.dashboard-section {
-    position: relative;
-    overflow: hidden;
+.empty-state {
+    margin-left: 12px;
+    padding: 28px;
+    border-radius: 16px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    color: #64748b;
+    text-align: center;
+    font-size: 14px;
 }
 
-.dashboard-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    background: linear-gradient(180deg, #0f766e, #1d4ed8);
-    border-radius: 8px;
-}
 /* =============================== */
 /* RESPONSIVE */
 /* =============================== */
+
+@media (max-width: 1100px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-grid,
+    .tables-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metricas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
 @media (max-width: 768px) {
 
@@ -241,11 +402,11 @@ canvas {
     .dashboard-header {
         flex-direction: column;
         align-items: flex-start;
-        padding: 22px;
+        padding: 24px;
     }
 
     .dashboard-header h1 {
-        font-size: 24px;
+        font-size: 26px;
     }
 
     .dashboard-header p {
@@ -257,15 +418,28 @@ canvas {
         text-align: center;
     }
 
+    .kpi-grid,
+    .metricas-grid {
+        grid-template-columns: 1fr;
+    }
+
     .dashboard-section {
         padding: 20px;
     }
 
-    .dashboard-section h2 {
-        font-size: 20px;
+    .section-title h2 {
+        font-size: 19px;
+    }
+
+    .kpi-card strong {
+        font-size: 26px;
     }
 
     .metrica-card strong {
-        font-size: 26px;
+        font-size: 28px;
+    }
+
+    canvas {
+        height: 280px !important;
     }
 }
