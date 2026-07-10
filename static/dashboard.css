@@ -264,6 +264,7 @@ body.dashboard-page {
     display: grid;
     grid-template-columns: 1.4fr 0.9fr;
     gap: 24px;
+    align-items: stretch;
 }
 
 .chart-card {
@@ -370,6 +371,78 @@ tbody tr:hover td {
     font-size: 14px;
 }
 
+.chart-helper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: -4px 0 12px 12px;
+}
+
+.chart-helper span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.chart-scroll-intenciones {
+    height: 650px;
+    max-height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 8px 4px 0;
+    scrollbar-width: thin;
+    scrollbar-color: #94a3b8 #e2e8f0;
+}
+
+.chart-scroll-intenciones::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chart-scroll-intenciones::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 999px;
+}
+
+.chart-scroll-intenciones::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 999px;
+}
+
+.chart-canvas-box-intenciones {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+}
+
+.chart-canvas-box-intenciones canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Contenedor estático del gráfico de alertas */
+.chart-alertas-container {
+    position: relative;
+    width: 100%;
+    height: 650px;
+    min-height: 650px;
+}
+
+/* Evita que la regla general de canvas lo deforme */
+.chart-alertas-container #graficoAlertas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    background: transparent;
+    border-radius: 0;
+}
+
+
 /* =============================== */
 /* RESPONSIVE */
 /* =============================== */
@@ -386,6 +459,17 @@ tbody tr:hover td {
 
     .metricas-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-grid .chart-card {
+        min-height: auto;
+    }
+
+    .chart-scroll-intenciones,
+    .chart-alertas-container {
+        height: 520px;
+        min-height: 520px;
+        max-height: 520px;
     }
 }
 
@@ -442,4 +526,16 @@ tbody tr:hover td {
     canvas {
         height: 280px !important;
     }
+
+    .chart-scroll-intenciones,
+    .chart-alertas-container {
+        height: 400px;
+        min-height: 400px;
+        max-height: 400px;
+    }
+
+    .chart-helper {
+        margin-left: 0;
+    }
+
 }
