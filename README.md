@@ -196,12 +196,12 @@ Entre los principales aprendizajes destacan:
 # 📸 Video del proyecto
 
 
-[▶ Ver demostración](demo/AsistenteInteligente.mp4)
+[▶ Ver demostración](demo/AsistenteInteligente.gif)
 
 ---
 
 # 👨‍💻 Autor
 
-**Christofer J.**
+**Christofer Ynga**
 
 Proyecto desarrollado como práctica de **Machine Learning, NLP, Desarrollo Web y Gestión Inteligente de Inventarios**, integrando Python, Flask, MySQL y Web Speech API para automatizar procesos logísticos.
