@@ -193,13 +193,10 @@ Entre los principales aprendizajes destacan:
 
 ---
 
-# 📸 Capturas del proyecto
+# 📸 Video del proyecto
 
-> Agrega aquí imágenes del chatbot, dashboard y funcionamiento del sistema.
 
-| Chat Inteligente | Dashboard |
-|-----------------|-----------|
-| ![](images/chat.png) | ![](images/dashboard.png) |
+[▶ Ver demostración](demo/AsistenteInteligente.mp4)
 
 ---
 
