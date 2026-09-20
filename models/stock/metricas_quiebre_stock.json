@@ -1,0 +1,62 @@
+{
+  "version_modelo": "2.0",
+  "modelo_seleccionado": "GradientBoosting",
+  "horizonte_dias": 7,
+  "recall_objetivo": 0.8,
+  "definicion_riesgo": "Riesgo alto si la demanda real de los siguientes 7 dias alcanza la zona de stock de seguridad antes de un quiebre literal.",
+  "metodologia_validacion": "Split temporal 70% train / 15% validacion / 15% test",
+  "filas_dataset_modelado": 1021500,
+  "filas_train": 715500,
+  "filas_validacion": 153000,
+  "filas_test": 153000,
+  "fecha_corte_train": "2024-12-30",
+  "fecha_corte_validacion": "2025-11-01",
+  "prevalencia_riesgo_test": 0.2939281045751634,
+  "resultados": {
+    "RegresionLogistica": {
+      "accuracy": 0.8722156862745098,
+      "precision": 0.771210310686241,
+      "recall": 0.8036734784638989,
+      "f1": 0.7871073120270049,
+      "tasa_alertas": 0.30630065359477127,
+      "umbral": 0.6430168632793295,
+      "metricas_validacion": {
+        "accuracy": 0.8737712418300654,
+        "precision": 0.760847164061301,
+        "recall": 0.805024589403359,
+        "f1": 0.7823126951385836,
+        "tasa_alertas": 0.2981111111111111
+      }
+    },
+    "RandomForest": {
+      "accuracy": 0.8682352941176471,
+      "precision": 0.7613059505002633,
+      "recall": 0.8036957150163438,
+      "f1": 0.78192674642494,
+      "tasa_alertas": 0.31029411764705883,
+      "umbral": 0.4956287521700243,
+      "metricas_validacion": {
+        "accuracy": 0.86959477124183,
+        "precision": 0.7514223669923996,
+        "recall": 0.8027048343694906,
+        "f1": 0.7762175015141659,
+        "tasa_alertas": 0.30098039215686273
+      }
+    },
+    "GradientBoosting": {
+      "accuracy": 0.874078431372549,
+      "precision": 0.7701069709770296,
+      "recall": 0.8148362277912432,
+      "f1": 0.7918404390950148,
+      "tasa_alertas": 0.311,
+      "umbral": 0.605459047643542,
+      "metricas_validacion": {
+        "accuracy": 0.8754248366013072,
+        "precision": 0.7600683479690271,
+        "recall": 0.8151851164517027,
+        "f1": 0.7866624879675852,
+        "tasa_alertas": 0.3021830065359477
+      }
+    }
+  }
+}

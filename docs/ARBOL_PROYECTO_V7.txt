@@ -1,0 +1,96 @@
+└── .env.example
+└── .gitignore
+└── .python-version
+└── README.md
+└── app/
+    └── __init__.py
+    └── application/
+        └── __init__.py
+        └── observers/
+            └── __init__.py
+            └── bell_alert_observer.py
+        └── services/
+            └── __init__.py
+            └── alert_service.py
+            └── assistant_service.py
+            └── dashboard_service.py
+            └── evaluation_service.py
+            └── prediction_service.py
+    └── container.py
+    └── domain/
+        └── __init__.py
+        └── entities/
+            └── __init__.py
+            └── evaluation.py
+            └── prediction.py
+            └── product.py
+        └── observers/
+            └── __init__.py
+            └── alert_observer.py
+        └── strategies/
+            └── __init__.py
+            └── prediction_strategy.py
+    └── infrastructure/
+        └── __init__.py
+        └── database/
+            └── __init__.py
+            └── mysql_connection.py
+            └── repositories/
+                └── __init__.py
+                └── consultation_repository.py
+                └── prediction_history_repository.py
+                └── product_repository.py
+        └── ml/
+            └── __init__.py
+            └── intent_predictor.py
+            └── stock_predictor.py
+    └── presentation/
+        └── __init__.py
+        └── routes/
+            └── __init__.py
+            └── assistant_routes.py
+            └── dashboard_routes.py
+            └── prediction_routes.py
+        └── static/
+            └── dashboard.css
+            └── predicciones_stock.css
+            └── style.css
+        └── templates/
+            └── dashboard.html
+            └── index.html
+            └── predicciones_stock.html
+    └── shared/
+        └── __init__.py
+        └── utils.py
+└── config.py
+└── data/
+    └── dataset_intenciones.csv
+    └── dataset_veterinario.csv
+    └── features_actuales_7d.csv
+    └── inventario_actual.csv
+└── docs/
+    └── ARCHITECTURA.md
+    └── INSTRUCCIONES.txt
+    └── MEJORAS_V7_ARQUITECTURA_LIMPIA.md
+    └── assets/
+        └── AsistenteInteligente.gif
+└── main.py
+└── models/
+    └── intent/
+        └── metricas.json
+        └── modelo_intenciones.pkl
+        └── vectorizer.pkl
+    └── stock/
+        └── importancia_variables.json
+        └── metricas_quiebre_stock.json
+        └── modelo_quiebre_stock.pkl
+└── requirements.txt
+└── scripts/
+    └── __init__.py
+    └── analysis/
+        └── __init__.py
+        └── calculate_feature_importance.py
+    └── training/
+        └── __init__.py
+        └── train_intent_model.py
+        └── train_stock_model.py

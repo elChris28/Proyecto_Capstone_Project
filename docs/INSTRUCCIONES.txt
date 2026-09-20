@@ -1,0 +1,50 @@
+VETASSISTANT IA — INSTRUCCIONES DE EJECUCIÓN (V7)
+===================================================
+
+1. Crear y activar un entorno virtual:
+
+   python -m venv venv
+   venv\Scripts\activate
+
+2. Instalar dependencias:
+
+   pip install -r requirements.txt
+   python -m spacy download es_core_news_sm
+
+3. Crear el archivo .env a partir de .env.example y configurar MySQL.
+
+4. Ejecutar la aplicación:
+
+   python main.py
+
+5. Reentrenar el modelo de riesgo de quiebre SOLO si cambia el dataset:
+
+   python -m scripts.training.train_stock_model
+
+   Genera/actualiza:
+   - data/features_actuales_7d.csv
+   - models/stock/modelo_quiebre_stock.pkl
+   - models/stock/metricas_quiebre_stock.json
+
+6. Recalcular importancia de variables después de reentrenar:
+
+   python -m scripts.analysis.calculate_feature_importance
+
+   Genera/actualiza:
+   - models/stock/importancia_variables.json
+
+7. Reentrenar el modelo NLP del asistente solo si cambia dataset_intenciones.csv:
+
+   python -m scripts.training.train_intent_model
+
+   Genera/actualiza:
+   - models/intent/modelo_intenciones.pkl
+   - models/intent/vectorizer.pkl
+   - models/intent/metricas.json
+
+IMPORTANTE
+----------
+- main.py y config.py permanecen en la raíz de forma intencional.
+- data/, models/ y scripts/ son recursos/procesos de soporte y no forman parte de las cuatro capas de ejecución.
+- Los antiguos archivos de compatibilidad asistente.py, database.py, predictor.py y riesgo_stock.py ya fueron retirados.
+- La aplicación utiliza la estructura app/ como implementación definitiva de la Arquitectura en Capas.

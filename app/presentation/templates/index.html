@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetAssistant IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="header-main">
+            <div class="brand-wrap">
+                <div class="brand-icon" aria-hidden="true">V</div>
+                <div class="brand-block">
+                    <div class="brand-title-row">
+                        <h1>VetAssistant IA</h1>
+                        <span class="live-pill"><i></i> Activo</span>
+                    </div>
+                    <p>Asistente inteligente de inventario veterinario</p>
+                </div>
+            </div>
+
+            <button type="button" class="notification-btn" id="notification-btn"
+                    aria-label="Ver alertas de riesgo de quiebre de stock"
+                    aria-expanded="false" title="Alertas predictivas">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span class="notification-badge is-loading" id="notification-badge">…</span>
+            </button>
+        </div>
+
+        <nav class="header-nav">
+            <a class="nav-btn" href="{{ url_for('dashboard.dashboard') }}">
+                <span class="nav-icon">▦</span><span>Dashboard</span>
+            </a>
+            <a class="nav-btn primary" href="{{ url_for('prediction.predicciones_stock') }}">
+                <span class="nav-icon">↗</span><span>Predicción 7 días</span>
+            </a>
+            <a href="{{ url_for('assistant.clear_chat') }}" class="nav-btn subtle">
+                <span class="nav-icon">↻</span><span>Limpiar chat</span>
+            </a>
+        </nav>
+
+        <div class="notification-panel" id="notification-panel" hidden>
+            <div class="notification-panel-head">
+                <div>
+                    <span class="notification-kicker">MONITOREO PREDICTIVO</span>
+                    <h2>Alertas de quiebre de stock</h2>
+                    <p>Prioridades para los próximos 7 días</p>
+                </div>
+                <button type="button" class="notification-close" id="notification-close" aria-label="Cerrar alertas">×</button>
+            </div>
+
+            <div class="threshold-mini">
+                <span><i class="dot high"></i> Alto ≥ <b id="alert-high-threshold">75%</b></span>
+                <span><i class="dot medium"></i> Medio ≥ <b id="alert-medium-threshold">50%</b></span>
+                <span><i class="dot low"></i> Bajo &lt; 50%</span>
+            </div>
+
+            <div class="notification-summary">
+                <div class="notification-summary-card danger"><span>Alto</span><strong id="alert-high-count">—</strong></div>
+                <div class="notification-summary-card warning"><span>Medio</span><strong id="alert-medium-count">—</strong></div>
+                <div class="notification-summary-card safe"><span>Bajo</span><strong id="alert-low-count">—</strong></div>
+            </div>
+
+            <div class="notification-status" id="notification-status">Cargando evaluación actual del inventario…</div>
+            <div class="notification-list" id="notification-list"></div>
+            <div class="notification-panel-footer">
+                <span id="notification-updated">Evaluación actual</span>
+                <a href="{{ url_for('prediction.predicciones_stock') }}">Ver análisis completo →</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="assistant-main">
+        {% if not chat %}
+        <section class="welcome-card">
+            <div class="welcome-mark">AI</div>
+            <div>
+                <span class="welcome-kicker">ASISTENTE OPERATIVO</span>
+                <h2>¿Qué necesitas revisar hoy?</h2>
+                <p>Consulta stock, ubicación, vencimientos y alertas predictivas de quiebre desde un solo lugar.</p>
+            </div>
+            <div class="welcome-meta">
+                <span>MySQL</span>
+                <span>ML · 7 días</span>
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="quick-section">
+            <div class="section-mini-title">Accesos rápidos</div>
+            <div class="quick-buttons">
+                <button type="button" onclick="setPregunta('cuanto stock hay del producto')"><span class="quick-icon">▣</span><span><b>Stock</b><small>Consultar cantidad</small></span></button>
+                <button type="button" onclick="setPregunta('donde esta el producto')"><span class="quick-icon">⌖</span><span><b>Ubicación</b><small>Buscar estante</small></span></button>
+                <button type="button" onclick="setPregunta('cuando vence el producto')"><span class="quick-icon">◷</span><span><b>Vencimiento</b><small>Revisar fechas</small></span></button>
+                <button type="button" onclick="setPregunta('productos criticos')"><span class="quick-icon">!</span><span><b>Críticos</b><small>Stock mínimo</small></span></button>
+                <button type="button" onclick="setPregunta('productos proximos a vencer')"><span class="quick-icon">⌛</span><span><b>Por vencer</b><small>Próximos lotes</small></span></button>
+                <button type="button" class="quick-predict" onclick="setPregunta('que productos tienen riesgo de quiebre de stock en los proximos 7 dias')"><span class="quick-icon">↗</span><span><b>Riesgo 7 días</b><small>Predicción ML</small></span></button>
+            </div>
+        </section>
+
+        <section class="chat" id="chat-box" aria-live="polite">
+            {% if not chat %}
+            <div class="empty-chat-hint">
+                <span class="hint-icon">✦</span>
+                <span>Selecciona un acceso rápido o escribe una consulta para comenzar.</span>
+            </div>
+            {% endif %}
+
+            {% for mensaje in chat %}
+            <div class="message-row {{ mensaje.tipo }}">
+                <div class="message-avatar">{% if mensaje.tipo == 'bot' %}AI{% else %}TÚ{% endif %}</div>
+                <div class="msg {{ mensaje.tipo }}">{{ mensaje.mensaje | safe }}</div>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer class="composer-area">
+        <form method="POST" class="input-box" id="chat-form">
+            <div class="input-field-wrap">
+                <span class="input-spark">✦</span>
+                <input type="text" name="pregunta" id="pregunta"
+                       placeholder="Pregunta por un producto, stock o riesgo de quiebre…"
+                       autocomplete="off" required>
+            </div>
+            <button type="button" id="btn-microfono" class="composer-btn mic" aria-label="Dictar consulta" title="Dictar consulta">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"></path></svg>
+            </button>
+            <button type="submit" class="composer-btn send" id="btn-send" aria-label="Enviar consulta" title="Enviar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+            </button>
+        </form>
+        <div class="help-text"><span>Ejemplo:</span> “riesgo de quiebre de stock en los próximos 7 días”</div>
+    </footer>
+</div>
+
+<script>
+function setPregunta(texto) {
+    const input = document.getElementById("pregunta");
+    input.value = texto;
+    input.focus();
+}
+
+document.getElementById("chat-form").addEventListener("submit", function () {
+    const btn = document.getElementById("btn-send");
+    btn.classList.add("is-loading");
+    btn.disabled = true;
+});
+
+const notificationBtn = document.getElementById("notification-btn");
+const notificationPanel = document.getElementById("notification-panel");
+const notificationClose = document.getElementById("notification-close");
+const notificationBadge = document.getElementById("notification-badge");
+const notificationList = document.getElementById("notification-list");
+const notificationStatus = document.getElementById("notification-status");
+const notificationUpdated = document.getElementById("notification-updated");
+let alertasCargadas = false;
+let cargandoAlertas = false;
+
+function escaparHtml(valor) {
+    return String(valor ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+}
+
+function formatearFechaEvaluacion(valor) {
+    if (!valor) return "Evaluación actual";
+    const fecha = new Date(valor.replace(" ", "T"));
+    if (Number.isNaN(fecha.getTime())) return `Evaluado: ${valor}`;
+    return `Evaluado: ${fecha.toLocaleString("es-PE", {day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit"})}`;
+}
+
+function actualizarBadgeAlertas(totalAlto) {
+    const total = Number(totalAlto || 0);
+    notificationBadge.classList.remove("is-loading");
+    notificationBadge.textContent = total > 99 ? "99+" : String(total);
+    notificationBadge.title = `${total} productos con prioridad alta (≥75%)`;
+    notificationBadge.classList.toggle("is-zero", total === 0);
+}
+
+function renderizarAlertas(data) {
+    const altos = Number(data.alto_riesgo || 0);
+    const medios = Number(data.medio_riesgo || 0);
+    const bajos = Number(data.bajo_riesgo || 0);
+    const prioritarios = Array.isArray(data.prioritarios) ? data.prioritarios : [];
+    const umbralAlto = Number(data.umbral_alto || 75);
+    const umbralMedio = Number(data.umbral_medio || 50);
+
+    document.getElementById("alert-high-count").textContent = altos;
+    document.getElementById("alert-medium-count").textContent = medios;
+    document.getElementById("alert-low-count").textContent = bajos;
+    document.getElementById("alert-high-threshold").textContent = `${umbralAlto}%`;
+    document.getElementById("alert-medium-threshold").textContent = `${umbralMedio}%`;
+    actualizarBadgeAlertas(altos);
+    notificationUpdated.textContent = formatearFechaEvaluacion(data.fecha_evaluacion);
+
+    if (!prioritarios.length) {
+        notificationStatus.innerHTML = '<span class="status-ok">✓ No existen productos con prioridad ALTA en la evaluación actual.</span>';
+        notificationList.innerHTML = '';
+        return;
+    }
+
+    notificationStatus.innerHTML = `<strong>${altos}</strong> productos superan el ${umbralAlto}% de probabilidad. Se muestran los 5 de mayor prioridad.`;
+    notificationList.innerHTML = prioritarios.map((item, index) => {
+        const id = escaparHtml(item.producto_id);
+        const nombre = escaparHtml(item.producto);
+        const categoria = escaparHtml(item.categoria);
+        const probabilidad = Number(item.porcentaje_riesgo || 0).toFixed(1);
+        const stock = Number(item.stock_actual || 0);
+        const demanda = Number(item.demanda_estimada_7d || 0);
+        return `<article class="notification-item">
+            <div class="notification-rank">${index + 1}</div>
+            <div class="notification-item-body">
+                <div class="notification-item-top"><div><strong>${nombre}</strong><span>${id} · ${categoria}</span></div><span class="risk-pill">${probabilidad}%</span></div>
+                <div class="notification-item-metrics"><span>Stock <b>${stock}</b></span><span>Demanda 7d <b>${demanda}</b></span></div>
+            </div>
+        </article>`;
+    }).join("");
+}
+
+async function cargarAlertas(force = false) {
+    if (cargandoAlertas || (alertasCargadas && !force)) return;
+    cargandoAlertas = true;
+    notificationStatus.textContent = "Actualizando evaluación de riesgo…";
+    try {
+        const respuesta = await fetch("{{ url_for('prediction.api_alertas_riesgo') }}", {headers:{"Accept":"application/json"}, cache:"no-store"});
+        if (!respuesta.ok) throw new Error("No fue posible obtener las alertas");
+        renderizarAlertas(await respuesta.json());
+        alertasCargadas = true;
+    } catch (error) {
+        notificationBadge.classList.remove("is-loading");
+        notificationBadge.textContent = "!";
+        notificationStatus.innerHTML = '<span class="status-error">No se pudieron cargar las alertas. Verifica la conexión con MySQL.</span>';
+        notificationList.innerHTML = '';
+    } finally { cargandoAlertas = false; }
+}
+
+function abrirPanelAlertas() { notificationPanel.hidden = false; notificationBtn.setAttribute("aria-expanded", "true"); cargarAlertas(); }
+function cerrarPanelAlertas() { notificationPanel.hidden = true; notificationBtn.setAttribute("aria-expanded", "false"); }
+notificationBtn.addEventListener("click", () => notificationPanel.hidden ? abrirPanelAlertas() : cerrarPanelAlertas());
+notificationClose.addEventListener("click", cerrarPanelAlertas);
+document.addEventListener("click", (event) => { if (!notificationPanel.hidden && !notificationPanel.contains(event.target) && !notificationBtn.contains(event.target)) cerrarPanelAlertas(); });
+document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !notificationPanel.hidden) cerrarPanelAlertas(); });
+cargarAlertas();
+
+const btnMicrofono = document.getElementById("btn-microfono");
+const inputPregunta = document.getElementById("pregunta");
+let reconocimiento;
+if ('webkitSpeechRecognition' in window) {
+    reconocimiento = new webkitSpeechRecognition();
+    reconocimiento.lang = "es-ES";
+    reconocimiento.continuous = false;
+    reconocimiento.interimResults = false;
+    btnMicrofono.addEventListener("click", () => reconocimiento.start());
+    reconocimiento.onstart = () => btnMicrofono.classList.add("listening");
+    reconocimiento.onresult = (event) => { inputPregunta.value = event.results[0][0].transcript; document.getElementById("chat-form").submit(); };
+    reconocimiento.onend = () => btnMicrofono.classList.remove("listening");
+} else {
+    btnMicrofono.disabled = true;
+    btnMicrofono.title = "Reconocimiento de voz no disponible";
+}
+
+const chatBox = document.getElementById("chat-box");
+chatBox.scrollTop = chatBox.scrollHeight;
+</script>
+</body>
+</html>

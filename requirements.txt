@@ -5,6 +5,7 @@ python-dotenv==1.0.1
 thefuzz==0.22.1
 python-Levenshtein==0.25.1
 spacy==3.7.5
-scikit-learn==1.5.1
-joblib==1.4.2
+scikit-learn==1.8.0
+joblib==1.5.3
 pandas==2.2.2
+matplotlib==3.10.8

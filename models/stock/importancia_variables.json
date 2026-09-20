@@ -1,0 +1,392 @@
+{
+  "metodo": "Permutation Importance agrupada sobre TEST temporal",
+  "descripcion": "Caída promedio del F1-Score al permutar cada variable en el conjunto TEST. La categoría se permuta como un bloque one-hot. La evaluación usa el umbral real del modelo desplegado.",
+  "modelo": "GradientBoosting",
+  "umbral": 0.605459047643542,
+  "f1_base_muestra": 0.788393,
+  "filas_test_evaluadas": 6000,
+  "repeticiones": 5,
+  "fecha_corte_test_desde": "2025-11-02",
+  "variables": [
+    {
+      "variable": "ratio_stock_seguridad",
+      "etiqueta": "Relación stock / stock de seguridad",
+      "importancia_f1": 0.217219,
+      "desviacion": 0.00807,
+      "importancia_relativa_pct": 53.65
+    },
+    {
+      "variable": "dias_cobertura_30",
+      "etiqueta": "Días de cobertura según demanda de 30 días",
+      "importancia_f1": 0.071625,
+      "desviacion": 0.006463,
+      "importancia_relativa_pct": 17.69
+    },
+    {
+      "variable": "categoria",
+      "etiqueta": "Categoría del producto",
+      "importancia_f1": 0.029618,
+      "desviacion": 0.003035,
+      "importancia_relativa_pct": 7.31
+    },
+    {
+      "variable": "margen_seguridad",
+      "etiqueta": "Margen sobre stock de seguridad",
+      "importancia_f1": 0.016485,
+      "desviacion": 0.001191,
+      "importancia_relativa_pct": 4.07
+    },
+    {
+      "variable": "lead_time_dias",
+      "etiqueta": "Tiempo de reposición (lead time)",
+      "importancia_f1": 0.008085,
+      "desviacion": 0.001881,
+      "importancia_relativa_pct": 2.0
+    },
+    {
+      "variable": "stock_seguridad",
+      "etiqueta": "Stock de seguridad",
+      "importancia_f1": 0.006735,
+      "desviacion": 0.00286,
+      "importancia_relativa_pct": 1.66
+    },
+    {
+      "variable": "std_30d",
+      "etiqueta": "Variabilidad de ventas 30 días",
+      "importancia_f1": 0.006271,
+      "desviacion": 0.001141,
+      "importancia_relativa_pct": 1.55
+    },
+    {
+      "variable": "dias_venta_30d",
+      "etiqueta": "Días con venta en últimos 30 días",
+      "importancia_f1": 0.006121,
+      "desviacion": 0.001953,
+      "importancia_relativa_pct": 1.51
+    },
+    {
+      "variable": "ratio_stock_reorden",
+      "etiqueta": "Relación stock / punto de reorden",
+      "importancia_f1": 0.005951,
+      "desviacion": 0.002506,
+      "importancia_relativa_pct": 1.47
+    },
+    {
+      "variable": "margen_reorden",
+      "etiqueta": "Margen sobre punto de reorden",
+      "importancia_f1": 0.004952,
+      "desviacion": 0.001661,
+      "importancia_relativa_pct": 1.22
+    },
+    {
+      "variable": "semana_anio",
+      "etiqueta": "Semana del año",
+      "importancia_f1": 0.00393,
+      "desviacion": 0.000884,
+      "importancia_relativa_pct": 0.97
+    },
+    {
+      "variable": "punto_reorden",
+      "etiqueta": "Punto de reorden",
+      "importancia_f1": 0.003763,
+      "desviacion": 0.001388,
+      "importancia_relativa_pct": 0.93
+    },
+    {
+      "variable": "cos_doy",
+      "etiqueta": "Componente estacional anual (coseno)",
+      "importancia_f1": 0.002895,
+      "desviacion": 0.001919,
+      "importancia_relativa_pct": 0.71
+    },
+    {
+      "variable": "ventas_14d",
+      "etiqueta": "Ventas últimos 14 días",
+      "importancia_f1": 0.002597,
+      "desviacion": 0.000809,
+      "importancia_relativa_pct": 0.64
+    },
+    {
+      "variable": "ventas_30d",
+      "etiqueta": "Ventas últimos 30 días",
+      "importancia_f1": 0.002037,
+      "desviacion": 0.001015,
+      "importancia_relativa_pct": 0.5
+    },
+    {
+      "variable": "ratio_stock_demanda7",
+      "etiqueta": "Relación stock / demanda 7 días",
+      "importancia_f1": 0.001657,
+      "desviacion": 0.001226,
+      "importancia_relativa_pct": 0.41
+    },
+    {
+      "variable": "mes",
+      "etiqueta": "Mes",
+      "importancia_f1": 0.001565,
+      "desviacion": 0.000745,
+      "importancia_relativa_pct": 0.39
+    },
+    {
+      "variable": "dias_cobertura_7",
+      "etiqueta": "Días de cobertura según demanda de 7 días",
+      "importancia_f1": 0.0015,
+      "desviacion": 0.000674,
+      "importancia_relativa_pct": 0.37
+    },
+    {
+      "variable": "sin_doy",
+      "etiqueta": "Componente estacional anual (seno)",
+      "importancia_f1": 0.001452,
+      "desviacion": 0.000374,
+      "importancia_relativa_pct": 0.36
+    },
+    {
+      "variable": "dia_mes",
+      "etiqueta": "Día del mes",
+      "importancia_f1": 0.001271,
+      "desviacion": 0.000476,
+      "importancia_relativa_pct": 0.31
+    },
+    {
+      "variable": "dia_semana",
+      "etiqueta": "Día de la semana",
+      "importancia_f1": 0.001181,
+      "desviacion": 0.000295,
+      "importancia_relativa_pct": 0.29
+    },
+    {
+      "variable": "ventas_7d",
+      "etiqueta": "Ventas últimos 7 días",
+      "importancia_f1": 0.001145,
+      "desviacion": 0.001027,
+      "importancia_relativa_pct": 0.28
+    },
+    {
+      "variable": "tendencia_7_30",
+      "etiqueta": "Tendencia de ventas 7 vs. 30 días",
+      "importancia_f1": 0.001065,
+      "desviacion": 0.000138,
+      "importancia_relativa_pct": 0.26
+    },
+    {
+      "variable": "promo_30d",
+      "etiqueta": "Promociones últimos 30 días",
+      "importancia_f1": 0.001022,
+      "desviacion": 0.001047,
+      "importancia_relativa_pct": 0.25
+    },
+    {
+      "variable": "std_7d",
+      "etiqueta": "Variabilidad de ventas 7 días",
+      "importancia_f1": 0.000973,
+      "desviacion": 0.000617,
+      "importancia_relativa_pct": 0.24
+    },
+    {
+      "variable": "max_30d",
+      "etiqueta": "Venta máxima diaria 30 días",
+      "importancia_f1": 0.00095,
+      "desviacion": 0.001723,
+      "importancia_relativa_pct": 0.23
+    },
+    {
+      "variable": "demanda_lead_7",
+      "etiqueta": "Demanda estimada durante lead time",
+      "importancia_f1": 0.000711,
+      "desviacion": 0.000856,
+      "importancia_relativa_pct": 0.18
+    },
+    {
+      "variable": "stock_actual",
+      "etiqueta": "Stock actual",
+      "importancia_f1": 0.000664,
+      "desviacion": 0.001531,
+      "importancia_relativa_pct": 0.16
+    },
+    {
+      "variable": "tendencia_ratio_7_30",
+      "etiqueta": "Ratio de tendencia 7 vs. 30 días",
+      "importancia_f1": 0.000514,
+      "desviacion": 0.000417,
+      "importancia_relativa_pct": 0.13
+    },
+    {
+      "variable": "lag_7",
+      "etiqueta": "Venta de hace 7 días",
+      "importancia_f1": 0.000332,
+      "desviacion": 0.000136,
+      "importancia_relativa_pct": 0.08
+    },
+    {
+      "variable": "ventas_3d",
+      "etiqueta": "Ventas últimos 3 días",
+      "importancia_f1": 0.000226,
+      "desviacion": 0.000229,
+      "importancia_relativa_pct": 0.06
+    },
+    {
+      "variable": "dias_venta_7d",
+      "etiqueta": "Días con venta en últimos 7 días",
+      "importancia_f1": 0.000202,
+      "desviacion": 0.000626,
+      "importancia_relativa_pct": 0.05
+    },
+    {
+      "variable": "ratio_stock_demanda_lead",
+      "etiqueta": "Relación stock / demanda durante lead time",
+      "importancia_f1": 0.000101,
+      "desviacion": 0.001022,
+      "importancia_relativa_pct": 0.02
+    },
+    {
+      "variable": "lag_14",
+      "etiqueta": "Venta de hace 14 días",
+      "importancia_f1": 9.3e-05,
+      "desviacion": 0.000367,
+      "importancia_relativa_pct": 0.02
+    },
+    {
+      "variable": "promedio_3d",
+      "etiqueta": "Promedio diario últimos 3 días",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "promedio_7d",
+      "etiqueta": "Promedio diario últimos 7 días",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "promedio_14d",
+      "etiqueta": "Promedio diario últimos 14 días",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "promedio_30d",
+      "etiqueta": "Promedio diario últimos 30 días",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "lag_1",
+      "etiqueta": "Venta del día anterior",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "lag_28",
+      "etiqueta": "Venta de hace 28 días",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "es_fin_semana",
+      "etiqueta": "Indicador de fin de semana",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "promocion",
+      "etiqueta": "Promoción del día",
+      "importancia_f1": 0.0,
+      "desviacion": 0.0,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "max_7d",
+      "etiqueta": "Venta máxima diaria 7 días",
+      "importancia_f1": -9.9e-05,
+      "desviacion": 0.000369,
+      "importancia_relativa_pct": 0.0
+    },
+    {
+      "variable": "promo_7d",
+      "etiqueta": "Promociones últimos 7 días",
+      "importancia_f1": -0.000282,
+      "desviacion": 0.000255,
+      "importancia_relativa_pct": 0.0
+    }
+  ],
+  "top_10": [
+    {
+      "variable": "ratio_stock_seguridad",
+      "etiqueta": "Relación stock / stock de seguridad",
+      "importancia_f1": 0.217219,
+      "desviacion": 0.00807,
+      "importancia_relativa_pct": 53.65
+    },
+    {
+      "variable": "dias_cobertura_30",
+      "etiqueta": "Días de cobertura según demanda de 30 días",
+      "importancia_f1": 0.071625,
+      "desviacion": 0.006463,
+      "importancia_relativa_pct": 17.69
+    },
+    {
+      "variable": "categoria",
+      "etiqueta": "Categoría del producto",
+      "importancia_f1": 0.029618,
+      "desviacion": 0.003035,
+      "importancia_relativa_pct": 7.31
+    },
+    {
+      "variable": "margen_seguridad",
+      "etiqueta": "Margen sobre stock de seguridad",
+      "importancia_f1": 0.016485,
+      "desviacion": 0.001191,
+      "importancia_relativa_pct": 4.07
+    },
+    {
+      "variable": "lead_time_dias",
+      "etiqueta": "Tiempo de reposición (lead time)",
+      "importancia_f1": 0.008085,
+      "desviacion": 0.001881,
+      "importancia_relativa_pct": 2.0
+    },
+    {
+      "variable": "stock_seguridad",
+      "etiqueta": "Stock de seguridad",
+      "importancia_f1": 0.006735,
+      "desviacion": 0.00286,
+      "importancia_relativa_pct": 1.66
+    },
+    {
+      "variable": "std_30d",
+      "etiqueta": "Variabilidad de ventas 30 días",
+      "importancia_f1": 0.006271,
+      "desviacion": 0.001141,
+      "importancia_relativa_pct": 1.55
+    },
+    {
+      "variable": "dias_venta_30d",
+      "etiqueta": "Días con venta en últimos 30 días",
+      "importancia_f1": 0.006121,
+      "desviacion": 0.001953,
+      "importancia_relativa_pct": 1.51
+    },
+    {
+      "variable": "ratio_stock_reorden",
+      "etiqueta": "Relación stock / punto de reorden",
+      "importancia_f1": 0.005951,
+      "desviacion": 0.002506,
+      "importancia_relativa_pct": 1.47
+    },
+    {
+      "variable": "margen_reorden",
+      "etiqueta": "Margen sobre punto de reorden",
+      "importancia_f1": 0.004952,
+      "desviacion": 0.001661,
+      "importancia_relativa_pct": 1.22
+    }
+  ]
+}

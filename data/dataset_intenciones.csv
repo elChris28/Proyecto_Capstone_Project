@@ -1,0 +1,237 @@
+texto;intencion
+cuanto stock hay;stock
+cuantas unidades hay;stock
+hay stock del producto;stock
+hay existencias;stock
+cuanto inventario hay;stock
+stock actual;stock
+cantidad disponible;stock
+cuanto queda;stock
+tienes disponible el producto;stock
+hay producto en almacén;stock
+cantidad en inventario;stock
+consultar stock;stock
+ver stock;stock
+quiero saber el stock;stock
+me dices cuantas unidades quedan;stock
+hay suficiente producto;stock
+cuanto hay en almacén;stock
+stock del medicamento;stock
+stock de vacuna;stock
+existencia del producto;stock
+cuanto producto queda;stock
+queda producto disponible;stock
+hay unidades disponibles;stock
+disponibilidad del producto;stock
+inventario del medicamento;stock
+cuanto hay de amoxicilina;stock
+cuanto hay de ivermectina;stock
+cuanto hay de vacunas;stock
+cantidad de insumos;stock
+stock de insumos veterinarios;stock
+consultar existencia;stock
+ver disponibilidad;stock
+hay en inventario;stock
+cuanto stock tiene el sistema;stock
+stock en farmacia veterinaria;stock
+cuantas dosis hay;stock
+cuantas ampollas hay;stock
+cuantos frascos hay;stock
+cuanto producto veterinario hay;stock
+hay alimento disponible;stock
+stock de antiparasitarios;stock
+stock de antibioticos;stock
+stock de vitaminas;stock
+stock de desparasitantes;stock
+stock de medicamentos;stock
+hay medicinas disponibles;stock
+hay productos disponibles;stock
+productos criticos;stock_critico
+productos con bajo stock;stock_critico
+stock bajo;stock_critico
+stock minimo;stock_critico
+productos por agotarse;stock_critico
+productos casi agotados;stock_critico
+insumos con poco stock;stock_critico
+alerta de stock;stock_critico
+alerta de inventario bajo;stock_critico
+productos en riesgo;stock_critico
+productos sin stock suficiente;stock_critico
+faltan unidades;stock_critico
+productos agotandose;stock_critico
+insumos casi terminados;stock_critico
+medicamentos con bajo stock;stock_critico
+vacunas con bajo stock;stock_critico
+antibioticos en alerta;stock_critico
+productos veterinarios criticos;stock_critico
+productos con pocas unidades;stock_critico
+poco inventario;stock_critico
+inventario critico;stock_critico
+bajo inventario;stock_critico
+nivel de stock critico;stock_critico
+stock insuficiente;stock_critico
+productos en alerta roja;stock_critico
+riesgo de quiebre de stock;stock_critico
+posible agotamiento;stock_critico
+productos casi sin stock;stock_critico
+insumos sin stock;stock_critico
+productos por reponer;stock_critico
+necesitan reposicion;stock_critico
+alerta farmacia veterinaria;stock_critico
+productos escasos;stock_critico
+baja disponibilidad;stock_critico
+muy poco stock;stock_critico
+donde esta el producto;ubicacion
+ubicacion del producto;ubicacion
+en que estante esta;ubicacion
+donde se encuentra;ubicacion
+donde lo encuentro;ubicacion
+en que zona esta;ubicacion
+en que almacen esta;ubicacion
+localizar producto;ubicacion
+ubicar producto;ubicacion
+dime la ubicacion;ubicacion
+cual es su ubicacion;ubicacion
+donde esta guardado;ubicacion
+en que parte del almacen esta;ubicacion
+donde esta la amoxicilina;ubicacion
+donde esta la ivermectina;ubicacion
+donde estan las vacunas;ubicacion
+donde estan los medicamentos;ubicacion
+ubicacion de insumos;ubicacion
+ubicacion de vacunas;ubicacion
+ubicacion de antibioticos;ubicacion
+ubicacion de antiparasitarios;ubicacion
+ubicacion de vitaminas;ubicacion
+donde esta el alimento;ubicacion
+en que rack esta;ubicacion
+en que shelf esta;ubicacion
+en que area del almacen esta;ubicacion
+en que zona de farmacia esta;ubicacion
+donde esta almacenado;ubicacion
+en que estanteria esta;ubicacion
+ubicacion fisica del producto;ubicacion
+buscar ubicacion;ubicacion
+donde puedo encontrarlo;ubicacion
+me indicas ubicacion;ubicacion
+ubicacion exacta del producto;ubicacion
+donde se almacena;ubicacion
+en que seccion esta;ubicacion
+en que modulo esta;ubicacion
+donde guardan este producto;ubicacion
+ubicacion en veterinaria;ubicacion
+donde esta el stock;ubicacion
+en que lugar esta;ubicacion
+ubicacion del medicamento;ubicacion
+cuando vence;vencimiento
+fecha de vencimiento;vencimiento
+cuando caduca;vencimiento
+fecha de caducidad;vencimiento
+cuando expira;vencimiento
+ver vencimiento;vencimiento
+consultar vencimiento;vencimiento
+estado del lote;vencimiento
+ver lotes del producto;vencimiento
+consultar lote;vencimiento
+lote del producto;vencimiento
+lotes del producto;vencimiento
+que lote vence primero;vencimiento
+fecha de expiracion;vencimiento
+hasta cuando dura;vencimiento
+cuando vence el lote;vencimiento
+lote y vencimiento;vencimiento
+ver fecha de lote;vencimiento
+lotes en almacen;vencimiento
+estado de lotes;vencimiento
+control de lotes;vencimiento
+ver caducidad del lote;vencimiento
+consultar caducidad;vencimiento
+cuando expira el lote;vencimiento
+fecha de vencimiento del lote;vencimiento
+lotes veterinarios;vencimiento
+vencimiento de medicamentos;vencimiento
+vencimiento de vacunas;vencimiento
+vencimiento de insumos;vencimiento
+vencimiento de antibioticos;vencimiento
+lote de amoxicilina;vencimiento
+lote de ivermectina;vencimiento
+lote de vacunas;vencimiento
+lote en farmacia veterinaria;vencimiento
+lotes proximos a vencer;vencimiento
+lotes por vencer;vencimiento
+lotes vencidos;vencimiento
+estado de vencimiento;vencimiento
+control de caducidad;vencimiento
+productos vencidos;vencimiento
+ver productos vencidos;vencimiento
+revision de lotes;vencimiento
+seguimiento de lotes;vencimiento
+fecha de lote;vencimiento
+cuantos dias faltan para vencer;dias_vencimiento
+en cuantos dias vence;dias_vencimiento
+dias restantes;dias_vencimiento
+cuanto falta para vencer;dias_vencimiento
+tiempo restante;dias_vencimiento
+esta cerca de vencer;dias_vencimiento
+cuantos dias le quedan;dias_vencimiento
+cuanto tiempo falta;dias_vencimiento
+dias para caducar;dias_vencimiento
+dias de vencimiento;dias_vencimiento
+cuantos dias faltan;dias_vencimiento
+faltan muchos dias;dias_vencimiento
+faltan pocos dias;dias_vencimiento
+cuanto tiempo queda;dias_vencimiento
+dias antes de vencimiento;dias_vencimiento
+dias de expiracion;dias_vencimiento
+tiempo de caducidad;dias_vencimiento
+cuando caduca exactamente;dias_vencimiento
+cuanto tiempo queda de vida;dias_vencimiento
+dias de vida del producto;dias_vencimiento
+productos proximos a vencer;productos_por_vencer
+productos que vencen pronto;productos_por_vencer
+productos por vencer;productos_por_vencer
+productos en riesgo de vencimiento;productos_por_vencer
+productos por caducar;productos_por_vencer
+mostrar productos por vencer;productos_por_vencer
+listar productos proximos a vencer;productos_por_vencer
+que productos vencen esta semana;productos_por_vencer
+productos con vencimiento cercano;productos_por_vencer
+lotes proximos a vencer;productos_por_vencer
+lotes por vencer;productos_por_vencer
+lotes con vencimiento cercano;productos_por_vencer
+que lotes vencen pronto;productos_por_vencer
+productos veterinarios por vencer;productos_por_vencer
+vacunas por vencer;productos_por_vencer
+medicamentos por vencer;productos_por_vencer
+antibioticos por vencer;productos_por_vencer
+insumos por vencer;productos_por_vencer
+alimentos por vencer;productos_por_vencer
+productos en alerta de vencimiento;productos_por_vencer
+control de vencimientos;productos_por_vencer
+revision de vencimientos;productos_por_vencer
+seguimiento de vencimientos;productos_por_vencer
+productos proximos a caducar;productos_por_vencer
+riesgo de quiebre de stock;riesgo_quiebre
+que productos se quedaran sin stock;riesgo_quiebre
+que productos pueden agotarse en los proximos 7 dias;riesgo_quiebre
+prediccion de quiebre de stock;riesgo_quiebre
+predecir productos sin stock;riesgo_quiebre
+productos con riesgo de agotarse;riesgo_quiebre
+riesgo de stock para los proximos 7 dias;riesgo_quiebre
+que se va a quedar sin stock esta semana;riesgo_quiebre
+mostrar alertas predictivas de stock;riesgo_quiebre
+que productos debo reponer esta semana;riesgo_quiebre
+productos con alta probabilidad de quiebre;riesgo_quiebre
+prediccion de inventario a siete dias;riesgo_quiebre
+riesgo futuro de inventario;riesgo_quiebre
+que productos tendran faltante;riesgo_quiebre
+que productos pueden quebrar stock;riesgo_quiebre
+riesgo de agotamiento en siete dias;riesgo_quiebre
+pronostico de quiebre de stock;riesgo_quiebre
+alerta de quiebre de stock;riesgo_quiebre
+productos que se agotaran pronto;riesgo_quiebre
+prevision de stock para la proxima semana;riesgo_quiebre
+stock en riesgo para siete dias;riesgo_quiebre
+que producto tiene riesgo de quiebre;riesgo_quiebre
+probabilidad de quedarse sin stock;riesgo_quiebre
+productos con riesgo alto de stock;riesgo_quiebre

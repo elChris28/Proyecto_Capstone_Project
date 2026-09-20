@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Quiebre de Stock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='predicciones_stock.css') }}">
+</head>
+<body>
+<div class="predict-container">
+    <header class="predict-header">
+        <div class="header-copy">
+            <span class="tag">Machine Learning · Horizonte {{ resumen.horizonte_dias }} días</span>
+            <h1>Predicción de riesgo de quiebre de stock</h1>
+            <p>Prioriza productos que requieren revisión antes de un posible desabastecimiento. El riesgo combina inventario actual de MySQL con el comportamiento histórico de ventas.</p>
+            <div class="header-meta">
+                <span>Histórico hasta: <b>{{ resumen.fecha_corte or 'No disponible' }}</b></span>
+                <span>Evaluación generada: <b>{{ resumen.fecha_evaluacion or 'No disponible' }}</b></span>
+                <span>Horizonte: <b>{{ resumen.horizonte_dias }} días</b></span>
+                <span>Catálogo operativo: <b>{{ resumen.fuente_catalogo }}</b></span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <form method="post" action="{{ url_for('prediction.registrar_evaluacion_stock') }}" class="register-form">
+                <button type="submit" class="btn register-btn">Registrar evaluación</button>
+            </form>
+            <a href="{{ url_for('dashboard.dashboard') }}" class="btn secondary">Dashboard</a>
+            <a href="{{ url_for('assistant.index') }}" class="btn">Asistente</a>
+        </div>
+    </header>
+
+    {% if evaluacion_guardada %}
+    <div class="status-message success">Evaluación #{{ evaluacion_guardada }} registrada correctamente. El historial sólo se guarda cuando presionas “Registrar evaluación”.</div>
+    {% elif error_guardado %}
+    <div class="status-message error">No fue posible registrar la evaluación. Revisa la conexión con MySQL.</div>
+    {% endif %}
+
+    <section class="executive-summary">
+        <div>
+            <span class="eyebrow">Resumen del escenario actual</span>
+            <h2>{{ resumen.alto_riesgo }} en riesgo alto y {{ resumen.medio_riesgo }} en vigilancia</h2>
+            <p>El semáforo operativo organiza {{ resumen.total_productos }} productos por prioridad: ALTO desde 75%, MEDIO entre 50% y menos de 75%, y BAJO por debajo de 50%. Esta capa visual es independiente del umbral binario usado para validar el modelo.</p>
+        </div>
+        <div class="distribution" aria-label="Distribución de riesgo">
+            <div class="distribution-labels three">
+                <span>Alto {{ resumen.alto_riesgo }}</span>
+                <span>Medio {{ resumen.medio_riesgo }}</span>
+                <span>Bajo {{ resumen.bajo_riesgo }}</span>
+            </div>
+            <div class="distribution-bar three-level">
+                <span class="distribution-high" style="width: {{ resumen.porcentaje_alto_riesgo }}%"></span>
+                <span class="distribution-medium" style="width: {{ resumen.porcentaje_medio_riesgo }}%"></span>
+                <span class="distribution-low" style="width: {{ resumen.porcentaje_bajo_riesgo }}%"></span>
+            </div>
+            <div class="threshold-legend">
+                <span>ALTO ≥ {{ resumen.umbral }}%</span>
+                <span>MEDIO {{ resumen.umbral_medio }}%–{{ resumen.umbral }}%</span>
+                <span>BAJO &lt; {{ resumen.umbral_medio }}%</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="kpi-grid">
+        <article class="kpi danger">
+            <span>Riesgo alto</span>
+            <strong>{{ resumen.alto_riesgo }}</strong>
+            <small>{{ resumen.porcentaje_alto_riesgo }}% de los productos evaluados</small>
+        </article>
+        <article class="kpi medium">
+            <span>Riesgo medio</span>
+            <strong>{{ resumen.medio_riesgo }}</strong>
+            <small>{{ resumen.porcentaje_medio_riesgo }}% en zona de vigilancia</small>
+        </article>
+        <article class="kpi safe">
+            <span>Riesgo bajo</span>
+            <strong>{{ resumen.bajo_riesgo }}</strong>
+            <small>{{ resumen.porcentaje_bajo_riesgo }}% sin alerta inmediata</small>
+        </article>
+        <article class="kpi warning">
+            <span>Faltante proyectado</span>
+            <strong>{{ resumen.faltante_proyectado }}</strong>
+            <small>productos cuya demanda explicativa supera el stock actual</small>
+        </article>
+        <article class="kpi">
+            <span>Modelo seleccionado</span>
+            <strong class="model-name">{{ resumen.modelo }}</strong>
+            <small>validado con partición temporal</small>
+        </article>
+    </section>
+
+    <section class="model-card">
+        <div class="model-copy">
+            <span class="eyebrow">Desempeño del modelo</span>
+            <h2>Evaluación de clasificación</h2>
+            <p>{{ resumen.metodologia_validacion }}. El Recall es la métrica prioritaria porque permite reducir falsos negativos en productos que realmente pueden entrar en riesgo.</p>
+            <span class="goal-badge {% if resumen.cumple_recall %}ok{% else %}fail{% endif %}">
+                {% if resumen.cumple_recall %}Meta cumplida{% else %}Meta pendiente{% endif %}: Recall ≥ {{ resumen.recall_objetivo|int }}%
+            </span>
+        </div>
+        <div class="metrics">
+            <div><span>Accuracy</span><b>{{ resumen.accuracy }}%</b></div>
+            <div><span>Precision</span><b>{{ resumen.precision }}%</b></div>
+            <div><span>Recall</span><b>{{ resumen.recall }}%</b></div>
+            <div><span>F1-Score</span><b>{{ resumen.f1 }}%</b></div>
+            <div><span>Umbral binario ML</span><b>{{ resumen.umbral_modelo_validado }}%</b></div>
+        </div>
+    </section>
+
+    <section class="note-card triage-note">
+        <h3>Semáforo operativo de riesgo</h3>
+        <p><b>ALTO:</b> probabilidad ≥ {{ resumen.umbral }}%. <b>MEDIO:</b> desde {{ resumen.umbral_medio }}% y menor a {{ resumen.umbral }}%. <b>BAJO:</b> menor a {{ resumen.umbral_medio }}%. El modelo de ML continúa siendo binario y conserva su umbral validado de {{ resumen.umbral_modelo_validado }}% para evaluación; el semáforo de 50%/75% es una capa de priorización para la interfaz.</p>
+    </section>
+
+    {% if resumen.comparacion_modelos %}
+    <section class="evidence-section">
+        <div class="section-title">
+            <div>
+                <span class="eyebrow">Evidencia de selección</span>
+                <h2>Comparación de modelos evaluados</h2>
+                <p>Los tres algoritmos fueron evaluados sobre el mismo conjunto TEST temporal. Se priorizó el cumplimiento de Recall ≥ {{ resumen.recall_objetivo|int }}% y, entre los modelos que cumplen, el mejor F1-Score.</p>
+            </div>
+            <span class="selected-model-badge">Seleccionado: {{ resumen.modelo }}</span>
+        </div>
+
+        <div class="model-comparison-grid">
+            {% for modelo in resumen.comparacion_modelos %}
+            <article class="comparison-card {% if modelo.seleccionado %}selected{% endif %}">
+                <div class="comparison-head">
+                    <div>
+                        <span class="model-index">Modelo {{ loop.index }}</span>
+                        <h3>{{ modelo.nombre }}</h3>
+                    </div>
+                    {% if modelo.seleccionado %}
+                    <span class="winner-badge">Seleccionado</span>
+                    {% elif modelo.cumple_recall %}
+                    <span class="candidate-badge">Cumple Recall</span>
+                    {% else %}
+                    <span class="candidate-badge fail">No cumple meta</span>
+                    {% endif %}
+                </div>
+                <div class="comparison-metrics">
+                    <div><span>Accuracy</span><b>{{ modelo.accuracy }}%</b></div>
+                    <div><span>Precision</span><b>{{ modelo.precision }}%</b></div>
+                    <div class="metric-focus"><span>Recall</span><b>{{ modelo.recall }}%</b></div>
+                    <div><span>F1-Score</span><b>{{ modelo.f1 }}%</b></div>
+                </div>
+                <div class="threshold-line">Umbral de clasificación: <b>{{ modelo.umbral }}%</b></div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div class="selection-explanation">
+            <b>¿Por qué se seleccionó {{ resumen.modelo }}?</b>
+            <p>Es el modelo que alcanzó el mejor equilibrio entre detección de productos realmente riesgosos y calidad global de clasificación, logrando Recall de {{ resumen.recall }}% y F1-Score de {{ resumen.f1 }}% sobre el TEST independiente.</p>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if resumen.variables_importantes %}
+    <section class="evidence-section importance-section">
+        <div class="section-title">
+            <div>
+                <span class="eyebrow">Interpretabilidad global</span>
+                <h2>Variables con mayor relevancia para el modelo</h2>
+                <p>Se aplicó Permutation Importance sobre una muestra del conjunto TEST temporal. Cuanto mayor es la caída del F1 al desordenar una variable, mayor información aporta al modelo.</p>
+            </div>
+            <div class="importance-meta">
+                <span>{{ resumen.filas_importancia }} filas TEST</span>
+                <span>{{ resumen.repeticiones_importancia }} repeticiones</span>
+                <span>F1 base {{ resumen.f1_base_importancia }}%</span>
+            </div>
+        </div>
+
+        <div class="importance-layout">
+            <div class="importance-list">
+                {% for variable in resumen.variables_importantes[:8] %}
+                <div class="importance-row">
+                    <div class="importance-rank">{{ loop.index }}</div>
+                    <div class="importance-content">
+                        <div class="importance-label-line">
+                            <b>{{ variable.etiqueta }}</b>
+                            <span>{{ variable.importancia_relativa_pct }}%</span>
+                        </div>
+                        <div class="importance-track" aria-label="Relevancia relativa {{ variable.importancia_relativa_pct }}%">
+                            <span style="width: {{ variable.barra_pct }}%"></span>
+                        </div>
+                        <small>Caída media del F1: {{ variable.importancia_f1 }}</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <aside class="importance-help">
+                <span class="analysis-label">Cómo interpretar</span>
+                <p>La relevancia es <b>global</b>: resume el comportamiento del modelo en el conjunto de prueba y no significa que una sola variable cause el riesgo de un producto específico.</p>
+                <p>La clasificación individual continúa considerando simultáneamente todas las variables utilizadas durante el entrenamiento.</p>
+                <div class="method-pill">Permutation Importance · TEST temporal</div>
+            </aside>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if resumen.top_prioritarios %}
+    <section class="priority-section">
+        <div class="section-title">
+            <div>
+                <span class="eyebrow">Atención prioritaria</span>
+                <h2>Top 5 productos con mayor probabilidad de riesgo</h2>
+                <p>Vista rápida para enfocar la revisión operativa en los casos más urgentes.</p>
+            </div>
+        </div>
+        <div class="priority-grid">
+            {% for item in resumen.top_prioritarios %}
+            <article class="priority-card">
+                <div class="priority-top">
+                    <div>
+                        <span class="product-code">{{ item.producto_id }}</span>
+                        <h3>{{ item.producto }}</h3>
+                        <span class="category-pill">{{ item.categoria }}</span>
+                    </div>
+                    <div class="risk-circle">{{ item.porcentaje_riesgo }}%</div>
+                </div>
+                <div class="priority-stats">
+                    <div><span>Stock</span><b>{{ item.stock_actual }}</b></div>
+                    <div><span>Demanda 7d</span><b>{{ item.demanda_estimada_7d }}</b></div>
+                    <div><span>Proyectado</span><b class="{% if item.stock_proyectado_7d < 0 %}negative{% endif %}">{{ item.stock_proyectado_7d }}</b></div>
+                    <div><span>Cobertura</span><b>{{ item.dias_cobertura }} d</b></div>
+                </div>
+                <div class="factor-box">
+                    <b>Factores observados</b>
+                    <ul>
+                        {% for factor in item.factores_observados[:2] %}
+                        <li>{{ factor }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <p class="recommendation">{{ item.recomendacion }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if resumen.cantidad_sin_historial > 0 %}
+    <section class="note-card warning-note">
+        <h3>Productos sin historial suficiente</h3>
+        <p>{{ resumen.cantidad_sin_historial }} producto(s) existen en MySQL, pero no tienen coincidencia o historial suficiente en el dataset y no se incluyen en la predicción.</p>
+    </section>
+    {% endif %}
+
+    <section class="table-card">
+        <div class="table-head">
+            <div>
+                <span class="eyebrow">Análisis detallado</span>
+                <h2>Productos priorizados</h2>
+                <p>Ordenados desde la mayor probabilidad estimada de quiebre. Usa “Ver análisis” para revisar las señales asociadas a cada producto.</p>
+            </div>
+            <div class="filters">
+                <input id="searchProduct" type="search" placeholder="Buscar producto o código..." aria-label="Buscar producto">
+                <select id="categoryFilter" aria-label="Filtrar por categoría">
+                    <option value="TODAS">Todas las categorías</option>
+                    {% for categoria in resumen.categorias %}
+                    <option value="{{ categoria|lower }}">{{ categoria }}</option>
+                    {% endfor %}
+                </select>
+                <select id="riskFilter" aria-label="Filtrar por nivel de riesgo">
+                    <option value="ALTO" selected>Solo riesgo alto</option>
+                    <option value="MEDIO">Solo riesgo medio</option>
+                    <option value="BAJO">Solo riesgo bajo</option>
+                    <option value="TODOS">Todos los productos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table id="predictionTable">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock actual</th>
+                        <th>Ventas 7d</th>
+                        <th>Demanda est. 7d</th>
+                        <th>Stock proyectado</th>
+                        <th>Cobertura</th>
+                        <th>Riesgo</th>
+                        <th>Nivel</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if not productos %}
+                    <tr class="empty-row">
+                        <td colspan="9">No hay productos disponibles para evaluar o no existe coincidencia con el historial.</td>
+                    </tr>
+                {% endif %}
+                {% for item in productos %}
+                    <tr class="prediction-row"
+                        data-risk="{{ item.nivel_riesgo }}"
+                        data-category="{{ item.categoria|lower }}"
+                        data-product="{{ (item.producto ~ ' ' ~ item.producto_id)|lower }}"
+                        data-detail="detail-{{ loop.index }}">
+                        <td>
+                            <b>{{ item.producto }}</b>
+                            <small>{{ item.producto_id }} · {{ item.categoria }}</small>
+                        </td>
+                        <td>
+                            <b>{{ item.stock_actual }}</b>
+                            <small>Seguridad {{ item.stock_seguridad }} · Reorden {{ item.punto_reorden }}</small>
+                        </td>
+                        <td>
+                            <b>{{ item.ventas_7d }}</b>
+                            <small>14d: {{ item.ventas_14d }} · 30d: {{ item.ventas_30d }}</small>
+                        </td>
+                        <td>{{ item.demanda_estimada_7d }}</td>
+                        <td class="{% if item.stock_proyectado_7d < 0 %}negative{% endif %}">
+                            <b>{{ item.stock_proyectado_7d }}</b>
+                            {% if item.faltante_estimado > 0 %}
+                                <small>faltante estimado: {{ item.faltante_estimado }}</small>
+                            {% else %}
+                                <small>margen seguridad: {{ item.margen_seguridad_proyectado }}</small>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <b>{{ item.dias_cobertura }} días</b>
+                            <small>Lead time: {{ item.lead_time_dias }} días</small>
+                        </td>
+                        <td>
+                            <div class="probability-row">
+                                <div class="probability"><span style="width: {{ item.porcentaje_riesgo }}%"></span></div>
+                                <b>{{ item.porcentaje_riesgo }}%</b>
+                            </div>
+                        </td>
+                        <td><span class="risk-badge {{ item.nivel_riesgo|lower }}">{{ item.nivel_riesgo }}</span></td>
+                        <td><button type="button" class="detail-btn" data-target="detail-{{ loop.index }}">Ver análisis</button></td>
+                    </tr>
+                    <tr id="detail-{{ loop.index }}" class="analysis-row" hidden>
+                        <td colspan="9">
+                            <div class="analysis-panel">
+                                <div class="analysis-block">
+                                    <span class="analysis-label">Factores observados</span>
+                                    <ul>
+                                        {% for factor in item.factores_observados %}
+                                        <li>{{ factor }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="analysis-block compact">
+                                    <span class="analysis-label">Variables operativas</span>
+                                    <div class="mini-grid">
+                                        <div><span>Stock mínimo</span><b>{{ item.stock_minimo }}</b></div>
+                                        <div><span>Stock seguridad</span><b>{{ item.stock_seguridad }}</b></div>
+                                        <div><span>Punto reorden</span><b>{{ item.punto_reorden }}</b></div>
+                                        <div><span>Lead time</span><b>{{ item.lead_time_dias }} d</b></div>
+                                        <div><span>Promedio diario 7d</span><b>{{ item.promedio_diario_7d }}</b></div>
+                                        <div><span>Tendencia</span><b>{{ item.tendencia_ventas }}</b></div>
+                                    </div>
+                                </div>
+                                <div class="analysis-block action-block">
+                                    <span class="analysis-label">Acción sugerida</span>
+                                    <p>{{ item.recomendacion }}</p>
+                                    <small>La recomendación es apoyo a la decisión; el sistema no ejecuta compras automáticamente.</small>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p id="visibleCount" class="visible-count"></p>
+    </section>
+
+    <section class="history-section">
+        <div class="section-title history-head">
+            <div>
+                <span class="eyebrow">Trazabilidad</span>
+                <h2>Historial de evaluaciones registradas</h2>
+                <p>El historial no se genera al refrescar la página. Usa “Registrar evaluación” cuando quieras conservar un snapshot para comparar la evolución del riesgo.</p>
+            </div>
+        </div>
+        {% if historial_evaluaciones %}
+        <div class="history-grid">
+            {% for eval in historial_evaluaciones %}
+            <article class="history-card">
+                <div class="history-card-head">
+                    <b>Evaluación #{{ eval.id }}</b>
+                    <span>{{ eval.fecha_evaluacion }}</span>
+                </div>
+                <div class="history-counts">
+                    <div class="h-high"><span>Alto</span><b>{{ eval.alto_riesgo }}</b></div>
+                    <div class="h-medium"><span>Medio</span><b>{{ eval.medio_riesgo }}</b></div>
+                    <div class="h-low"><span>Bajo</span><b>{{ eval.bajo_riesgo }}</b></div>
+                </div>
+                <small>{{ eval.total_productos }} productos · {{ eval.modelo }} · corte {{ eval.fecha_corte or 'N/D' }}</small>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="history-empty">Aún no hay evaluaciones guardadas. La primera aparecerá aquí después de presionar “Registrar evaluación”.</div>
+        {% endif %}
+    </section>
+
+    <section class="note-card info-note">
+        <h3>Cómo interpretar esta pantalla</h3>
+        <p><b>Probabilidad de riesgo:</b> es producida por el modelo de Machine Learning. <b>ALTO/MEDIO/BAJO:</b> es un semáforo operativo de priorización (≥75%, 50–&lt;75% y &lt;50%). El umbral binario validado del modelo se conserva por separado para sus métricas. <b>Demanda estimada, stock proyectado y factores observados:</b> son indicadores explicativos para facilitar la interpretación y no deben presentarse como causalidad interna del algoritmo.</p>
+    </section>
+</div>
+
+<script>
+const search = document.getElementById('searchProduct');
+const riskFilter = document.getElementById('riskFilter');
+const categoryFilter = document.getElementById('categoryFilter');
+const rows = [...document.querySelectorAll('.prediction-row')];
+const count = document.getElementById('visibleCount');
+
+function closeDetailForRow(row) {
+    const detail = document.getElementById(row.dataset.detail);
+    if (detail) detail.hidden = true;
+    const button = row.querySelector('.detail-btn');
+    if (button) button.textContent = 'Ver análisis';
+}
+
+function applyFilters() {
+    const term = search.value.trim().toLowerCase();
+    const risk = riskFilter.value;
+    const category = categoryFilter.value;
+    let visible = 0;
+
+    rows.forEach(row => {
+        const matchesText = row.dataset.product.includes(term);
+        const matchesRisk = risk === 'TODOS' || row.dataset.risk === risk;
+        const matchesCategory = category === 'TODAS' || row.dataset.category === category;
+        const show = matchesText && matchesRisk && matchesCategory;
+        row.hidden = !show;
+        if (!show) closeDetailForRow(row);
+        if (show) visible++;
+    });
+
+    count.textContent = `${visible} producto${visible === 1 ? '' : 's'} visible${visible === 1 ? '' : 's'}`;
+}
+
+document.querySelectorAll('.detail-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const detail = document.getElementById(button.dataset.target);
+        if (!detail) return;
+        detail.hidden = !detail.hidden;
+        button.textContent = detail.hidden ? 'Ver análisis' : 'Ocultar';
+    });
+});
+
+search.addEventListener('input', applyFilters);
+riskFilter.addEventListener('change', applyFilters);
+categoryFilter.addEventListener('change', applyFilters);
+applyFilters();
+</script>
+</body>
+</html>

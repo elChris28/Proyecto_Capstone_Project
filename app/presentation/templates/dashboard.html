@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Métricas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-page">
+
+{% set rendimiento_modelo = ((accuracy + precision + recall + f1) / 4) | round(2) %}
+{% set total_alertas = (stock_critico|length) + (productos_por_vencer|length) %}
+
+<div class="dashboard-container">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+        <div>
+            <span class="dashboard-tag">Panel Analítico</span>
+            <h1>📊 Dashboard de Inventario</h1>
+            <p>Veterinaria Santa Cruz - Asistente Inteligente de Gestión de Inventarios</p>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+            <a class="btn-volver" href="{{ url_for('prediction.predicciones_stock') }}">
+                🔮 Predicción 7 días
+            </a>
+            <a class="btn-volver" href="{{ url_for('assistant.index') }}">
+                ⬅ Volver al asistente
+            </a>
+        </div>
+    </header>
+
+    <!-- KPIS PRINCIPALES -->
+    <section class="kpi-grid">
+
+        <div class="kpi-card principal">
+            <div class="kpi-icon">🤖</div>
+            <div>
+                <span>Rendimiento del modelo</span>
+                <strong>{{ rendimiento_modelo }}%</strong>
+                <p>Promedio de Accuracy, Precision, Recall y F1</p>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon">💬</div>
+            <div>
+                <span>Total de consultas</span>
+                <strong>{{ total_consultas }}</strong>
+                <p>Interacciones registradas por el asistente</p>
+            </div>
+        </div>
+
+        <div class="kpi-card alerta">
+            <div class="kpi-icon">⚠️</div>
+            <div>
+                <span>Alertas logísticas</span>
+                <strong>{{ total_alertas }}</strong>
+                <p>Stock crítico + productos próximos a vencer</p>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon">🔎</div>
+            <div>
+                <span>Producto más buscado</span>
+                {% if productos_mas_buscados %}
+                    <strong class="texto-mediano">{{ productos_mas_buscados[0][0] }}</strong>
+                    <p>{{ productos_mas_buscados[0][1] }} búsquedas registradas</p>
+                {% else %}
+                    <strong>Sin datos</strong>
+                    <p>Aún no hay productos consultados</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </section>
+
+    <!-- MÉTRICAS IA -->
+    <section class="dashboard-section">
+        <div class="section-title">
+            <div>
+                <h2>🧠 Métricas del Modelo IA</h2>
+                <p>Evaluación del clasificador de intenciones usado por el asistente.</p>
+            </div>
+        </div>
+
+        <div class="metricas-grid">
+
+            <div class="metrica-card">
+                <span>Accuracy</span>
+                <strong>{{ accuracy }}%</strong>
+                <p>Exactitud general del modelo</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Precisión</span>
+                <strong>{{ precision }}%</strong>
+                <p>Control de falsos positivos</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Recall</span>
+                <strong>{{ recall }}%</strong>
+                <p>Capacidad de detección</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>F1-Score</span>
+                <strong>{{ f1 }}%</strong>
+                <p>Balance entre precisión y recall</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GRÁFICOS -->
+    <section class="charts-grid">
+
+        <div class="dashboard-section chart-card">
+            <div class="section-title">
+                <div>
+                    <h2>📊 Distribución de Intenciones</h2>
+                    <p>Consultas agrupadas por intención detectada.</p>
+                </div>
+            </div>
+
+            {% if labels and values %}
+                <div class="chart-helper">
+                    <span>Ordenado de mayor a menor</span>
+                    <span>Pasa el cursor sobre una barra para ver el detalle</span>
+                </div>
+
+                <div class="chart-scroll-intenciones">
+                    <div class="chart-canvas-box-intenciones">
+                        <canvas
+                            id="graficoIntenciones"
+                            aria-label="Distribución de intenciones"
+                            role="img">
+                        </canvas>
+                    </div>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    Aún no hay datos suficientes para graficar intenciones.
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="dashboard-section chart-card">
+            <div class="section-title">
+                <div>
+                    <h2>🚨 Alertas Logísticas</h2>
+                    <p>Productos que requieren atención operativa.</p>
+                </div>
+            </div>
+
+            {% if total_alertas > 0 %}
+                <div class="chart-alertas-container">
+                    <canvas id="graficoAlertas"></canvas>
+                </div>
+            {% else %}
+                <div class="empty-state">No hay alertas logísticas registradas.</div>
+            {% endif %}
+        </div>
+
+    </section>
+
+    <!-- PRODUCTOS MÁS BUSCADOS -->
+    <section class="dashboard-section">
+        <div class="section-title">
+            <div>
+                <h2>🏷️ Productos Más Buscados</h2>
+                <p>Productos con mayor cantidad de consultas realizadas al asistente.</p>
+            </div>
+        </div>
+
+        {% if productos_mas_buscados %}
+            <canvas id="graficoProductos"></canvas>
+        {% else %}
+            <div class="empty-state">Aún no hay productos consultados.</div>
+        {% endif %}
+    </section>
+
+
+    <!-- ALERTAS OPERATIVAS -->
+    <section class="tables-grid">
+
+        <!-- STOCK CRÍTICO -->
+        <div class="dashboard-section">
+            <div class="section-title">
+                <div>
+                    <h2>⚠️ Productos con Stock Crítico</h2>
+                    <p>Productos cuyo stock actual está por debajo o igual al mínimo.</p>
+                </div>
+            </div>
+
+            <div class="tabla-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock Actual</th>
+                        <th>Stock Mínimo</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for item in stock_critico %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td><span class="stock-alerta">{{ item[1] }}</span></td>
+                            <td>{{ item[2] }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Sin productos críticos</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- VENCIMIENTOS -->
+        <div class="dashboard-section">
+            <div class="section-title">
+                <div>
+                    <h2>⏰ Productos Próximos a Vencer</h2>
+                    <p>Lotes cuya fecha de vencimiento está dentro del rango de control.</p>
+                </div>
+            </div>
+
+            <div class="tabla-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Lote</th>
+                        <th>Fecha de Vencimiento</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for item in productos_por_vencer %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td>{{ item[1] }}</td>
+                            <td><span class="fecha-alerta">{{ item[2] }}</span></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Sin productos próximos a vencer</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<div
+    id="dashboard-data"
+    data-labels='{{ labels | tojson | safe }}'
+    data-values='{{ values | tojson | safe }}'
+    data-stock-critico='{{ stock_critico|length }}'
+    data-productos-vencer='{{ productos_por_vencer|length }}'
+    data-productos-labels='{{ productos_mas_buscados | map(attribute=0) | list | tojson | safe }}'
+    data-productos-values='{{ productos_mas_buscados | map(attribute=1) | list | tojson | safe }}'
+    style="display: none;">
+</div>
+
+<!-- GRÁFICO SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const dashboardData = document.getElementById('dashboard-data');
+
+    if (!dashboardData) {
+        console.error('No se encontró el elemento #dashboard-data');
+        return;
+    }
+
+    const parseJSON = (value, defaultValue = []) => {
+        try {
+            return JSON.parse(value || JSON.stringify(defaultValue));
+        } catch (error) {
+            console.error('Error al procesar los datos del dashboard:', error);
+            return defaultValue;
+        }
+    };
+
+    const labels = parseJSON(dashboardData.dataset.labels);
+    const values = parseJSON(dashboardData.dataset.values).map(Number);
+
+    const stockCriticoCount = Number(
+        dashboardData.dataset.stockCritico || 0
+    );
+
+    const productosPorVencerCount = Number(
+        dashboardData.dataset.productosVencer || 0
+    );
+
+    const productosLabels = parseJSON(
+        dashboardData.dataset.productosLabels
+    );
+
+    const productosValues = parseJSON(
+        dashboardData.dataset.productosValues
+    ).map(Number);
+
+    const chartColors = [
+        '#0f766e',
+        '#2563eb',
+        '#f59e0b',
+        '#dc2626',
+        '#7c3aed',
+        '#10b981',
+        '#0891b2',
+        '#ea580c',
+        '#4f46e5',
+        '#16a34a'
+    ];
+
+    function formatearIntencion(label) {
+        const etiquetasEspeciales = {
+            stock: 'Stock',
+            ubicacion: 'Ubicación',
+            vencimiento: 'Vencimiento',
+            productos: 'Productos',
+            producto: 'Producto',
+            critico: 'Crítico',
+            crítico: 'Crítico',
+            precio: 'Precio',
+            precios: 'Precios',
+            lote: 'Lote',
+            lotes: 'Lotes',
+            proveedor: 'Proveedor',
+            proveedores: 'Proveedores',
+            categoria: 'Categoría',
+            categorías: 'Categorías',
+            categorias: 'Categorías',
+            dias: 'Días',
+            días: 'Días',
+            ventas: 'Ventas',
+            venta: 'Venta',
+            compras: 'Compras',
+            compra: 'Compra',
+            desconocido: 'Desconocido',
+            vencido: 'Vencido',
+            vencidos: 'Vencidos'
+        };
+
+        const intencion = String(label)
+            .toLowerCase()
+            .trim()
+            .replaceAll('-', '_');
+
+        const nombresEspeciales = {
+            stock_critico: 'Stock crítico',
+            productos_por_vencer: 'Productos por vencer',
+            dias_vencimiento: 'Días para vencimiento',
+            fecha_vencimiento: 'Fecha de vencimiento',
+            stock_disponible: 'Stock disponible',
+            producto_mas_buscado: 'Producto más buscado'
+        };
+
+        if (nombresEspeciales[intencion]) {
+            return nombresEspeciales[intencion];
+        }
+
+        return intencion
+            .split('_')
+            .filter(Boolean)
+            .map(parte => {
+                return etiquetasEspeciales[parte] ||
+                    parte.charAt(0).toUpperCase() + parte.slice(1);
+            })
+            .join(' + ');
+    }
+
+    function dividirEtiqueta(label, maxCaracteres = 28) {
+        if (label.length <= maxCaracteres) {
+            return label;
+        }
+
+        const partes = label.split(' + ');
+
+        if (partes.length === 1) {
+            return label;
+        }
+
+        const lineas = [];
+        let lineaActual = '';
+
+        partes.forEach(parte => {
+            const textoNuevo = lineaActual
+                ? `${lineaActual} + ${parte}`
+                : parte;
+
+            if (
+                textoNuevo.length > maxCaracteres &&
+                lineaActual
+            ) {
+                lineas.push(lineaActual);
+                lineaActual = parte;
+            } else {
+                lineaActual = textoNuevo;
+            }
+        });
+
+        if (lineaActual) {
+            lineas.push(lineaActual);
+        }
+
+        return lineas;
+    }
+
+    const pluginValoresBarras = {
+        id: 'pluginValoresBarras',
+
+        afterDatasetsDraw(chart) {
+            if (
+                chart.config.type !== 'bar' ||
+                chart.options.indexAxis !== 'y'
+            ) {
+                return;
+            }
+
+            const {
+                ctx,
+                chartArea
+            } = chart;
+
+            const dataset = chart.data.datasets[0];
+            const meta = chart.getDatasetMeta(0);
+
+            ctx.save();
+            ctx.font = '600 12px Arial, sans-serif';
+            ctx.fillStyle = '#334155';
+            ctx.textBaseline = 'middle';
+
+            meta.data.forEach((barra, index) => {
+                const valor = String(dataset.data[index]);
+                const anchoTexto = ctx.measureText(valor).width;
+                const posicionPropuesta = barra.x + 8;
+
+                const excedeLimite =
+                    posicionPropuesta + anchoTexto >
+                    chartArea.right;
+
+                ctx.textAlign = excedeLimite
+                    ? 'right'
+                    : 'left';
+
+                ctx.fillText(
+                    valor,
+                    excedeLimite
+                        ? chartArea.right - 5
+                        : posicionPropuesta,
+                    barra.y
+                );
+            });
+
+            ctx.restore();
+        }
+    };
+
+    /*
+    ============================================
+    GRÁFICO DE DISTRIBUCIÓN DE INTENCIONES
+    ============================================
+    */
+
+    const canvasIntenciones = document.getElementById(
+        'graficoIntenciones'
+    );
+
+    if (canvasIntenciones && labels.length > 0) {
+        const datosIntenciones = labels
+            .map((label, index) => ({
+                original: label,
+                nombre: formatearIntencion(label),
+                valor: Number(values[index] || 0)
+            }))
+            .sort((a, b) => b.valor - a.valor);
+
+        const contenedorIntenciones = document.querySelector(
+            '.chart-canvas-box-intenciones'
+        );
+
+        if (contenedorIntenciones) {
+            const alturaDinamica = Math.max(
+                360,
+                datosIntenciones.length * 48 + 70
+            );
+
+            contenedorIntenciones.style.height =
+                `${alturaDinamica}px`;
+        }
+
+        const coloresIntenciones = datosIntenciones.map(
+            (_, index) => {
+                if (index === 0) return '#0f766e';
+                if (index === 1) return '#2563eb';
+                if (index === 2) return '#f59e0b';
+
+                return 'rgba(15, 118, 110, 0.60)';
+            }
+        );
+
+        new Chart(canvasIntenciones, {
+            type: 'bar',
+            plugins: [pluginValoresBarras],
+
+            data: {
+                labels: datosIntenciones.map(item =>
+                    dividirEtiqueta(item.nombre)
+                ),
+
+                datasets: [{
+                    label: 'Consultas',
+                    data: datosIntenciones.map(
+                        item => item.valor
+                    ),
+                    backgroundColor: coloresIntenciones,
+                    hoverBackgroundColor: '#0f766e',
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    barThickness: 19,
+                    maxBarThickness: 24
+                }]
+            },
+
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+
+                layout: {
+                    padding: {
+                        top: 5,
+                        right: 30,
+                        bottom: 5,
+                        left: 5
+                    }
+                },
+
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'y',
+                    intersect: false
+                },
+
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+
+                    tooltip: {
+                        displayColors: false,
+                        backgroundColor: '#0f172a',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        padding: 12,
+                        cornerRadius: 8,
+
+                        callbacks: {
+                            title(context) {
+                                const index =
+                                    context[0]?.dataIndex;
+
+                                return datosIntenciones[index]
+                                    ?.nombre || '';
+                            },
+
+                            label(context) {
+                                const valor = Number(
+                                    context.raw || 0
+                                );
+
+                                return `${valor} ${
+                                    valor === 1
+                                        ? 'consulta'
+                                        : 'consultas'
+                                }`;
+                            }
+                        }
+                    }
+                },
+
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grace: '12%',
+
+                        grid: {
+                            color: 'rgba(148, 163, 184, 0.22)',
+                            drawBorder: false
+                        },
+
+                        border: {
+                            display: false
+                        },
+
+                        ticks: {
+                            precision: 0,
+                            color: '#64748b',
+                            font: {
+                                size: 11
+                            }
+                        },
+
+                        title: {
+                            display: true,
+                            text: 'Número de consultas',
+                            color: '#64748b',
+                            font: {
+                                size: 11,
+                                weight: '600'
+                            }
+                        }
+                    },
+
+                    y: {
+                        grid: {
+                            display: false
+                        },
+
+                        border: {
+                            display: false
+                        },
+
+                        ticks: {
+                            autoSkip: false,
+                            color: '#334155',
+                            padding: 10,
+                            font: {
+                                size: 11,
+                                weight: '600'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    /*
+    ============================================
+    GRÁFICO DE ALERTAS LOGÍSTICAS
+    ============================================
+    */
+
+    const canvasAlertas = document.getElementById('graficoAlertas');
+
+    const totalAlertas =
+        stockCriticoCount + productosPorVencerCount;
+
+    if (canvasAlertas && totalAlertas > 0) {
+        new Chart(canvasAlertas, {
+            type: 'doughnut',
+
+            data: {
+                labels: [
+                    'Stock crítico',
+                    'Próximos a vencer'
+                ],
+
+                datasets: [{
+                    data: [
+                        stockCriticoCount,
+                        productosPorVencerCount
+                    ],
+                    backgroundColor: [
+                        '#dc2626',
+                        '#f59e0b'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 6
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                /* Elimina el efecto de crecimiento */
+                animation: false,
+
+                cutout: '64%',
+                radius: '78%',
+
+                layout: {
+                    padding: {
+                        top: 30,
+                        right: 20,
+                        bottom: 30,
+                        left: 20
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'rect',
+                            padding: 20,
+                            boxWidth: 14,
+                            boxHeight: 8,
+                            color: '#64748b',
+
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        displayColors: true,
+
+                        callbacks: {
+                            label(context) {
+                                const valor = Number(context.raw || 0);
+
+                                const porcentaje = totalAlertas > 0
+                                    ? ((valor / totalAlertas) * 100).toFixed(1)
+                                    : 0;
+
+                                return ` ${context.label}: ${valor} (${porcentaje}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    /*
+    ============================================
+    GRÁFICO DE PRODUCTOS MÁS BUSCADOS
+    ============================================
+    */
+
+    const canvasProductos = document.getElementById(
+        'graficoProductos'
+    );
+
+    if (
+        canvasProductos &&
+        productosLabels.length > 0
+    ) {
+        const productosOrdenados = productosLabels
+            .map((label, index) => ({
+                nombre: label,
+                valor: Number(
+                    productosValues[index] || 0
+                )
+            }))
+            .sort((a, b) => b.valor - a.valor);
+
+        new Chart(canvasProductos, {
+            type: 'bar',
+
+            data: {
+                labels: productosOrdenados.map(
+                    item => item.nombre
+                ),
+
+                datasets: [{
+                    label: 'Búsquedas',
+                    data: productosOrdenados.map(
+                        item => item.valor
+                    ),
+                    backgroundColor: '#2563eb',
+                    hoverBackgroundColor: '#1d4ed8',
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    barThickness: 22,
+                    maxBarThickness: 28
+                }]
+            },
+
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+
+                    tooltip: {
+                        displayColors: false,
+
+                        callbacks: {
+                            label(context) {
+                                const valor = Number(
+                                    context.raw || 0
+                                );
+
+                                return `${valor} ${
+                                    valor === 1
+                                        ? 'búsqueda'
+                                        : 'búsquedas'
+                                }`;
+                            }
+                        }
+                    }
+                },
+
+                scales: {
+                    x: {
+                        beginAtZero: true,
+
+                        ticks: {
+                            precision: 0,
+                            color: '#64748b'
+                        },
+
+                        grid: {
+                            color: 'rgba(148, 163, 184, 0.22)'
+                        },
+
+                        border: {
+                            display: false
+                        }
+                    },
+
+                    y: {
+                        grid: {
+                            display: false
+                        },
+
+                        border: {
+                            display: false
+                        },
+
+                        ticks: {
+                            color: '#334155',
+                            font: {
+                                size: 11,
+                                weight: '600'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>

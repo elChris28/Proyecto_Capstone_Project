@@ -1,0 +1,501 @@
+﻿fecha_corte,producto_id,producto,categoria,tienda_id,stock_actual,stock_seguridad,punto_reorden,lead_time_dias
+2026-09-10,P001,Antipulgas Bravecto Perro,Antiparasitario,VET-001,43,14,30,5
+2026-09-10,P002,Antipulgas NexGard,Antiparasitario,VET-001,21,11,20,4
+2026-09-10,P003,Desparasitante Canis Plus,Antiparasitario,VET-001,13,13,20,2
+2026-09-10,P004,Desparasitante Felino CatHealth,Antiparasitario,VET-001,56,18,33,3
+2026-09-10,P005,Vacuna Triple Felina,Vacuna,VET-001,12,5,7,2
+2026-09-10,P006,Vacuna Antirrábica,Vacuna,VET-001,2,5,6,1
+2026-09-10,P007,Shampoo Antipulgas PetClean,Higiene,VET-001,10,12,18,2
+2026-09-10,P008,Shampoo Dermatológico VetCare,Higiene,VET-001,12,4,6,2
+2026-09-10,P009,Alimento Premium Cachorro,Alimento,VET-001,102,37,69,3
+2026-09-10,P010,Alimento Premium Adulto,Alimento,VET-001,62,26,55,4
+2026-09-10,P011,Alimento Gato Adulto,Alimento,VET-001,149,28,59,4
+2026-09-10,P012,Arena Sanitaria para Gatos,Higiene,VET-001,57,28,44,2
+2026-09-10,P013,Suplemento Vitamínico Canino,Suplemento,VET-001,10,13,26,6
+2026-09-10,P014,Suplemento Articular Senior,Suplemento,VET-001,6,10,21,6
+2026-09-10,P015,Colirio Veterinario OptiVet,Medicamento,VET-001,19,6,10,4
+2026-09-10,P016,Antibiótico Amoxicilina Vet,Medicamento,VET-001,27,9,11,1
+2026-09-10,P017,Jarabe Respiratorio PetMed,Medicamento,VET-001,11,5,7,1
+2026-09-10,P018,Spray Cicatrizante AnimalCare,Medicamento,VET-001,16,7,11,2
+2026-09-10,P019,Collar Isabelino Mediano,Accesorio,VET-001,11,8,14,5
+2026-09-10,P020,Collar Isabelino Grande,Accesorio,VET-001,5,3,5,4
+2026-09-10,P021,Juguete Mordedor para Perro,Accesorio,VET-001,8,14,21,3
+2026-09-10,P022,Rascador para Gato,Accesorio,VET-001,5,5,10,7
+2026-09-10,P023,Transportadora Pequeña,Accesorio,VET-001,2,3,5,5
+2026-09-10,P024,Transportadora Mediana,Accesorio,VET-001,4,2,3,3
+2026-09-10,P025,Leche Maternizada Cachorros,Alimentación especial,VET-001,8,6,9,3
+2026-09-10,P026,Leche Maternizada Gatitos,Alimentación especial,VET-001,1,3,5,3
+2026-09-10,P027,Snack Dental Canino,Snack,VET-001,44,22,38,3
+2026-09-10,P028,Snack Dental Felino,Snack,VET-001,26,9,17,4
+2026-09-10,P029,Pipeta Antipulgas Gatos,Antiparasitario,VET-001,71,12,19,2
+2026-09-10,P030,Pipeta Antipulgas Perros,Antiparasitario,VET-001,64,15,26,3
+2026-09-10,P031,Alimento Sensitive Gatito NovaPet 5 kg,Alimento,VET-001,55,15,35,5
+2026-09-10,P032,Galleta Natural Cachorro VetLife Mini,Snack,VET-001,21,10,19,5
+2026-09-10,P033,Spray Antiparasitario Gato CarePet 5 kg,Antiparasitario,VET-001,15,6,11,4
+2026-09-10,P034,Arena Sanitaria Perro PetBalance Mini,Higiene,VET-001,9,13,27,6
+2026-09-10,P035,Protector Gástrico Felino VetPro 5 kg,Medicamento,VET-001,20,9,15,3
+2026-09-10,P036,Suplemento Vitamínico Canino VetNova Mini,Suplemento,VET-001,1,3,5,6
+2026-09-10,P037,Alimento Recovery Gatito PetCare 5 kg,Alimentación especial,VET-001,4,4,6,4
+2026-09-10,P038,Vacuna Antirrábica Cachorro AnimalPlus Mini,Vacuna,VET-001,26,5,7,1
+2026-09-10,P039,Correa Reforzada Gato BioPet 5 kg,Accesorio,VET-001,7,8,14,7
+2026-09-10,P040,Alimento Adulto Perro VitaVet Mini,Alimento,VET-001,24,13,26,4
+2026-09-10,P041,Snack de Salmón Felino MundoVet 5 kg,Snack,VET-001,17,22,45,5
+2026-09-10,P042,Pipeta Antipulgas Canino PetHealth Mini,Antiparasitario,VET-001,26,11,16,2
+2026-09-10,P043,Shampoo Hipoalergénico Gatito NovaPet 5 kg,Higiene,VET-001,7,5,10,6
+2026-09-10,P044,Colirio Veterinario Cachorro VetLife Mini,Medicamento,VET-001,14,5,6,1
+2026-09-10,P045,Probiótico Gato CarePet 5 kg,Suplemento,VET-001,4,7,12,4
+2026-09-10,P046,Dieta Hepática Perro PetBalance Mini,Alimentación especial,VET-001,19,6,10,4
+2026-09-10,P047,Vacuna Parvovirus Felino VetPro 5 kg,Vacuna,VET-001,11,9,11,1
+2026-09-10,P048,Collar Ajustable Canino VetNova Mini,Accesorio,VET-001,12,5,8,3
+2026-09-10,P049,Alimento Sensitive Gatito PetCare 5 kg,Alimento,VET-001,152,22,42,3
+2026-09-10,P050,Galleta Natural Cachorro AnimalPlus Mini,Snack,VET-001,17,8,16,4
+2026-09-10,P051,Spray Antiparasitario Gato BioPet 5 kg,Antiparasitario,VET-001,21,10,17,3
+2026-09-10,P052,Arena Sanitaria Perro VitaVet Mini,Higiene,VET-001,25,9,17,4
+2026-09-10,P053,Protector Gástrico Felino MundoVet 5 kg,Medicamento,VET-001,14,5,8,2
+2026-09-10,P054,Suplemento Vitamínico Canino PetHealth Mini,Suplemento,VET-001,19,7,13,4
+2026-09-10,P055,Alimento Recovery Gatito NovaPet 5 kg,Alimentación especial,VET-001,13,8,14,4
+2026-09-10,P056,Vacuna Antirrábica Cachorro VetLife Mini,Vacuna,VET-001,17,7,11,2
+2026-09-10,P057,Collar Isabelino Gato CarePet 5 kg,Accesorio,VET-001,2,2,3,7
+2026-09-10,P058,Alimento Adulto Perro PetBalance Mini,Alimento,VET-001,57,37,62,2
+2026-09-10,P059,Snack de Salmón Felino VetPro 5 kg,Snack,VET-001,17,10,21,5
+2026-09-10,P060,Pipeta Antipulgas Canino VetNova Mini,Antiparasitario,VET-001,57,11,16,2
+2026-09-10,P061,Shampoo Hipoalergénico Gatito PetCare 5 kg,Higiene,VET-001,34,8,12,2
+2026-09-10,P062,Colirio Veterinario Cachorro AnimalPlus Mini,Medicamento,VET-001,32,9,12,1
+2026-09-10,P063,Probiótico Gato BioPet 5 kg,Suplemento,VET-001,18,15,31,5
+2026-09-10,P064,Dieta Hepática Perro VitaVet Mini,Alimentación especial,VET-001,4,6,9,2
+2026-09-10,P065,Vacuna Parvovirus Felino MundoVet 5 kg,Vacuna,VET-001,2,2,3,3
+2026-09-10,P066,Plato Antideslizante Canino PetHealth Mini,Accesorio,VET-001,1,3,4,3
+2026-09-10,P067,Alimento Sensitive Gatito NovaPet 5 kg Línea 067,Alimento,VET-001,14,21,34,2
+2026-09-10,P068,Galleta Natural Cachorro VetLife Mini Línea 068,Snack,VET-001,7,14,26,4
+2026-09-10,P069,Spray Antiparasitario Gato CarePet 5 kg Línea 069,Antiparasitario,VET-001,24,13,25,4
+2026-09-10,P070,Arena Sanitaria Perro PetBalance Mini Línea 070,Higiene,VET-001,25,8,12,2
+2026-09-10,P071,Protector Gástrico Felino VetPro 5 kg Línea 071,Medicamento,VET-001,6,5,6,1
+2026-09-10,P072,Suplemento Vitamínico Canino VetNova Mini Línea 072,Suplemento,VET-001,5,6,9,2
+2026-09-10,P073,Alimento Recovery Gatito PetCare 5 kg Línea 073,Alimentación especial,VET-001,3,7,13,4
+2026-09-10,P074,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 074,Vacuna,VET-001,9,3,5,3
+2026-09-10,P075,Rascador Gato BioPet 5 kg,Accesorio,VET-001,15,5,8,3
+2026-09-10,P076,Alimento Adulto Perro VitaVet Mini Línea 076,Alimento,VET-001,80,22,39,3
+2026-09-10,P077,Snack de Salmón Felino MundoVet 5 kg Línea 077,Snack,VET-001,75,19,35,3
+2026-09-10,P078,Pipeta Antipulgas Canino PetHealth Mini Línea 078,Antiparasitario,VET-001,89,14,22,2
+2026-09-10,P079,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 079,Higiene,VET-001,10,6,11,4
+2026-09-10,P080,Colirio Veterinario Cachorro VetLife Mini Línea 080,Medicamento,VET-001,13,6,10,4
+2026-09-10,P081,Probiótico Gato CarePet 5 kg Línea 081,Suplemento,VET-001,5,4,8,6
+2026-09-10,P082,Dieta Hepática Perro PetBalance Mini Línea 082,Alimentación especial,VET-001,27,10,15,2
+2026-09-10,P083,Vacuna Parvovirus Felino VetPro 5 kg Línea 083,Vacuna,VET-001,8,3,4,1
+2026-09-10,P084,Juguete Mordedor Canino VetNova Mini,Accesorio,VET-001,4,6,9,3
+2026-09-10,P085,Alimento Sensitive Gatito PetCare 5 kg Línea 085,Alimento,VET-001,111,30,54,3
+2026-09-10,P086,Galleta Natural Cachorro AnimalPlus Mini Línea 086,Snack,VET-001,7,6,11,4
+2026-09-10,P087,Spray Antiparasitario Gato BioPet 5 kg Línea 087,Antiparasitario,VET-001,24,9,18,5
+2026-09-10,P088,Arena Sanitaria Perro VitaVet Mini Línea 088,Higiene,VET-001,25,8,12,2
+2026-09-10,P089,Protector Gástrico Felino MundoVet 5 kg Línea 089,Medicamento,VET-001,8,5,8,3
+2026-09-10,P090,Suplemento Vitamínico Canino PetHealth Mini Línea 090,Suplemento,VET-001,23,10,21,5
+2026-09-10,P091,Alimento Recovery Gatito NovaPet 5 kg Línea 091,Alimentación especial,VET-001,3,5,9,6
+2026-09-10,P092,Vacuna Antirrábica Cachorro VetLife Mini Línea 092,Vacuna,VET-001,5,2,3,1
+2026-09-10,P093,Cama Acolchada Gato CarePet 5 kg,Accesorio,VET-001,9,5,10,7
+2026-09-10,P094,Alimento Adulto Perro PetBalance Mini Línea 094,Alimento,VET-001,22,10,16,2
+2026-09-10,P095,Snack de Salmón Felino VetPro 5 kg Línea 095,Snack,VET-001,61,24,39,2
+2026-09-10,P096,Pipeta Antipulgas Canino VetNova Mini Línea 096,Antiparasitario,VET-001,21,10,16,3
+2026-09-10,P097,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 097,Higiene,VET-001,22,17,32,5
+2026-09-10,P098,Colirio Veterinario Cachorro AnimalPlus Mini Línea 098,Medicamento,VET-001,7,5,7,2
+2026-09-10,P099,Probiótico Gato BioPet 5 kg Línea 099,Suplemento,VET-001,16,9,16,4
+2026-09-10,P100,Dieta Hepática Perro VitaVet Mini Línea 100,Alimentación especial,VET-001,2,4,7,6
+2026-09-10,P101,Vacuna Parvovirus Felino MundoVet 5 kg Línea 101,Vacuna,VET-001,2,4,6,2
+2026-09-10,P102,Transportadora Canino PetHealth Mini,Accesorio,VET-001,19,10,16,4
+2026-09-10,P103,Alimento Sensitive Gatito NovaPet 5 kg Línea 103,Alimento,VET-001,56,16,29,3
+2026-09-10,P104,Galleta Natural Cachorro VetLife Mini Línea 104,Snack,VET-001,31,14,29,5
+2026-09-10,P105,Spray Antiparasitario Gato CarePet 5 kg Línea 105,Antiparasitario,VET-001,51,14,29,4
+2026-09-10,P106,Arena Sanitaria Perro PetBalance Mini Línea 106,Higiene,VET-001,1,3,5,4
+2026-09-10,P107,Protector Gástrico Felino VetPro 5 kg Línea 107,Medicamento,VET-001,6,6,10,3
+2026-09-10,P108,Suplemento Vitamínico Canino VetNova Mini Línea 108,Suplemento,VET-001,7,4,6,4
+2026-09-10,P109,Alimento Recovery Gatito PetCare 5 kg Línea 109,Alimentación especial,VET-001,2,7,10,3
+2026-09-10,P110,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 110,Vacuna,VET-001,2,3,4,2
+2026-09-10,P111,Correa Reforzada Gato BioPet 5 kg Línea 111,Accesorio,VET-001,7,8,13,5
+2026-09-10,P112,Alimento Adulto Perro VitaVet Mini Línea 112,Alimento,VET-001,21,9,16,3
+2026-09-10,P113,Snack de Salmón Felino MundoVet 5 kg Línea 113,Snack,VET-001,15,14,25,3
+2026-09-10,P114,Pipeta Antipulgas Canino PetHealth Mini Línea 114,Antiparasitario,VET-001,6,10,18,3
+2026-09-10,P115,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 115,Higiene,VET-001,40,12,18,2
+2026-09-10,P116,Colirio Veterinario Cachorro VetLife Mini Línea 116,Medicamento,VET-001,49,11,19,3
+2026-09-10,P117,Probiótico Gato CarePet 5 kg Línea 117,Suplemento,VET-001,7,3,5,4
+2026-09-10,P118,Dieta Hepática Perro PetBalance Mini Línea 118,Alimentación especial,VET-001,16,9,14,5
+2026-09-10,P119,Vacuna Parvovirus Felino VetPro 5 kg Línea 119,Vacuna,VET-001,2,3,5,3
+2026-09-10,P120,Collar Ajustable Canino VetNova Mini Línea 120,Accesorio,VET-001,10,7,12,5
+2026-09-10,P121,Alimento Sensitive Gatito PetCare 5 kg Línea 121,Alimento,VET-001,55,18,35,4
+2026-09-10,P122,Galleta Natural Cachorro AnimalPlus Mini Línea 122,Snack,VET-001,54,22,33,2
+2026-09-10,P123,Spray Antiparasitario Gato BioPet 5 kg Línea 123,Antiparasitario,VET-001,35,12,25,5
+2026-09-10,P124,Arena Sanitaria Perro VitaVet Mini Línea 124,Higiene,VET-001,28,7,10,2
+2026-09-10,P125,Protector Gástrico Felino MundoVet 5 kg Línea 125,Medicamento,VET-001,46,17,26,2
+2026-09-10,P126,Suplemento Vitamínico Canino PetHealth Mini Línea 126,Suplemento,VET-001,6,3,5,6
+2026-09-10,P127,Alimento Recovery Gatito NovaPet 5 kg Línea 127,Alimentación especial,VET-001,9,6,9,2
+2026-09-10,P128,Vacuna Antirrábica Cachorro VetLife Mini Línea 128,Vacuna,VET-001,17,6,9,2
+2026-09-10,P129,Collar Isabelino Gato CarePet 5 kg Línea 129,Accesorio,VET-001,6,4,7,6
+2026-09-10,P130,Alimento Adulto Perro PetBalance Mini Línea 130,Alimento,VET-001,120,30,48,2
+2026-09-10,P131,Snack de Salmón Felino VetPro 5 kg Línea 131,Snack,VET-001,25,14,28,5
+2026-09-10,P132,Pipeta Antipulgas Canino VetNova Mini Línea 132,Antiparasitario,VET-001,48,14,22,2
+2026-09-10,P133,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 133,Higiene,VET-001,11,8,13,3
+2026-09-10,P134,Colirio Veterinario Cachorro AnimalPlus Mini Línea 134,Medicamento,VET-001,20,8,14,4
+2026-09-10,P135,Probiótico Gato BioPet 5 kg Línea 135,Suplemento,VET-001,8,6,11,6
+2026-09-10,P136,Dieta Hepática Perro VitaVet Mini Línea 136,Alimentación especial,VET-001,4,2,3,2
+2026-09-10,P137,Vacuna Parvovirus Felino MundoVet 5 kg Línea 137,Vacuna,VET-001,8,5,8,3
+2026-09-10,P138,Plato Antideslizante Canino PetHealth Mini Línea 138,Accesorio,VET-001,40,18,35,6
+2026-09-10,P139,Alimento Sensitive Gatito NovaPet 5 kg Línea 139,Alimento,VET-001,20,22,35,2
+2026-09-10,P140,Galleta Natural Cachorro VetLife Mini Línea 140,Snack,VET-001,12,11,17,2
+2026-09-10,P141,Spray Antiparasitario Gato CarePet 5 kg Línea 141,Antiparasitario,VET-001,23,14,30,5
+2026-09-10,P142,Arena Sanitaria Perro PetBalance Mini Línea 142,Higiene,VET-001,9,9,19,6
+2026-09-10,P143,Protector Gástrico Felino VetPro 5 kg Línea 143,Medicamento,VET-001,21,6,10,3
+2026-09-10,P144,Suplemento Vitamínico Canino VetNova Mini Línea 144,Suplemento,VET-001,4,3,5,6
+2026-09-10,P145,Alimento Recovery Gatito PetCare 5 kg Línea 145,Alimentación especial,VET-001,8,6,12,6
+2026-09-10,P146,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 146,Vacuna,VET-001,3,2,3,1
+2026-09-10,P147,Rascador Gato BioPet 5 kg Línea 147,Accesorio,VET-001,9,8,14,7
+2026-09-10,P148,Alimento Adulto Perro VitaVet Mini Línea 148,Alimento,VET-001,12,16,34,5
+2026-09-10,P149,Snack de Salmón Felino MundoVet 5 kg Línea 149,Snack,VET-001,27,9,13,2
+2026-09-10,P150,Pipeta Antipulgas Canino PetHealth Mini Línea 150,Antiparasitario,VET-001,29,9,18,5
+2026-09-10,P151,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 151,Higiene,VET-001,14,9,17,4
+2026-09-10,P152,Colirio Veterinario Cachorro VetLife Mini Línea 152,Medicamento,VET-001,6,11,19,4
+2026-09-10,P153,Probiótico Gato CarePet 5 kg Línea 153,Suplemento,VET-001,24,7,12,3
+2026-09-10,P154,Dieta Hepática Perro PetBalance Mini Línea 154,Alimentación especial,VET-001,3,4,7,4
+2026-09-10,P155,Vacuna Parvovirus Felino VetPro 5 kg Línea 155,Vacuna,VET-001,23,10,16,3
+2026-09-10,P156,Juguete Mordedor Canino VetNova Mini Línea 156,Accesorio,VET-001,2,2,3,3
+2026-09-10,P157,Alimento Sensitive Gatito PetCare 5 kg Línea 157,Alimento,VET-001,52,21,51,5
+2026-09-10,P158,Galleta Natural Cachorro AnimalPlus Mini Línea 158,Snack,VET-001,4,9,19,5
+2026-09-10,P159,Spray Antiparasitario Gato BioPet 5 kg Línea 159,Antiparasitario,VET-001,32,13,24,4
+2026-09-10,P160,Arena Sanitaria Perro VitaVet Mini Línea 160,Higiene,VET-001,9,4,9,6
+2026-09-10,P161,Protector Gástrico Felino MundoVet 5 kg Línea 161,Medicamento,VET-001,34,10,15,2
+2026-09-10,P162,Suplemento Vitamínico Canino PetHealth Mini Línea 162,Suplemento,VET-001,13,7,11,3
+2026-09-10,P163,Alimento Recovery Gatito NovaPet 5 kg Línea 163,Alimentación especial,VET-001,19,7,12,6
+2026-09-10,P164,Vacuna Antirrábica Cachorro VetLife Mini Línea 164,Vacuna,VET-001,1,2,3,1
+2026-09-10,P165,Cama Acolchada Gato CarePet 5 kg Línea 165,Accesorio,VET-001,2,3,4,4
+2026-09-10,P166,Alimento Adulto Perro PetBalance Mini Línea 166,Alimento,VET-001,44,13,26,4
+2026-09-10,P167,Snack de Salmón Felino VetPro 5 kg Línea 167,Snack,VET-001,53,11,20,3
+2026-09-10,P168,Pipeta Antipulgas Canino VetNova Mini Línea 168,Antiparasitario,VET-001,27,10,22,5
+2026-09-10,P169,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 169,Higiene,VET-001,7,11,21,5
+2026-09-10,P170,Colirio Veterinario Cachorro AnimalPlus Mini Línea 170,Medicamento,VET-001,12,5,7,2
+2026-09-10,P171,Probiótico Gato BioPet 5 kg Línea 171,Suplemento,VET-001,7,6,10,4
+2026-09-10,P172,Dieta Hepática Perro VitaVet Mini Línea 172,Alimentación especial,VET-001,2,5,8,3
+2026-09-10,P173,Vacuna Parvovirus Felino MundoVet 5 kg Línea 173,Vacuna,VET-001,9,4,5,1
+2026-09-10,P174,Transportadora Canino PetHealth Mini Línea 174,Accesorio,VET-001,3,2,3,6
+2026-09-10,P175,Alimento Sensitive Gatito NovaPet 5 kg Línea 175,Alimento,VET-001,44,18,33,3
+2026-09-10,P176,Galleta Natural Cachorro VetLife Mini Línea 176,Snack,VET-001,3,6,9,2
+2026-09-10,P177,Spray Antiparasitario Gato CarePet 5 kg Línea 177,Antiparasitario,VET-001,38,22,37,3
+2026-09-10,P178,Arena Sanitaria Perro PetBalance Mini Línea 178,Higiene,VET-001,13,5,8,3
+2026-09-10,P179,Protector Gástrico Felino VetPro 5 kg Línea 179,Medicamento,VET-001,17,14,24,3
+2026-09-10,P180,Suplemento Vitamínico Canino VetNova Mini Línea 180,Suplemento,VET-001,13,9,17,6
+2026-09-10,P181,Alimento Recovery Gatito PetCare 5 kg Línea 181,Alimentación especial,VET-001,5,3,5,4
+2026-09-10,P182,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 182,Vacuna,VET-001,8,4,6,2
+2026-09-10,P183,Correa Reforzada Gato BioPet 5 kg Línea 183,Accesorio,VET-001,7,6,10,5
+2026-09-10,P184,Alimento Adulto Perro VitaVet Mini Línea 184,Alimento,VET-001,18,6,10,2
+2026-09-10,P185,Snack de Salmón Felino MundoVet 5 kg Línea 185,Snack,VET-001,3,3,4,2
+2026-09-10,P186,Pipeta Antipulgas Canino PetHealth Mini Línea 186,Antiparasitario,VET-001,21,9,13,2
+2026-09-10,P187,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 187,Higiene,VET-001,5,4,7,3
+2026-09-10,P188,Colirio Veterinario Cachorro VetLife Mini Línea 188,Medicamento,VET-001,12,5,8,3
+2026-09-10,P189,Probiótico Gato CarePet 5 kg Línea 189,Suplemento,VET-001,9,5,8,3
+2026-09-10,P190,Dieta Hepática Perro PetBalance Mini Línea 190,Alimentación especial,VET-001,20,10,18,4
+2026-09-10,P191,Vacuna Parvovirus Felino VetPro 5 kg Línea 191,Vacuna,VET-001,2,3,5,3
+2026-09-10,P192,Collar Ajustable Canino VetNova Mini Línea 192,Accesorio,VET-001,4,6,10,5
+2026-09-10,P193,Alimento Sensitive Gatito PetCare 5 kg Línea 193,Alimento,VET-001,63,19,42,4
+2026-09-10,P194,Galleta Natural Cachorro AnimalPlus Mini Línea 194,Snack,VET-001,19,16,36,5
+2026-09-10,P195,Spray Antiparasitario Gato BioPet 5 kg Línea 195,Antiparasitario,VET-001,25,12,20,3
+2026-09-10,P196,Arena Sanitaria Perro VitaVet Mini Línea 196,Higiene,VET-001,34,9,14,2
+2026-09-10,P197,Protector Gástrico Felino MundoVet 5 kg Línea 197,Medicamento,VET-001,39,9,15,3
+2026-09-10,P198,Suplemento Vitamínico Canino PetHealth Mini Línea 198,Suplemento,VET-001,4,6,11,5
+2026-09-10,P199,Alimento Recovery Gatito NovaPet 5 kg Línea 199,Alimentación especial,VET-001,6,5,9,4
+2026-09-10,P200,Vacuna Antirrábica Cachorro VetLife Mini Línea 200,Vacuna,VET-001,10,3,5,3
+2026-09-10,P201,Collar Isabelino Gato CarePet 5 kg Línea 201,Accesorio,VET-001,10,7,11,3
+2026-09-10,P202,Alimento Adulto Perro PetBalance Mini Línea 202,Alimento,VET-001,37,24,53,4
+2026-09-10,P203,Snack de Salmón Felino VetPro 5 kg Línea 203,Snack,VET-001,12,8,16,5
+2026-09-10,P204,Pipeta Antipulgas Canino VetNova Mini Línea 204,Antiparasitario,VET-001,7,7,12,5
+2026-09-10,P205,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 205,Higiene,VET-001,14,8,17,6
+2026-09-10,P206,Colirio Veterinario Cachorro AnimalPlus Mini Línea 206,Medicamento,VET-001,15,6,10,3
+2026-09-10,P207,Probiótico Gato BioPet 5 kg Línea 207,Suplemento,VET-001,14,6,9,2
+2026-09-10,P208,Dieta Hepática Perro VitaVet Mini Línea 208,Alimentación especial,VET-001,13,5,10,6
+2026-09-10,P209,Vacuna Parvovirus Felino MundoVet 5 kg Línea 209,Vacuna,VET-001,1,3,4,2
+2026-09-10,P210,Plato Antideslizante Canino PetHealth Mini Línea 210,Accesorio,VET-001,1,5,7,3
+2026-09-10,P211,Alimento Sensitive Gatito NovaPet 5 kg Línea 211,Alimento,VET-001,37,16,34,4
+2026-09-10,P212,Galleta Natural Cachorro VetLife Mini Línea 212,Snack,VET-001,44,15,24,2
+2026-09-10,P213,Spray Antiparasitario Gato CarePet 5 kg Línea 213,Antiparasitario,VET-001,8,5,10,5
+2026-09-10,P214,Arena Sanitaria Perro PetBalance Mini Línea 214,Higiene,VET-001,8,4,7,3
+2026-09-10,P215,Protector Gástrico Felino VetPro 5 kg Línea 215,Medicamento,VET-001,20,12,19,3
+2026-09-10,P216,Suplemento Vitamínico Canino VetNova Mini Línea 216,Suplemento,VET-001,5,4,7,5
+2026-09-10,P217,Alimento Recovery Gatito PetCare 5 kg Línea 217,Alimentación especial,VET-001,3,7,10,2
+2026-09-10,P218,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 218,Vacuna,VET-001,4,4,6,3
+2026-09-10,P219,Rascador Gato BioPet 5 kg Línea 219,Accesorio,VET-001,13,6,10,5
+2026-09-10,P220,Alimento Adulto Perro VitaVet Mini Línea 220,Alimento,VET-001,65,21,36,2
+2026-09-10,P221,Snack de Salmón Felino MundoVet 5 kg Línea 221,Snack,VET-001,26,11,21,4
+2026-09-10,P222,Pipeta Antipulgas Canino PetHealth Mini Línea 222,Antiparasitario,VET-001,2,4,7,5
+2026-09-10,P223,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 223,Higiene,VET-001,11,7,14,5
+2026-09-10,P224,Colirio Veterinario Cachorro VetLife Mini Línea 224,Medicamento,VET-001,6,5,7,1
+2026-09-10,P225,Probiótico Gato CarePet 5 kg Línea 225,Suplemento,VET-001,45,12,24,5
+2026-09-10,P226,Dieta Hepática Perro PetBalance Mini Línea 226,Alimentación especial,VET-001,2,2,3,5
+2026-09-10,P227,Vacuna Parvovirus Felino VetPro 5 kg Línea 227,Vacuna,VET-001,1,4,6,2
+2026-09-10,P228,Juguete Mordedor Canino VetNova Mini Línea 228,Accesorio,VET-001,33,11,22,7
+2026-09-10,P229,Alimento Sensitive Gatito PetCare 5 kg Línea 229,Alimento,VET-001,85,27,56,4
+2026-09-10,P230,Galleta Natural Cachorro AnimalPlus Mini Línea 230,Snack,VET-001,11,5,8,2
+2026-09-10,P231,Spray Antiparasitario Gato BioPet 5 kg Línea 231,Antiparasitario,VET-001,10,12,23,4
+2026-09-10,P232,Arena Sanitaria Perro VitaVet Mini Línea 232,Higiene,VET-001,40,17,33,5
+2026-09-10,P233,Protector Gástrico Felino MundoVet 5 kg Línea 233,Medicamento,VET-001,28,13,20,2
+2026-09-10,P234,Suplemento Vitamínico Canino PetHealth Mini Línea 234,Suplemento,VET-001,6,4,6,2
+2026-09-10,P235,Alimento Recovery Gatito NovaPet 5 kg Línea 235,Alimentación especial,VET-001,9,4,6,3
+2026-09-10,P236,Vacuna Antirrábica Cachorro VetLife Mini Línea 236,Vacuna,VET-001,3,2,3,3
+2026-09-10,P237,Cama Acolchada Gato CarePet 5 kg Línea 237,Accesorio,VET-001,10,5,10,7
+2026-09-10,P238,Alimento Adulto Perro PetBalance Mini Línea 238,Alimento,VET-001,25,20,49,5
+2026-09-10,P239,Snack de Salmón Felino VetPro 5 kg Línea 239,Snack,VET-001,48,12,25,5
+2026-09-10,P240,Pipeta Antipulgas Canino VetNova Mini Línea 240,Antiparasitario,VET-001,27,12,24,5
+2026-09-10,P241,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 241,Higiene,VET-001,12,7,12,3
+2026-09-10,P242,Colirio Veterinario Cachorro AnimalPlus Mini Línea 242,Medicamento,VET-001,26,10,18,4
+2026-09-10,P243,Probiótico Gato BioPet 5 kg Línea 243,Suplemento,VET-001,18,6,9,2
+2026-09-10,P244,Dieta Hepática Perro VitaVet Mini Línea 244,Alimentación especial,VET-001,8,3,4,2
+2026-09-10,P245,Vacuna Parvovirus Felino MundoVet 5 kg Línea 245,Vacuna,VET-001,15,5,7,1
+2026-09-10,P246,Transportadora Canino PetHealth Mini Línea 246,Accesorio,VET-001,3,6,10,8
+2026-09-10,P247,Alimento Sensitive Gatito NovaPet 5 kg Línea 247,Alimento,VET-001,19,13,28,4
+2026-09-10,P248,Galleta Natural Cachorro VetLife Mini Línea 248,Snack,VET-001,42,16,25,2
+2026-09-10,P249,Spray Antiparasitario Gato CarePet 5 kg Línea 249,Antiparasitario,VET-001,70,21,41,4
+2026-09-10,P250,Arena Sanitaria Perro PetBalance Mini Línea 250,Higiene,VET-001,6,5,10,6
+2026-09-10,P251,Protector Gástrico Felino VetPro 5 kg Línea 251,Medicamento,VET-001,21,9,15,3
+2026-09-10,P252,Suplemento Vitamínico Canino VetNova Mini Línea 252,Suplemento,VET-001,16,7,13,5
+2026-09-10,P253,Alimento Recovery Gatito PetCare 5 kg Línea 253,Alimentación especial,VET-001,7,4,8,6
+2026-09-10,P254,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 254,Vacuna,VET-001,10,4,7,3
+2026-09-10,P255,Correa Reforzada Gato BioPet 5 kg Línea 255,Accesorio,VET-001,14,14,26,5
+2026-09-10,P256,Alimento Adulto Perro VitaVet Mini Línea 256,Alimento,VET-001,10,15,33,5
+2026-09-10,P257,Snack de Salmón Felino MundoVet 5 kg Línea 257,Snack,VET-001,57,12,19,2
+2026-09-10,P258,Pipeta Antipulgas Canino PetHealth Mini Línea 258,Antiparasitario,VET-001,29,14,23,3
+2026-09-10,P259,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 259,Higiene,VET-001,37,9,14,2
+2026-09-10,P260,Colirio Veterinario Cachorro VetLife Mini Línea 260,Medicamento,VET-001,4,4,6,3
+2026-09-10,P261,Probiótico Gato CarePet 5 kg Línea 261,Suplemento,VET-001,2,2,3,4
+2026-09-10,P262,Dieta Hepática Perro PetBalance Mini Línea 262,Alimentación especial,VET-001,13,9,13,2
+2026-09-10,P263,Vacuna Parvovirus Felino VetPro 5 kg Línea 263,Vacuna,VET-001,6,2,3,1
+2026-09-10,P264,Collar Ajustable Canino VetNova Mini Línea 264,Accesorio,VET-001,29,7,11,3
+2026-09-10,P265,Alimento Sensitive Gatito PetCare 5 kg Línea 265,Alimento,VET-001,98,28,66,5
+2026-09-10,P266,Galleta Natural Cachorro AnimalPlus Mini Línea 266,Snack,VET-001,7,12,23,4
+2026-09-10,P267,Spray Antiparasitario Gato BioPet 5 kg Línea 267,Antiparasitario,VET-001,21,8,15,4
+2026-09-10,P268,Arena Sanitaria Perro VitaVet Mini Línea 268,Higiene,VET-001,16,13,25,4
+2026-09-10,P269,Protector Gástrico Felino MundoVet 5 kg Línea 269,Medicamento,VET-001,11,7,12,4
+2026-09-10,P270,Suplemento Vitamínico Canino PetHealth Mini Línea 270,Suplemento,VET-001,9,5,10,6
+2026-09-10,P271,Alimento Recovery Gatito NovaPet 5 kg Línea 271,Alimentación especial,VET-001,1,2,3,2
+2026-09-10,P272,Vacuna Antirrábica Cachorro VetLife Mini Línea 272,Vacuna,VET-001,10,6,9,3
+2026-09-10,P273,Collar Isabelino Gato CarePet 5 kg Línea 273,Accesorio,VET-001,2,4,8,7
+2026-09-10,P274,Alimento Adulto Perro PetBalance Mini Línea 274,Alimento,VET-001,47,11,18,2
+2026-09-10,P275,Snack de Salmón Felino VetPro 5 kg Línea 275,Snack,VET-001,7,5,9,4
+2026-09-10,P276,Pipeta Antipulgas Canino VetNova Mini Línea 276,Antiparasitario,VET-001,73,23,36,2
+2026-09-10,P277,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 277,Higiene,VET-001,22,8,15,4
+2026-09-10,P278,Colirio Veterinario Cachorro AnimalPlus Mini Línea 278,Medicamento,VET-001,10,2,3,1
+2026-09-10,P279,Probiótico Gato BioPet 5 kg Línea 279,Suplemento,VET-001,6,3,5,4
+2026-09-10,P280,Dieta Hepática Perro VitaVet Mini Línea 280,Alimentación especial,VET-001,7,4,7,3
+2026-09-10,P281,Vacuna Parvovirus Felino MundoVet 5 kg Línea 281,Vacuna,VET-001,3,2,3,1
+2026-09-10,P282,Plato Antideslizante Canino PetHealth Mini Línea 282,Accesorio,VET-001,2,2,3,3
+2026-09-10,P283,Alimento Sensitive Gatito NovaPet 5 kg Línea 283,Alimento,VET-001,82,47,103,5
+2026-09-10,P284,Galleta Natural Cachorro VetLife Mini Línea 284,Snack,VET-001,44,15,22,2
+2026-09-10,P285,Spray Antiparasitario Gato CarePet 5 kg Línea 285,Antiparasitario,VET-001,14,13,27,5
+2026-09-10,P286,Arena Sanitaria Perro PetBalance Mini Línea 286,Higiene,VET-001,38,15,22,2
+2026-09-10,P287,Protector Gástrico Felino VetPro 5 kg Línea 287,Medicamento,VET-001,9,5,8,3
+2026-09-10,P288,Suplemento Vitamínico Canino VetNova Mini Línea 288,Suplemento,VET-001,33,10,19,5
+2026-09-10,P289,Alimento Recovery Gatito PetCare 5 kg Línea 289,Alimentación especial,VET-001,4,3,4,2
+2026-09-10,P290,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 290,Vacuna,VET-001,4,4,5,1
+2026-09-10,P291,Rascador Gato BioPet 5 kg Línea 291,Accesorio,VET-001,9,6,11,6
+2026-09-10,P292,Alimento Adulto Perro VitaVet Mini Línea 292,Alimento,VET-001,77,14,25,3
+2026-09-10,P293,Snack de Salmón Felino MundoVet 5 kg Línea 293,Snack,VET-001,31,14,28,4
+2026-09-10,P294,Pipeta Antipulgas Canino PetHealth Mini Línea 294,Antiparasitario,VET-001,35,11,16,2
+2026-09-10,P295,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 295,Higiene,VET-001,8,4,6,2
+2026-09-10,P296,Colirio Veterinario Cachorro VetLife Mini Línea 296,Medicamento,VET-001,16,7,9,1
+2026-09-10,P297,Probiótico Gato CarePet 5 kg Línea 297,Suplemento,VET-001,4,3,4,2
+2026-09-10,P298,Dieta Hepática Perro PetBalance Mini Línea 298,Alimentación especial,VET-001,10,3,5,4
+2026-09-10,P299,Vacuna Parvovirus Felino VetPro 5 kg Línea 299,Vacuna,VET-001,9,2,3,1
+2026-09-10,P300,Juguete Mordedor Canino VetNova Mini Línea 300,Accesorio,VET-001,6,4,7,5
+2026-09-10,P301,Alimento Sensitive Gatito PetCare 5 kg Línea 301,Alimento,VET-001,40,22,36,2
+2026-09-10,P302,Galleta Natural Cachorro AnimalPlus Mini Línea 302,Snack,VET-001,16,7,13,4
+2026-09-10,P303,Spray Antiparasitario Gato BioPet 5 kg Línea 303,Antiparasitario,VET-001,20,9,20,5
+2026-09-10,P304,Arena Sanitaria Perro VitaVet Mini Línea 304,Higiene,VET-001,10,4,7,4
+2026-09-10,P305,Protector Gástrico Felino MundoVet 5 kg Línea 305,Medicamento,VET-001,23,7,11,3
+2026-09-10,P306,Suplemento Vitamínico Canino PetHealth Mini Línea 306,Suplemento,VET-001,10,4,7,4
+2026-09-10,P307,Alimento Recovery Gatito NovaPet 5 kg Línea 307,Alimentación especial,VET-001,7,4,8,5
+2026-09-10,P308,Vacuna Antirrábica Cachorro VetLife Mini Línea 308,Vacuna,VET-001,5,2,3,1
+2026-09-10,P309,Cama Acolchada Gato CarePet 5 kg Línea 309,Accesorio,VET-001,24,16,34,8
+2026-09-10,P310,Alimento Adulto Perro PetBalance Mini Línea 310,Alimento,VET-001,55,22,47,4
+2026-09-10,P311,Snack de Salmón Felino VetPro 5 kg Línea 311,Snack,VET-001,38,28,45,2
+2026-09-10,P312,Pipeta Antipulgas Canino VetNova Mini Línea 312,Antiparasitario,VET-001,39,13,20,2
+2026-09-10,P313,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 313,Higiene,VET-001,12,6,11,5
+2026-09-10,P314,Colirio Veterinario Cachorro AnimalPlus Mini Línea 314,Medicamento,VET-001,18,7,11,2
+2026-09-10,P315,Probiótico Gato BioPet 5 kg Línea 315,Suplemento,VET-001,2,2,3,3
+2026-09-10,P316,Dieta Hepática Perro VitaVet Mini Línea 316,Alimentación especial,VET-001,4,14,24,4
+2026-09-10,P317,Vacuna Parvovirus Felino MundoVet 5 kg Línea 317,Vacuna,VET-001,3,7,10,2
+2026-09-10,P318,Transportadora Canino PetHealth Mini Línea 318,Accesorio,VET-001,2,9,16,5
+2026-09-10,P319,Alimento Sensitive Gatito NovaPet 5 kg Línea 319,Alimento,VET-001,217,35,86,5
+2026-09-10,P320,Galleta Natural Cachorro VetLife Mini Línea 320,Snack,VET-001,28,10,20,5
+2026-09-10,P321,Spray Antiparasitario Gato CarePet 5 kg Línea 321,Antiparasitario,VET-001,20,8,12,2
+2026-09-10,P322,Arena Sanitaria Perro PetBalance Mini Línea 322,Higiene,VET-001,4,4,8,6
+2026-09-10,P323,Protector Gástrico Felino VetPro 5 kg Línea 323,Medicamento,VET-001,12,6,10,4
+2026-09-10,P324,Suplemento Vitamínico Canino VetNova Mini Línea 324,Suplemento,VET-001,4,3,6,6
+2026-09-10,P325,Alimento Recovery Gatito PetCare 5 kg Línea 325,Alimentación especial,VET-001,26,9,16,5
+2026-09-10,P326,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 326,Vacuna,VET-001,7,4,6,3
+2026-09-10,P327,Correa Reforzada Gato BioPet 5 kg Línea 327,Accesorio,VET-001,10,8,14,5
+2026-09-10,P328,Alimento Adulto Perro VitaVet Mini Línea 328,Alimento,VET-001,54,25,52,4
+2026-09-10,P329,Snack de Salmón Felino MundoVet 5 kg Línea 329,Snack,VET-001,25,10,19,4
+2026-09-10,P330,Pipeta Antipulgas Canino PetHealth Mini Línea 330,Antiparasitario,VET-001,3,5,8,4
+2026-09-10,P331,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 331,Higiene,VET-001,20,10,19,5
+2026-09-10,P332,Colirio Veterinario Cachorro VetLife Mini Línea 332,Medicamento,VET-001,18,6,9,2
+2026-09-10,P333,Probiótico Gato CarePet 5 kg Línea 333,Suplemento,VET-001,4,5,7,2
+2026-09-10,P334,Dieta Hepática Perro PetBalance Mini Línea 334,Alimentación especial,VET-001,9,4,7,5
+2026-09-10,P335,Vacuna Parvovirus Felino VetPro 5 kg Línea 335,Vacuna,VET-001,3,4,6,3
+2026-09-10,P336,Collar Ajustable Canino VetNova Mini Línea 336,Accesorio,VET-001,21,7,12,4
+2026-09-10,P337,Alimento Sensitive Gatito PetCare 5 kg Línea 337,Alimento,VET-001,29,22,36,2
+2026-09-10,P338,Galleta Natural Cachorro AnimalPlus Mini Línea 338,Snack,VET-001,20,8,16,5
+2026-09-10,P339,Spray Antiparasitario Gato BioPet 5 kg Línea 339,Antiparasitario,VET-001,59,14,27,4
+2026-09-10,P340,Arena Sanitaria Perro VitaVet Mini Línea 340,Higiene,VET-001,28,15,27,4
+2026-09-10,P341,Protector Gástrico Felino MundoVet 5 kg Línea 341,Medicamento,VET-001,19,7,9,1
+2026-09-10,P342,Suplemento Vitamínico Canino PetHealth Mini Línea 342,Suplemento,VET-001,27,12,21,4
+2026-09-10,P343,Alimento Recovery Gatito NovaPet 5 kg Línea 343,Alimentación especial,VET-001,9,4,7,6
+2026-09-10,P344,Vacuna Antirrábica Cachorro VetLife Mini Línea 344,Vacuna,VET-001,6,4,5,1
+2026-09-10,P345,Collar Isabelino Gato CarePet 5 kg Línea 345,Accesorio,VET-001,9,5,9,5
+2026-09-10,P346,Alimento Adulto Perro PetBalance Mini Línea 346,Alimento,VET-001,51,17,36,4
+2026-09-10,P347,Snack de Salmón Felino VetPro 5 kg Línea 347,Snack,VET-001,12,7,11,2
+2026-09-10,P348,Pipeta Antipulgas Canino VetNova Mini Línea 348,Antiparasitario,VET-001,5,5,8,2
+2026-09-10,P349,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 349,Higiene,VET-001,3,5,7,2
+2026-09-10,P350,Colirio Veterinario Cachorro AnimalPlus Mini Línea 350,Medicamento,VET-001,34,10,15,2
+2026-09-10,P351,Probiótico Gato BioPet 5 kg Línea 351,Suplemento,VET-001,7,4,6,2
+2026-09-10,P352,Dieta Hepática Perro VitaVet Mini Línea 352,Alimentación especial,VET-001,11,5,10,6
+2026-09-10,P353,Vacuna Parvovirus Felino MundoVet 5 kg Línea 353,Vacuna,VET-001,9,4,6,3
+2026-09-10,P354,Plato Antideslizante Canino PetHealth Mini Línea 354,Accesorio,VET-001,8,9,14,3
+2026-09-10,P355,Alimento Sensitive Gatito NovaPet 5 kg Línea 355,Alimento,VET-001,39,19,39,4
+2026-09-10,P356,Galleta Natural Cachorro VetLife Mini Línea 356,Snack,VET-001,13,9,16,3
+2026-09-10,P357,Spray Antiparasitario Gato CarePet 5 kg Línea 357,Antiparasitario,VET-001,4,3,5,2
+2026-09-10,P358,Arena Sanitaria Perro PetBalance Mini Línea 358,Higiene,VET-001,19,12,26,6
+2026-09-10,P359,Protector Gástrico Felino VetPro 5 kg Línea 359,Medicamento,VET-001,13,6,8,1
+2026-09-10,P360,Suplemento Vitamínico Canino VetNova Mini Línea 360,Suplemento,VET-001,10,3,6,6
+2026-09-10,P361,Alimento Recovery Gatito PetCare 5 kg Línea 361,Alimentación especial,VET-001,10,7,12,4
+2026-09-10,P362,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 362,Vacuna,VET-001,4,3,4,1
+2026-09-10,P363,Rascador Gato BioPet 5 kg Línea 363,Accesorio,VET-001,3,2,4,7
+2026-09-10,P364,Alimento Adulto Perro VitaVet Mini Línea 364,Alimento,VET-001,131,23,51,4
+2026-09-10,P365,Snack de Salmón Felino MundoVet 5 kg Línea 365,Snack,VET-001,29,11,19,3
+2026-09-10,P366,Pipeta Antipulgas Canino PetHealth Mini Línea 366,Antiparasitario,VET-001,16,21,37,3
+2026-09-10,P367,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 367,Higiene,VET-001,8,5,8,2
+2026-09-10,P368,Colirio Veterinario Cachorro VetLife Mini Línea 368,Medicamento,VET-001,4,9,11,1
+2026-09-10,P369,Probiótico Gato CarePet 5 kg Línea 369,Suplemento,VET-001,11,6,11,6
+2026-09-10,P370,Dieta Hepática Perro PetBalance Mini Línea 370,Alimentación especial,VET-001,5,8,14,5
+2026-09-10,P371,Vacuna Parvovirus Felino VetPro 5 kg Línea 371,Vacuna,VET-001,3,2,3,2
+2026-09-10,P372,Juguete Mordedor Canino VetNova Mini Línea 372,Accesorio,VET-001,3,2,3,4
+2026-09-10,P373,Alimento Sensitive Gatito PetCare 5 kg Línea 373,Alimento,VET-001,116,45,85,3
+2026-09-10,P374,Galleta Natural Cachorro AnimalPlus Mini Línea 374,Snack,VET-001,3,7,12,3
+2026-09-10,P375,Spray Antiparasitario Gato BioPet 5 kg Línea 375,Antiparasitario,VET-001,39,16,24,2
+2026-09-10,P376,Arena Sanitaria Perro VitaVet Mini Línea 376,Higiene,VET-001,36,15,33,6
+2026-09-10,P377,Protector Gástrico Felino MundoVet 5 kg Línea 377,Medicamento,VET-001,21,7,11,3
+2026-09-10,P378,Suplemento Vitamínico Canino PetHealth Mini Línea 378,Suplemento,VET-001,12,4,7,3
+2026-09-10,P379,Alimento Recovery Gatito NovaPet 5 kg Línea 379,Alimentación especial,VET-001,11,7,13,4
+2026-09-10,P380,Vacuna Antirrábica Cachorro VetLife Mini Línea 380,Vacuna,VET-001,8,3,4,1
+2026-09-10,P381,Cama Acolchada Gato CarePet 5 kg Línea 381,Accesorio,VET-001,4,6,12,7
+2026-09-10,P382,Alimento Adulto Perro PetBalance Mini Línea 382,Alimento,VET-001,64,23,43,3
+2026-09-10,P383,Snack de Salmón Felino VetPro 5 kg Línea 383,Snack,VET-001,56,16,30,3
+2026-09-10,P384,Pipeta Antipulgas Canino VetNova Mini Línea 384,Antiparasitario,VET-001,14,14,27,4
+2026-09-10,P385,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 385,Higiene,VET-001,7,5,7,2
+2026-09-10,P386,Colirio Veterinario Cachorro AnimalPlus Mini Línea 386,Medicamento,VET-001,25,7,12,4
+2026-09-10,P387,Probiótico Gato BioPet 5 kg Línea 387,Suplemento,VET-001,5,4,8,6
+2026-09-10,P388,Dieta Hepática Perro VitaVet Mini Línea 388,Alimentación especial,VET-001,3,3,5,5
+2026-09-10,P389,Vacuna Parvovirus Felino MundoVet 5 kg Línea 389,Vacuna,VET-001,7,4,5,1
+2026-09-10,P390,Transportadora Canino PetHealth Mini Línea 390,Accesorio,VET-001,10,5,10,5
+2026-09-10,P391,Alimento Sensitive Gatito NovaPet 5 kg Línea 391,Alimento,VET-001,34,16,34,4
+2026-09-10,P392,Galleta Natural Cachorro VetLife Mini Línea 392,Snack,VET-001,59,20,35,3
+2026-09-10,P393,Spray Antiparasitario Gato CarePet 5 kg Línea 393,Antiparasitario,VET-001,29,15,32,5
+2026-09-10,P394,Arena Sanitaria Perro PetBalance Mini Línea 394,Higiene,VET-001,17,10,20,6
+2026-09-10,P395,Protector Gástrico Felino VetPro 5 kg Línea 395,Medicamento,VET-001,14,5,7,2
+2026-09-10,P396,Suplemento Vitamínico Canino VetNova Mini Línea 396,Suplemento,VET-001,6,4,7,4
+2026-09-10,P397,Alimento Recovery Gatito PetCare 5 kg Línea 397,Alimentación especial,VET-001,24,9,15,3
+2026-09-10,P398,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 398,Vacuna,VET-001,3,3,5,3
+2026-09-10,P399,Correa Reforzada Gato BioPet 5 kg Línea 399,Accesorio,VET-001,13,10,18,7
+2026-09-10,P400,Alimento Adulto Perro VitaVet Mini Línea 400,Alimento,VET-001,19,14,22,2
+2026-09-10,P401,Snack de Salmón Felino MundoVet 5 kg Línea 401,Snack,VET-001,54,15,29,4
+2026-09-10,P402,Pipeta Antipulgas Canino PetHealth Mini Línea 402,Antiparasitario,VET-001,24,10,17,3
+2026-09-10,P403,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 403,Higiene,VET-001,21,12,19,3
+2026-09-10,P404,Colirio Veterinario Cachorro VetLife Mini Línea 404,Medicamento,VET-001,21,13,23,4
+2026-09-10,P405,Probiótico Gato CarePet 5 kg Línea 405,Suplemento,VET-001,2,5,8,3
+2026-09-10,P406,Dieta Hepática Perro PetBalance Mini Línea 406,Alimentación especial,VET-001,4,4,6,2
+2026-09-10,P407,Vacuna Parvovirus Felino VetPro 5 kg Línea 407,Vacuna,VET-001,7,5,7,2
+2026-09-10,P408,Collar Ajustable Canino VetNova Mini Línea 408,Accesorio,VET-001,4,4,7,6
+2026-09-10,P409,Alimento Sensitive Gatito PetCare 5 kg Línea 409,Alimento,VET-001,29,14,29,4
+2026-09-10,P410,Galleta Natural Cachorro AnimalPlus Mini Línea 410,Snack,VET-001,27,9,14,2
+2026-09-10,P411,Spray Antiparasitario Gato BioPet 5 kg Línea 411,Antiparasitario,VET-001,23,5,10,4
+2026-09-10,P412,Arena Sanitaria Perro VitaVet Mini Línea 412,Higiene,VET-001,20,6,9,2
+2026-09-10,P413,Protector Gástrico Felino MundoVet 5 kg Línea 413,Medicamento,VET-001,7,6,11,4
+2026-09-10,P414,Suplemento Vitamínico Canino PetHealth Mini Línea 414,Suplemento,VET-001,10,6,12,6
+2026-09-10,P415,Alimento Recovery Gatito NovaPet 5 kg Línea 415,Alimentación especial,VET-001,12,8,12,3
+2026-09-10,P416,Vacuna Antirrábica Cachorro VetLife Mini Línea 416,Vacuna,VET-001,9,3,4,1
+2026-09-10,P417,Collar Isabelino Gato CarePet 5 kg Línea 417,Accesorio,VET-001,18,9,19,7
+2026-09-10,P418,Alimento Adulto Perro PetBalance Mini Línea 418,Alimento,VET-001,43,14,26,4
+2026-09-10,P419,Snack de Salmón Felino VetPro 5 kg Línea 419,Snack,VET-001,52,21,34,3
+2026-09-10,P420,Pipeta Antipulgas Canino VetNova Mini Línea 420,Antiparasitario,VET-001,12,4,7,3
+2026-09-10,P421,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 421,Higiene,VET-001,11,11,19,4
+2026-09-10,P422,Colirio Veterinario Cachorro AnimalPlus Mini Línea 422,Medicamento,VET-001,16,7,11,2
+2026-09-10,P423,Probiótico Gato BioPet 5 kg Línea 423,Suplemento,VET-001,8,5,9,6
+2026-09-10,P424,Dieta Hepática Perro VitaVet Mini Línea 424,Alimentación especial,VET-001,9,4,8,5
+2026-09-10,P425,Vacuna Parvovirus Felino MundoVet 5 kg Línea 425,Vacuna,VET-001,3,2,3,1
+2026-09-10,P426,Plato Antideslizante Canino PetHealth Mini Línea 426,Accesorio,VET-001,6,3,5,5
+2026-09-10,P427,Alimento Sensitive Gatito NovaPet 5 kg Línea 427,Alimento,VET-001,47,11,21,4
+2026-09-10,P428,Galleta Natural Cachorro VetLife Mini Línea 428,Snack,VET-001,8,12,24,5
+2026-09-10,P429,Spray Antiparasitario Gato CarePet 5 kg Línea 429,Antiparasitario,VET-001,21,13,28,5
+2026-09-10,P430,Arena Sanitaria Perro PetBalance Mini Línea 430,Higiene,VET-001,13,8,17,6
+2026-09-10,P431,Protector Gástrico Felino VetPro 5 kg Línea 431,Medicamento,VET-001,10,4,6,2
+2026-09-10,P432,Suplemento Vitamínico Canino VetNova Mini Línea 432,Suplemento,VET-001,2,5,9,6
+2026-09-10,P433,Alimento Recovery Gatito PetCare 5 kg Línea 433,Alimentación especial,VET-001,17,11,22,6
+2026-09-10,P434,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 434,Vacuna,VET-001,7,4,6,2
+2026-09-10,P435,Rascador Gato BioPet 5 kg Línea 435,Accesorio,VET-001,2,2,3,4
+2026-09-10,P436,Alimento Adulto Perro VitaVet Mini Línea 436,Alimento,VET-001,29,8,19,5
+2026-09-10,P437,Snack de Salmón Felino MundoVet 5 kg Línea 437,Snack,VET-001,9,17,27,2
+2026-09-10,P438,Pipeta Antipulgas Canino PetHealth Mini Línea 438,Antiparasitario,VET-001,4,3,5,3
+2026-09-10,P439,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 439,Higiene,VET-001,14,9,13,3
+2026-09-10,P440,Colirio Veterinario Cachorro VetLife Mini Línea 440,Medicamento,VET-001,24,7,9,1
+2026-09-10,P441,Probiótico Gato CarePet 5 kg Línea 441,Suplemento,VET-001,21,6,10,3
+2026-09-10,P442,Dieta Hepática Perro PetBalance Mini Línea 442,Alimentación especial,VET-001,2,4,7,4
+2026-09-10,P443,Vacuna Parvovirus Felino VetPro 5 kg Línea 443,Vacuna,VET-001,4,5,6,1
+2026-09-10,P444,Juguete Mordedor Canino VetNova Mini Línea 444,Accesorio,VET-001,8,3,4,3
+2026-09-10,P445,Alimento Sensitive Gatito PetCare 5 kg Línea 445,Alimento,VET-001,22,33,78,5
+2026-09-10,P446,Galleta Natural Cachorro AnimalPlus Mini Línea 446,Snack,VET-001,17,6,12,4
+2026-09-10,P447,Spray Antiparasitario Gato BioPet 5 kg Línea 447,Antiparasitario,VET-001,18,11,21,4
+2026-09-10,P448,Arena Sanitaria Perro VitaVet Mini Línea 448,Higiene,VET-001,24,13,19,2
+2026-09-10,P449,Protector Gástrico Felino MundoVet 5 kg Línea 449,Medicamento,VET-001,13,8,14,4
+2026-09-10,P450,Suplemento Vitamínico Canino PetHealth Mini Línea 450,Suplemento,VET-001,2,7,11,4
+2026-09-10,P451,Alimento Recovery Gatito NovaPet 5 kg Línea 451,Alimentación especial,VET-001,8,6,11,6
+2026-09-10,P452,Vacuna Antirrábica Cachorro VetLife Mini Línea 452,Vacuna,VET-001,7,2,3,1
+2026-09-10,P453,Cama Acolchada Gato CarePet 5 kg Línea 453,Accesorio,VET-001,5,3,5,3
+2026-09-10,P454,Alimento Adulto Perro PetBalance Mini Línea 454,Alimento,VET-001,13,18,30,2
+2026-09-10,P455,Snack de Salmón Felino VetPro 5 kg Línea 455,Snack,VET-001,44,17,33,5
+2026-09-10,P456,Pipeta Antipulgas Canino VetNova Mini Línea 456,Antiparasitario,VET-001,11,13,23,3
+2026-09-10,P457,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 457,Higiene,VET-001,2,5,7,2
+2026-09-10,P458,Colirio Veterinario Cachorro AnimalPlus Mini Línea 458,Medicamento,VET-001,21,11,19,3
+2026-09-10,P459,Probiótico Gato BioPet 5 kg Línea 459,Suplemento,VET-001,4,3,6,6
+2026-09-10,P460,Dieta Hepática Perro VitaVet Mini Línea 460,Alimentación especial,VET-001,41,14,28,5
+2026-09-10,P461,Vacuna Parvovirus Felino MundoVet 5 kg Línea 461,Vacuna,VET-001,4,3,4,1
+2026-09-10,P462,Transportadora Canino PetHealth Mini Línea 462,Accesorio,VET-001,4,4,6,5
+2026-09-10,P463,Alimento Sensitive Gatito NovaPet 5 kg Línea 463,Alimento,VET-001,148,26,50,3
+2026-09-10,P464,Galleta Natural Cachorro VetLife Mini Línea 464,Snack,VET-001,15,12,21,3
+2026-09-10,P465,Spray Antiparasitario Gato CarePet 5 kg Línea 465,Antiparasitario,VET-001,9,5,8,3
+2026-09-10,P466,Arena Sanitaria Perro PetBalance Mini Línea 466,Higiene,VET-001,7,8,14,4
+2026-09-10,P467,Protector Gástrico Felino VetPro 5 kg Línea 467,Medicamento,VET-001,11,10,15,2
+2026-09-10,P468,Suplemento Vitamínico Canino VetNova Mini Línea 468,Suplemento,VET-001,3,2,4,5
+2026-09-10,P469,Alimento Recovery Gatito PetCare 5 kg Línea 469,Alimentación especial,VET-001,15,9,15,5
+2026-09-10,P470,Vacuna Antirrábica Cachorro AnimalPlus Mini Línea 470,Vacuna,VET-001,14,5,7,2
+2026-09-10,P471,Correa Reforzada Gato BioPet 5 kg Línea 471,Accesorio,VET-001,4,5,8,3
+2026-09-10,P472,Alimento Adulto Perro VitaVet Mini Línea 472,Alimento,VET-001,25,13,26,4
+2026-09-10,P473,Snack de Salmón Felino MundoVet 5 kg Línea 473,Snack,VET-001,25,12,24,5
+2026-09-10,P474,Pipeta Antipulgas Canino PetHealth Mini Línea 474,Antiparasitario,VET-001,17,9,19,5
+2026-09-10,P475,Shampoo Hipoalergénico Gatito NovaPet 5 kg Línea 475,Higiene,VET-001,13,5,8,3
+2026-09-10,P476,Colirio Veterinario Cachorro VetLife Mini Línea 476,Medicamento,VET-001,35,7,11,2
+2026-09-10,P477,Probiótico Gato CarePet 5 kg Línea 477,Suplemento,VET-001,2,5,8,3
+2026-09-10,P478,Dieta Hepática Perro PetBalance Mini Línea 478,Alimentación especial,VET-001,17,14,29,5
+2026-09-10,P479,Vacuna Parvovirus Felino VetPro 5 kg Línea 479,Vacuna,VET-001,14,7,10,2
+2026-09-10,P480,Collar Ajustable Canino VetNova Mini Línea 480,Accesorio,VET-001,4,4,8,7
+2026-09-10,P481,Alimento Sensitive Gatito PetCare 5 kg Línea 481,Alimento,VET-001,29,21,36,2
+2026-09-10,P482,Galleta Natural Cachorro AnimalPlus Mini Línea 482,Snack,VET-001,27,9,17,4
+2026-09-10,P483,Spray Antiparasitario Gato BioPet 5 kg Línea 483,Antiparasitario,VET-001,51,11,19,3
+2026-09-10,P484,Arena Sanitaria Perro VitaVet Mini Línea 484,Higiene,VET-001,25,9,13,2
+2026-09-10,P485,Protector Gástrico Felino MundoVet 5 kg Línea 485,Medicamento,VET-001,19,8,14,4
+2026-09-10,P486,Suplemento Vitamínico Canino PetHealth Mini Línea 486,Suplemento,VET-001,21,6,11,4
+2026-09-10,P487,Alimento Recovery Gatito NovaPet 5 kg Línea 487,Alimentación especial,VET-001,13,11,22,6
+2026-09-10,P488,Vacuna Antirrábica Cachorro VetLife Mini Línea 488,Vacuna,VET-001,7,5,6,1
+2026-09-10,P489,Collar Isabelino Gato CarePet 5 kg Línea 489,Accesorio,VET-001,1,2,4,6
+2026-09-10,P490,Alimento Adulto Perro PetBalance Mini Línea 490,Alimento,VET-001,6,9,19,5
+2026-09-10,P491,Snack de Salmón Felino VetPro 5 kg Línea 491,Snack,VET-001,20,8,17,5
+2026-09-10,P492,Pipeta Antipulgas Canino VetNova Mini Línea 492,Antiparasitario,VET-001,93,16,24,2
+2026-09-10,P493,Shampoo Hipoalergénico Gatito PetCare 5 kg Línea 493,Higiene,VET-001,16,6,13,6
+2026-09-10,P494,Colirio Veterinario Cachorro AnimalPlus Mini Línea 494,Medicamento,VET-001,25,10,17,3
+2026-09-10,P495,Probiótico Gato BioPet 5 kg Línea 495,Suplemento,VET-001,6,6,11,4
+2026-09-10,P496,Dieta Hepática Perro VitaVet Mini Línea 496,Alimentación especial,VET-001,3,3,5,3
+2026-09-10,P497,Vacuna Parvovirus Felino MundoVet 5 kg Línea 497,Vacuna,VET-001,13,3,4,1
+2026-09-10,P498,Plato Antideslizante Canino PetHealth Mini Línea 498,Accesorio,VET-001,8,6,11,5
+2026-09-10,P499,Alimento Sensitive Gatito NovaPet 5 kg Línea 499,Alimento,VET-001,22,16,36,4
+2026-09-10,P500,Galleta Natural Cachorro VetLife Mini Línea 500,Snack,VET-001,43,9,16,3
