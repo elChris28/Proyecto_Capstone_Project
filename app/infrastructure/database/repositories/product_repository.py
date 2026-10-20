@@ -118,13 +118,15 @@ class ProductRepository:
         try:
             with self.db.cursor() as (_, cursor):
                 cursor.execute(
-                    """SELECT id, producto_id, producto, categoria,
-                              stock AS stock_actual, stock_minimo, stock_seguridad,
-                              punto_reorden, lead_time_dias
+                    """SELECT MIN(id), producto_id, MAX(producto), MAX(categoria),
+                              SUM(stock) AS stock_actual, MAX(stock_minimo),
+                              MAX(stock_seguridad), MAX(punto_reorden),
+                              MAX(lead_time_dias)
                        FROM productos
                        WHERE activo = 1
                          AND producto_id IS NOT NULL
                          AND TRIM(producto_id) <> ''
+                       GROUP BY producto_id
                        ORDER BY producto_id"""
                 )
                 rows = cursor.fetchall()

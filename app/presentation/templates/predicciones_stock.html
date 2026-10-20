@@ -22,8 +22,10 @@
         </div>
         <div class="header-actions">
             <form method="post" action="{{ url_for('prediction.registrar_evaluacion_stock') }}" class="register-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
                 <button type="submit" class="btn register-btn">Registrar evaluación</button>
             </form>
+            <a href="{{ url_for('prediction.calidad_datos') }}" class="btn secondary">Calidad de datos</a>
             <a href="{{ url_for('dashboard.dashboard') }}" class="btn secondary">Dashboard</a>
             <a href="{{ url_for('assistant.index') }}" class="btn">Asistente</a>
         </div>

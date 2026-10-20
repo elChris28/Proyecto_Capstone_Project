@@ -50,3 +50,14 @@ def api_prediccion_stock_producto(producto_id):
     if detalle is None:
         return jsonify({"error": "Producto no encontrado o sin historial suficiente."}), 404
     return jsonify(detalle)
+
+
+@bp.route("/calidad-datos")
+def calidad_datos():
+    auditoria = _services().data_quality_service.audit()
+    return render_template("calidad_datos.html", auditoria=auditoria)
+
+
+@bp.route("/api/calidad-datos")
+def api_calidad_datos():
+    return jsonify(_services().data_quality_service.audit())

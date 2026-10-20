@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control de datos - VetAssistant IA</title>
+<style>body{font-family:Arial,sans-serif;background:#f5f7fb;color:#14283f;margin:0}.wrap{max-width:980px;margin:40px auto;padding:0 18px}h1{font-size:29px}.intro{color:#435568}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0}.metric,.panel{background:white;border:1px solid #dfe6ef;border-radius:12px;padding:22px}.metric strong{display:block;font-size:29px;margin:9px 0}.status{font-weight:700;color:#8a4300}.ok{color:#006d51}a{color:#0b626c}.panel{margin-top:18px}li{padding:7px 0}</style></head>
+<body><div class="wrap"><a href="{{ url_for('prediction.predicciones_stock') }}">← Volver al módulo predictivo</a><h1>Control de calidad y cambios en los datos</h1>
+<p class="intro">Diagnóstico técnico de datos operativos frente a las características históricas de referencia. No modifica las predicciones ni sus métricas.</p>
+<p class="status {{ 'ok' if auditoria.estado == 'OK' else '' }}">Estado: {{ auditoria.estado }}</p>
+<div class="metrics">
+<div class="metric">Productos en inventario<strong>{{ auditoria.total_inventario }}</strong></div>
+<div class="metric">Productos comparables<strong>{{ auditoria.productos_comparables }}</strong></div>
+<div class="metric">Sin historial<strong>{{ auditoria.productos_sin_historial }}</strong></div>
+<div class="metric">Datos inválidos<strong>{{ auditoria.productos_con_campos_invalidos }}</strong></div>
+<div class="metric">Antigüedad del dataset<strong>{{ auditoria.dias_desde_corte if auditoria.dias_desde_corte is not none else 'N/D' }} días</strong></div>
+<div class="metric">PSI del stock<strong>{{ auditoria.psi_stock if auditoria.psi_stock is not none else 'N/D' }}</strong>{{ auditoria.interpretacion_psi }}</div>
+</div><section class="panel"><h2>Observaciones</h2>{% if auditoria.observaciones %}<ul>{% for obs in auditoria.observaciones %}<li>{{ obs }}</li>{% endfor %}</ul>{% else %}<p>No se detectaron alertas bajo estas reglas.</p>{% endif %}
+<p><small>Fecha de corte: {{ auditoria.fecha_corte_variables }}. {{ auditoria.aviso }}</small></p>
+<p><a href="{{ url_for('prediction.api_calidad_datos') }}">Consultar reporte JSON</a></p></section></div></body></html>

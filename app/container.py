@@ -4,6 +4,7 @@ from app.application.observers.bell_alert_observer import BellAlertObserver
 from app.application.services.alert_service import AlertService
 from app.application.services.assistant_service import AssistantService
 from app.application.services.dashboard_service import DashboardService
+from app.application.services.data_quality_service import DataQualityService
 from app.application.services.evaluation_service import EvaluationService
 from app.application.services.prediction_service import PredictionService
 from app.domain.observers.alert_observer import AlertSubject
@@ -57,6 +58,7 @@ class ServiceContainer:
             self.prediction_service,
             self.intent_engine,
         )
+        self.data_quality_service = DataQualityService(self.product_repository)
         self.dashboard_service = DashboardService(
             self.consultation_repository,
             self.product_repository,

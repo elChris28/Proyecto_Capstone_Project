@@ -34,4 +34,7 @@ def create_app():
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(prediction_bp)
 
+    from app.presentation.security import setup_security
+    setup_security(app)
+
     return app

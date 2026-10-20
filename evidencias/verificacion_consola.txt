@@ -1,0 +1,38 @@
+{
+  "modalidad": "offline sobre inventario_actual.csv; NO verifica MySQL ni UAT de usuarios",
+  "fecha_de_ejecucion": "2026-10-18",
+  "modelo": "Gradient Boosting",
+  "horizonte_dias": 7,
+  "productos_inventario_csv": 500,
+  "productos_evaluados": 500,
+  "distribucion_riesgo_csv": {
+    "alto_riesgo": 309,
+    "medio_riesgo": 70,
+    "bajo_riesgo": 121
+  },
+  "recall_modelo_guardado_pct": 81.48,
+  "f1_modelo_guardado_pct": 79.18,
+  "umbral_binario_pct": 60.55,
+  "registros_entrenamiento_guardados": 1021500,
+  "control_calidad": {
+    "estado": "REVISAR",
+    "fecha_corte_variables": "2026-09-10",
+    "dias_desde_corte": 38,
+    "umbral_frescura_dias": 7,
+    "total_inventario": 500,
+    "total_referencia": 500,
+    "productos_sin_historial": 0,
+    "ids_sin_historial": [],
+    "ids_duplicados": [],
+    "productos_con_campos_invalidos": 0,
+    "ids_invalidos": [],
+    "productos_comparables": 500,
+    "psi_stock": 0.0,
+    "interpretacion_psi": "Bajo (<0.10)",
+    "observaciones": [
+      "Las variables históricas no están actualizadas para uso operativo."
+    ],
+    "aviso": "PSI y frescura son monitoreo de datos; no demuestran Recall en producción ni reemplazan validación con quiebres reales."
+  },
+  "observacion": "Las cifras del CSV NO sustituyen las capturas del informe obtenidas con MySQL. No se reentrenó el modelo."
+}

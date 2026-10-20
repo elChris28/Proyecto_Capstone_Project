@@ -1,3 +1,21 @@
+## Actualización funcional de la entrega PC08 (18/10/2026)
+
+Se ha añadido el esquema MySQL verificable, agregación de inventario por producto, un panel de calidad de datos, controles de seguridad configurables y una suite de 26 pruebas. **Avance técnico propuesto: 74/87 SP = 85.1 %**, sujeto a validación de desglose por el docente. Permanecen pendientes UAT con usuarios y comprobación real de MySQL/HTTPS.
+
+**Evidencias:** `docs/AVANCE_FUNCIONAL_85.md`, `docs/PLAN_UAT_Y_DESPLIEGUE.md`, `docs/Anexo_Avance_Funcional_85_PC09.docx`, `evidencias/pruebas_automatizadas.txt`.
+
+```bash
+python -m pip install -r requirements-dev.txt
+python -m pytest -q tests
+python -m scripts.qa.verify_offline --output evidencias/verificacion_offline.json
+python -m scripts.database.init_schema --check
+python main.py
+```
+
+La instalación en la MySQL real es una tarea separada y requiere autorización; no ejecutar `--seed-stock` en una BD existente.
+
+---
+
 # 🐾 VetAssistant IA + Predicción de Quiebre de Stock
 
 Proyecto Flask para una veterinaria que integra dos componentes de Machine Learning:
