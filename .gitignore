@@ -6,3 +6,12 @@ venv/
 .pytest_cache/
 .DS_Store
 *.swp
+# Artefactos locales de CI/staging, informes y cobertura
+build/
+coverage.xml
+.coverage
+htmlcov/
+*.log
+# No versionar otras variantes de variables de entorno
+.env.*
+!.env.example
