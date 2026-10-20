@@ -1,0 +1,41 @@
+{
+  "sprint": "Sprint 2",
+  "backlog": [
+    "PB05",
+    "PB06",
+    "PB07"
+  ],
+  "fuentes": [
+    "dataset_veterinario.csv",
+    "inventario_actual.csv",
+    "features_actuales_7d.csv"
+  ],
+  "historico_filas": 1039500,
+  "historico_productos": 500,
+  "historico_fecha_inicio": "2021-01-01",
+  "historico_fecha_fin": "2026-09-10",
+  "historico_claves_duplicadas": 0,
+  "inventario_productos": 500,
+  "variables_registros": 500,
+  "campos_variables_verificados": [
+    "dias_cobertura_30",
+    "dias_cobertura_7",
+    "lead_time_dias",
+    "producto_id",
+    "stock_actual",
+    "tendencia_7_30",
+    "ventas_14d",
+    "ventas_30d",
+    "ventas_7d"
+  ],
+  "fechas_historicas_invalidas": 0,
+  "porcentaje_nulos_requeridos": 0.0,
+  "ventas_negativas": 0,
+  "stock_negativo": 0,
+  "lead_time_no_positivo": 0,
+  "productos_inventario_sin_variables": 0,
+  "productos_inventario_sin_historico": 0,
+  "incidencias": [],
+  "resultado": "APROBADO",
+  "alcance": "Auditoría de archivos del Sprint 2; no reentrena el modelo ni valida MySQL operativo ni demuestra impacto PRE/POS."
+}

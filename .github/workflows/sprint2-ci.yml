@@ -1,0 +1,75 @@
+name: 'T2 Sprint 2 - CI y staging incremental'
+
+on:
+  push:
+    branches: [main, develop, 'feature/**', 'fix/**']
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  calidad:
+    name: 'PB05-PB07 + Pytest + chequeo offline'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      APP_ENV: development
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+      - name: Verificar sintaxis
+        run: python -m compileall -q app scripts tests
+      - name: Pruebas automatizadas
+        run: python -m pytest -q tests
+      - name: Auditoría de datos del Sprint 2
+        run: python -m scripts.qa.sprint2_data_quality --output build/reports/sprint2_datos.json
+      - name: Verificación offline del modelo almacenado
+        run: python -m scripts.qa.verify_offline --output build/reports/verificacion_offline.json
+      - name: Guardar evidencias de calidad
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'sprint2-calidad-${{ github.run_number }}'
+          path: build/reports/*.json
+          if-no-files-found: warn
+
+  staging_incremental:
+    name: 'Despliegue incremental a staging efímero'
+    needs: calidad
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      APP_ENV: development
+    steps:
+      - name: Obtener código verificado
+        uses: actions/checkout@v4
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Instalar dependencias del prototipo
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+      - name: Preparar versión incremental y verificar Flask /health
+        run: python -m scripts.devops.stage_release --target build/staging --release-id "s2-${GITHUB_SHA:0:12}"
+      - name: Publicar paquete de staging como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'sprint2-staging-${{ github.run_number }}'
+          path: build/staging/
+          if-no-files-found: error
