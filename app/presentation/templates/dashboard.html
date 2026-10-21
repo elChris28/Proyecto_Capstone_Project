@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard de Métricas</title>
+    <title>Dashboard del Inventario | VetAssistant IA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
@@ -21,9 +21,9 @@
     <!-- HEADER -->
     <header class="dashboard-header">
         <div>
-            <span class="dashboard-tag">Panel Analítico</span>
+            <span class="dashboard-tag">Gestión del inventario</span>
             <h1>📊 Dashboard de Inventario</h1>
-            <p>Veterinaria Santa Cruz - Asistente Inteligente de Gestión de Inventarios</p>
+            <p>Veterinaria Santa Cruz · Consulta de inventario, actividad del asistente y alertas logísticas</p>
         </div>
 
         <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
@@ -42,9 +42,9 @@
         <div class="kpi-card principal">
             <div class="kpi-icon">🤖</div>
             <div>
-                <span>Rendimiento del modelo</span>
+                <span>Promedio de métricas del asistente</span>
                 <strong>{{ rendimiento_modelo }}%</strong>
-                <p>Promedio de Accuracy, Precision, Recall y F1</p>
+                <p>Promedio simple del clasificador de intenciones; no mide el riesgo de quiebre.</p>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
             <div>
                 <span>Total de consultas</span>
                 <strong>{{ total_consultas }}</strong>
-                <p>Interacciones registradas por el asistente</p>
+                <p>Consultas registradas en el historial del asistente.</p>
             </div>
         </div>
 
@@ -62,7 +62,7 @@
             <div>
                 <span>Alertas logísticas</span>
                 <strong>{{ total_alertas }}</strong>
-                <p>Stock crítico + productos próximos a vencer</p>
+                <p>Registros de stock crítico y lotes próximos a vencer. No son las alertas predictivas a 7 días.</p>
             </div>
         </div>
 
@@ -82,114 +82,12 @@
 
     </section>
 
-    <!-- MÉTRICAS IA -->
-    <section class="dashboard-section">
-        <div class="section-title">
-            <div>
-                <h2>🧠 Métricas del Modelo IA</h2>
-                <p>Evaluación del clasificador de intenciones usado por el asistente.</p>
-            </div>
-        </div>
-
-        <div class="metricas-grid">
-
-            <div class="metrica-card">
-                <span>Accuracy</span>
-                <strong>{{ accuracy }}%</strong>
-                <p>Exactitud general del modelo</p>
-            </div>
-
-            <div class="metrica-card">
-                <span>Precisión</span>
-                <strong>{{ precision }}%</strong>
-                <p>Control de falsos positivos</p>
-            </div>
-
-            <div class="metrica-card">
-                <span>Recall</span>
-                <strong>{{ recall }}%</strong>
-                <p>Capacidad de detección</p>
-            </div>
-
-            <div class="metrica-card">
-                <span>F1-Score</span>
-                <strong>{{ f1 }}%</strong>
-                <p>Balance entre precisión y recall</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- GRÁFICOS -->
-    <section class="charts-grid">
-
-        <div class="dashboard-section chart-card">
-            <div class="section-title">
-                <div>
-                    <h2>📊 Distribución de Intenciones</h2>
-                    <p>Consultas agrupadas por intención detectada.</p>
-                </div>
-            </div>
-
-            {% if labels and values %}
-                <div class="chart-helper">
-                    <span>Ordenado de mayor a menor</span>
-                    <span>Pasa el cursor sobre una barra para ver el detalle</span>
-                </div>
-
-                <div class="chart-scroll-intenciones">
-                    <div class="chart-canvas-box-intenciones">
-                        <canvas
-                            id="graficoIntenciones"
-                            aria-label="Distribución de intenciones"
-                            role="img">
-                        </canvas>
-                    </div>
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    Aún no hay datos suficientes para graficar intenciones.
-                </div>
-            {% endif %}
-        </div>
-
-        <div class="dashboard-section chart-card">
-            <div class="section-title">
-                <div>
-                    <h2>🚨 Alertas Logísticas</h2>
-                    <p>Productos que requieren atención operativa.</p>
-                </div>
-            </div>
-
-            {% if total_alertas > 0 %}
-                <div class="chart-alertas-container">
-                    <canvas id="graficoAlertas"></canvas>
-                </div>
-            {% else %}
-                <div class="empty-state">No hay alertas logísticas registradas.</div>
-            {% endif %}
-        </div>
-
-    </section>
-
-    <!-- PRODUCTOS MÁS BUSCADOS -->
-    <section class="dashboard-section">
-        <div class="section-title">
-            <div>
-                <h2>🏷️ Productos Más Buscados</h2>
-                <p>Productos con mayor cantidad de consultas realizadas al asistente.</p>
-            </div>
-        </div>
-
-        {% if productos_mas_buscados %}
-            <canvas id="graficoProductos"></canvas>
-        {% else %}
-            <div class="empty-state">Aún no hay productos consultados.</div>
-        {% endif %}
-    </section>
-
-
-    <!-- ALERTAS OPERATIVAS -->
+    <!-- INFORMACION OPERATIVA ANTES DE LA TECNICA -->
+    <!-- REVISION OPERATIVA -->
+    <div class="dashboard-section-title-block">
+        <h2>Revisión operativa del inventario</h2>
+        <p>Consulta los productos que requieren atención por su stock actual y los lotes próximos a vencer. Para riesgo futuro consulta «Predicción 7 días».</p>
+    </div>
     <section class="tables-grid">
 
         <!-- STOCK CRÍTICO -->
@@ -197,7 +95,7 @@
             <div class="section-title">
                 <div>
                     <h2>⚠️ Productos con Stock Crítico</h2>
-                    <p>Productos cuyo stock actual está por debajo o igual al mínimo.</p>
+                    <p>Productos con stock actual menor o igual al mínimo registrado. Revisar la reposición según las reglas de la empresa.</p>
                 </div>
             </div>
 
@@ -233,7 +131,7 @@
             <div class="section-title">
                 <div>
                     <h2>⏰ Productos Próximos a Vencer</h2>
-                    <p>Lotes cuya fecha de vencimiento está dentro del rango de control.</p>
+                    <p>Lotes dentro del periodo de aviso configurado; si la tabla está vacía, no se identificaron registros en ese rango.</p>
                 </div>
             </div>
 
@@ -265,6 +163,120 @@
         </div>
 
     </section>
+    <!-- INDICADORES DE ACTIVIDAD -->
+    <div class="dashboard-section-title-block">
+        <h2>Actividad del asistente y distribución de alertas</h2>
+        <p>Estos gráficos resumen consultas registradas y alertas logísticas actuales. No representan la precisión del modelo predictivo.</p>
+    </div>
+    <section class="charts-grid">
+
+        <div class="dashboard-section chart-card">
+            <div class="section-title">
+                <div>
+                    <h2>📊 Distribución de Intenciones</h2>
+                    <p>Cantidad de consultas del asistente por intención identificada.</p>
+                </div>
+            </div>
+
+            {% if labels and values %}
+                <div class="chart-helper">
+                    <span>Ordenado de mayor a menor</span>
+                    <span>Pasa el cursor sobre una barra para ver el detalle</span>
+                </div>
+
+                <div class="chart-scroll-intenciones">
+                    <div class="chart-canvas-box-intenciones">
+                        <canvas
+                            id="graficoIntenciones"
+                            aria-label="Distribución de intenciones"
+                            role="img">
+                        </canvas>
+                    </div>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    Aún no hay datos suficientes para graficar intenciones.
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="dashboard-section chart-card">
+            <div class="section-title">
+                <div>
+                    <h2>🚨 Alertas Logísticas</h2>
+                    <p>Distribución de registros de stock crítico y próximos a vencer; no equivale al número de productos con riesgo predictivo alto.</p>
+                </div>
+            </div>
+
+            {% if total_alertas > 0 %}
+                <div class="chart-alertas-container">
+                    <canvas id="graficoAlertas"></canvas>
+                </div>
+            {% else %}
+                <div class="empty-state">No hay alertas logísticas registradas.</div>
+            {% endif %}
+        </div>
+
+    </section>
+
+    <!-- PRODUCTOS MÁS BUSCADOS -->
+    <section class="dashboard-section">
+        <div class="section-title">
+            <div>
+                <h2>🏷️ Productos Más Buscados</h2>
+                <p>Productos consultados con mayor frecuencia en el asistente; este indicador representa uso, no riesgo de stock.</p>
+            </div>
+        </div>
+
+        {% if productos_mas_buscados %}
+            <canvas id="graficoProductos"></canvas>
+        {% else %}
+            <div class="empty-state">Aún no hay productos consultados.</div>
+        {% endif %}
+    </section>
+
+
+    <details class="dashboard-tech-details">
+        <summary>Información técnica del asistente <span>Métricas del clasificador de intenciones</span></summary>
+    <!-- METRICAS TECNICAS DE INTENCIONES -->
+    <section class="dashboard-section">
+        <div class="section-title">
+            <div>
+                <h2>Desempeño del clasificador de intenciones</h2>
+                <p>Resultados técnicos del modelo que interpreta las consultas. Son distintos de las métricas de Gradient Boosting para riesgo de quiebre de stock.</p>
+            </div>
+        </div>
+
+        <div class="metricas-grid">
+
+            <div class="metrica-card">
+                <span>Accuracy</span>
+                <strong>{{ accuracy }}%</strong>
+                <p>Exactitud general del modelo</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Precisión</span>
+                <strong>{{ precision }}%</strong>
+                <p>Proporción de clasificaciones positivas acertadas.</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>Recall</span>
+                <strong>{{ recall }}%</strong>
+                <p>Proporción de casos positivos detectados.</p>
+            </div>
+
+            <div class="metrica-card">
+                <span>F1-Score</span>
+                <strong>{{ f1 }}%</strong>
+                <p>Media armónica entre precisión y recall.</p>
+            </div>
+
+        </div>
+    </section>
+
+    </details>
 
 </div>
 
