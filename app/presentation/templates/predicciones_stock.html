@@ -12,7 +12,7 @@
         <div class="header-copy">
             <span class="tag">Machine Learning · Horizonte {{ resumen.horizonte_dias }} días</span>
             <h1>Predicción de riesgo de quiebre de stock</h1>
-            <p>Prioriza productos que requieren revisión antes de un posible desabastecimiento. El riesgo combina inventario actual de MySQL con el comportamiento histórico de ventas.</p>
+            <p>Identifica los productos que requieren revisión de reposición en los próximos {{ resumen.horizonte_dias }} días. Las estimaciones combinan el inventario actual y el histórico de ventas.</p>
             <div class="header-meta">
                 <span>Histórico hasta: <b>{{ resumen.fecha_corte or 'No disponible' }}</b></span>
                 <span>Evaluación generada: <b>{{ resumen.fecha_evaluacion or 'No disponible' }}</b></span>
@@ -41,7 +41,7 @@
         <div>
             <span class="eyebrow">Resumen del escenario actual</span>
             <h2>{{ resumen.alto_riesgo }} en riesgo alto y {{ resumen.medio_riesgo }} en vigilancia</h2>
-            <p>El semáforo operativo organiza {{ resumen.total_productos }} productos por prioridad: ALTO desde 75%, MEDIO entre 50% y menos de 75%, y BAJO por debajo de 50%. Esta capa visual es independiente del umbral binario usado para validar el modelo.</p>
+            <p>De {{ resumen.total_productos }} productos evaluados, revisa primero los de riesgo alto. Los niveles ALTO, MEDIO y BAJO sirven para priorizar la atención; no indican que el quiebre sea seguro.</p>
         </div>
         <div class="distribution" aria-label="Distribución de riesgo">
             <div class="distribution-labels three">
@@ -79,9 +79,9 @@
             <small>{{ resumen.porcentaje_bajo_riesgo }}% sin alerta inmediata</small>
         </article>
         <article class="kpi warning">
-            <span>Faltante proyectado</span>
+            <span>Productos con déficit estimado</span>
             <strong>{{ resumen.faltante_proyectado }}</strong>
-            <small>productos cuya demanda explicativa supera el stock actual</small>
+            <small>Casos en los que la demanda estimada a 7 días supera el stock disponible.</small>
         </article>
         <article class="kpi">
             <span>Modelo seleccionado</span>
@@ -90,116 +90,10 @@
         </article>
     </section>
 
-    <section class="model-card">
-        <div class="model-copy">
-            <span class="eyebrow">Desempeño del modelo</span>
-            <h2>Evaluación de clasificación</h2>
-            <p>{{ resumen.metodologia_validacion }}. El Recall es la métrica prioritaria porque permite reducir falsos negativos en productos que realmente pueden entrar en riesgo.</p>
-            <span class="goal-badge {% if resumen.cumple_recall %}ok{% else %}fail{% endif %}">
-                {% if resumen.cumple_recall %}Meta cumplida{% else %}Meta pendiente{% endif %}: Recall ≥ {{ resumen.recall_objetivo|int }}%
-            </span>
-        </div>
-        <div class="metrics">
-            <div><span>Accuracy</span><b>{{ resumen.accuracy }}%</b></div>
-            <div><span>Precision</span><b>{{ resumen.precision }}%</b></div>
-            <div><span>Recall</span><b>{{ resumen.recall }}%</b></div>
-            <div><span>F1-Score</span><b>{{ resumen.f1 }}%</b></div>
-            <div><span>Umbral binario ML</span><b>{{ resumen.umbral_modelo_validado }}%</b></div>
-        </div>
+    <section class="note-card warning-note" aria-label="Vigencia de los datos">
+        <h3>Vigencia de los datos utilizados</h3>
+        <p>El histórico disponible llega hasta <b>{{ resumen.fecha_corte or 'una fecha no disponible' }}</b>. Antes de tomar decisiones operativas, comprueba su actualización en <a href="{{ url_for('prediction.calidad_datos') }}">Calidad de datos</a>. Esta pantalla muestra estimaciones, no quiebres ya observados.</p>
     </section>
-
-    <section class="note-card triage-note">
-        <h3>Semáforo operativo de riesgo</h3>
-        <p><b>ALTO:</b> probabilidad ≥ {{ resumen.umbral }}%. <b>MEDIO:</b> desde {{ resumen.umbral_medio }}% y menor a {{ resumen.umbral }}%. <b>BAJO:</b> menor a {{ resumen.umbral_medio }}%. El modelo de ML continúa siendo binario y conserva su umbral validado de {{ resumen.umbral_modelo_validado }}% para evaluación; el semáforo de 50%/75% es una capa de priorización para la interfaz.</p>
-    </section>
-
-    {% if resumen.comparacion_modelos %}
-    <section class="evidence-section">
-        <div class="section-title">
-            <div>
-                <span class="eyebrow">Evidencia de selección</span>
-                <h2>Comparación de modelos evaluados</h2>
-                <p>Los tres algoritmos fueron evaluados sobre el mismo conjunto TEST temporal. Se priorizó el cumplimiento de Recall ≥ {{ resumen.recall_objetivo|int }}% y, entre los modelos que cumplen, el mejor F1-Score.</p>
-            </div>
-            <span class="selected-model-badge">Seleccionado: {{ resumen.modelo }}</span>
-        </div>
-
-        <div class="model-comparison-grid">
-            {% for modelo in resumen.comparacion_modelos %}
-            <article class="comparison-card {% if modelo.seleccionado %}selected{% endif %}">
-                <div class="comparison-head">
-                    <div>
-                        <span class="model-index">Modelo {{ loop.index }}</span>
-                        <h3>{{ modelo.nombre }}</h3>
-                    </div>
-                    {% if modelo.seleccionado %}
-                    <span class="winner-badge">Seleccionado</span>
-                    {% elif modelo.cumple_recall %}
-                    <span class="candidate-badge">Cumple Recall</span>
-                    {% else %}
-                    <span class="candidate-badge fail">No cumple meta</span>
-                    {% endif %}
-                </div>
-                <div class="comparison-metrics">
-                    <div><span>Accuracy</span><b>{{ modelo.accuracy }}%</b></div>
-                    <div><span>Precision</span><b>{{ modelo.precision }}%</b></div>
-                    <div class="metric-focus"><span>Recall</span><b>{{ modelo.recall }}%</b></div>
-                    <div><span>F1-Score</span><b>{{ modelo.f1 }}%</b></div>
-                </div>
-                <div class="threshold-line">Umbral de clasificación: <b>{{ modelo.umbral }}%</b></div>
-            </article>
-            {% endfor %}
-        </div>
-
-        <div class="selection-explanation">
-            <b>¿Por qué se seleccionó {{ resumen.modelo }}?</b>
-            <p>Es el modelo que alcanzó el mejor equilibrio entre detección de productos realmente riesgosos y calidad global de clasificación, logrando Recall de {{ resumen.recall }}% y F1-Score de {{ resumen.f1 }}% sobre el TEST independiente.</p>
-        </div>
-    </section>
-    {% endif %}
-
-    {% if resumen.variables_importantes %}
-    <section class="evidence-section importance-section">
-        <div class="section-title">
-            <div>
-                <span class="eyebrow">Interpretabilidad global</span>
-                <h2>Variables con mayor relevancia para el modelo</h2>
-                <p>Se aplicó Permutation Importance sobre una muestra del conjunto TEST temporal. Cuanto mayor es la caída del F1 al desordenar una variable, mayor información aporta al modelo.</p>
-            </div>
-            <div class="importance-meta">
-                <span>{{ resumen.filas_importancia }} filas TEST</span>
-                <span>{{ resumen.repeticiones_importancia }} repeticiones</span>
-                <span>F1 base {{ resumen.f1_base_importancia }}%</span>
-            </div>
-        </div>
-
-        <div class="importance-layout">
-            <div class="importance-list">
-                {% for variable in resumen.variables_importantes[:8] %}
-                <div class="importance-row">
-                    <div class="importance-rank">{{ loop.index }}</div>
-                    <div class="importance-content">
-                        <div class="importance-label-line">
-                            <b>{{ variable.etiqueta }}</b>
-                            <span>{{ variable.importancia_relativa_pct }}%</span>
-                        </div>
-                        <div class="importance-track" aria-label="Relevancia relativa {{ variable.importancia_relativa_pct }}%">
-                            <span style="width: {{ variable.barra_pct }}%"></span>
-                        </div>
-                        <small>Caída media del F1: {{ variable.importancia_f1 }}</small>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            <aside class="importance-help">
-                <span class="analysis-label">Cómo interpretar</span>
-                <p>La relevancia es <b>global</b>: resume el comportamiento del modelo en el conjunto de prueba y no significa que una sola variable cause el riesgo de un producto específico.</p>
-                <p>La clasificación individual continúa considerando simultáneamente todas las variables utilizadas durante el entrenamiento.</p>
-                <div class="method-pill">Permutation Importance · TEST temporal</div>
-            </aside>
-        </div>
-    </section>
-    {% endif %}
 
     {% if resumen.top_prioritarios %}
     <section class="priority-section">
@@ -207,7 +101,7 @@
             <div>
                 <span class="eyebrow">Atención prioritaria</span>
                 <h2>Top 5 productos con mayor probabilidad de riesgo</h2>
-                <p>Vista rápida para enfocar la revisión operativa en los casos más urgentes.</p>
+                <p>Revisa el stock, la demanda estimada a 7 días y la recomendación antes de decidir una reposición.</p>
             </div>
         </div>
         <div class="priority-grid">
@@ -249,12 +143,17 @@
     </section>
     {% endif %}
 
+    <section class="note-card info-note" aria-label="Interpretación operativa">
+        <h3>Cómo leer las estimaciones</h3>
+        <p>Una probabilidad visualizada como <b>100 %</b> puede estar redondeada y no representa certeza. Un <b>stock proyectado negativo</b> indica un posible déficit para planificar la reposición, no existencias físicas negativas. Las recomendaciones apoyan la decisión: VetAssistant IA no genera compras automáticamente.</p>
+    </section>
+
     <section class="table-card">
         <div class="table-head">
             <div>
                 <span class="eyebrow">Análisis detallado</span>
                 <h2>Productos priorizados</h2>
-                <p>Ordenados desde la mayor probabilidad estimada de quiebre. Usa “Ver análisis” para revisar las señales asociadas a cada producto.</p>
+                <p>Consulta la probabilidad estimada, el stock y la cobertura. Filtra por producto, categoría o riesgo y selecciona “Ver análisis” para revisar los factores y la recomendación.</p>
             </div>
             <div class="filters">
                 <input id="searchProduct" type="search" placeholder="Buscar producto o código..." aria-label="Buscar producto">
@@ -376,7 +275,7 @@
             <div>
                 <span class="eyebrow">Trazabilidad</span>
                 <h2>Historial de evaluaciones registradas</h2>
-                <p>El historial no se genera al refrescar la página. Usa “Registrar evaluación” cuando quieras conservar un snapshot para comparar la evolución del riesgo.</p>
+                <p>El historial solo se actualiza cuando seleccionas “Registrar evaluación”. Permite comparar evaluaciones guardadas; no equivale a resultados observados de quiebres reales.</p>
             </div>
         </div>
         {% if historial_evaluaciones %}
@@ -401,10 +300,124 @@
         {% endif %}
     </section>
 
-    <section class="note-card info-note">
-        <h3>Cómo interpretar esta pantalla</h3>
-        <p><b>Probabilidad de riesgo:</b> es producida por el modelo de Machine Learning. <b>ALTO/MEDIO/BAJO:</b> es un semáforo operativo de priorización (≥75%, 50–&lt;75% y &lt;50%). El umbral binario validado del modelo se conserva por separado para sus métricas. <b>Demanda estimada, stock proyectado y factores observados:</b> son indicadores explicativos para facilitar la interpretación y no deben presentarse como causalidad interna del algoritmo.</p>
+    <details class="technical-details" id="informacion-tecnica">
+        <summary>Información técnica del modelo <span class="technical-summary-hint">Métricas, algoritmos y variables</span></summary>
+        <div class="technical-details-body">
+            <p class="technical-context">Los resultados de esta sección provienen de la evaluación técnica del modelo con datos de prueba temporal. No son mediciones PRE/POS realizadas con usuarios y no garantizan el mismo desempeño con nuevos datos.</p>
+    <section class="model-card">
+        <div class="model-copy">
+            <span class="eyebrow">Validación técnica · conjunto de prueba</span>
+            <h2>Métricas del modelo predictivo</h2>
+            <p>{{ resumen.metodologia_validacion }}. El Recall es la métrica prioritaria para detectar productos con riesgo real dentro de la evaluación técnica.</p>
+            <span class="goal-badge {% if resumen.cumple_recall %}ok{% else %}fail{% endif %}">
+                {% if resumen.cumple_recall %}Meta cumplida{% else %}Meta pendiente{% endif %}: Recall ≥ {{ resumen.recall_objetivo|int }}%
+            </span>
+        </div>
+        <div class="metrics">
+            <div><span>Accuracy</span><b>{{ resumen.accuracy }}%</b></div>
+            <div><span>Precision</span><b>{{ resumen.precision }}%</b></div>
+            <div><span>Recall</span><b>{{ resumen.recall }}%</b></div>
+            <div><span>F1-Score</span><b>{{ resumen.f1 }}%</b></div>
+            <div><span>Umbral binario ML</span><b>{{ resumen.umbral_modelo_validado }}%</b></div>
+        </div>
     </section>
+
+    <section class="note-card triage-note">
+        <h3>Semáforo operativo de riesgo</h3>
+        <p><b>ALTO:</b> probabilidad ≥ {{ resumen.umbral }}%. <b>MEDIO:</b> desde {{ resumen.umbral_medio }}% y menor a {{ resumen.umbral }}%. <b>BAJO:</b> menor a {{ resumen.umbral_medio }}%. El modelo de ML continúa siendo binario y conserva su umbral validado de {{ resumen.umbral_modelo_validado }}% para evaluación; el semáforo de 50%/75% es una capa de priorización para la interfaz.</p>
+    </section>
+
+    {% if resumen.comparacion_modelos %}
+    <section class="evidence-section">
+        <div class="section-title">
+            <div>
+                <span class="eyebrow">Evidencia de selección</span>
+                <h2>Comparación de modelos evaluados</h2>
+                <p>Los tres algoritmos se compararon en el mismo TEST temporal. La selección priorizó Recall ≥ {{ resumen.recall_objetivo|int }}% y, entre los que cumplen, el mayor F1-Score.</p>
+            </div>
+            <span class="selected-model-badge">Seleccionado: {{ resumen.modelo }}</span>
+        </div>
+
+        <div class="model-comparison-grid">
+            {% for modelo in resumen.comparacion_modelos %}
+            <article class="comparison-card {% if modelo.seleccionado %}selected{% endif %}">
+                <div class="comparison-head">
+                    <div>
+                        <span class="model-index">Modelo {{ loop.index }}</span>
+                        <h3>{{ modelo.nombre }}</h3>
+                    </div>
+                    {% if modelo.seleccionado %}
+                    <span class="winner-badge">Seleccionado</span>
+                    {% elif modelo.cumple_recall %}
+                    <span class="candidate-badge">Cumple Recall</span>
+                    {% else %}
+                    <span class="candidate-badge fail">No cumple meta</span>
+                    {% endif %}
+                </div>
+                <div class="comparison-metrics">
+                    <div><span>Accuracy</span><b>{{ modelo.accuracy }}%</b></div>
+                    <div><span>Precision</span><b>{{ modelo.precision }}%</b></div>
+                    <div class="metric-focus"><span>Recall</span><b>{{ modelo.recall }}%</b></div>
+                    <div><span>F1-Score</span><b>{{ modelo.f1 }}%</b></div>
+                </div>
+                <div class="threshold-line">Umbral de clasificación: <b>{{ modelo.umbral }}%</b></div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div class="selection-explanation">
+            <b>¿Por qué se seleccionó {{ resumen.modelo }}?</b>
+            <p>Es el modelo que alcanzó el mejor equilibrio entre detección de productos realmente riesgosos y calidad global de clasificación, logrando Recall de {{ resumen.recall }}% y F1-Score de {{ resumen.f1 }}% sobre el TEST independiente.</p>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if resumen.variables_importantes %}
+    <section class="evidence-section importance-section">
+        <div class="section-title">
+            <div>
+                <span class="eyebrow">Interpretabilidad global</span>
+                <h2>Variables con mayor relevancia para el modelo</h2>
+                <p>Se aplicó Permutation Importance sobre una muestra del conjunto TEST temporal. Cuanto mayor es la caída del F1 al desordenar una variable, mayor información aporta al modelo.</p>
+            </div>
+            <div class="importance-meta">
+                <span>{{ resumen.filas_importancia }} filas TEST</span>
+                <span>{{ resumen.repeticiones_importancia }} repeticiones</span>
+                <span>F1 base {{ resumen.f1_base_importancia }}%</span>
+            </div>
+        </div>
+
+        <div class="importance-layout">
+            <div class="importance-list">
+                {% for variable in resumen.variables_importantes[:8] %}
+                <div class="importance-row">
+                    <div class="importance-rank">{{ loop.index }}</div>
+                    <div class="importance-content">
+                        <div class="importance-label-line">
+                            <b>{{ variable.etiqueta }}</b>
+                            <span>{{ variable.importancia_relativa_pct }}%</span>
+                        </div>
+                        <div class="importance-track" aria-label="Relevancia relativa {{ variable.importancia_relativa_pct }}%">
+                            <span style="width: {{ variable.barra_pct }}%"></span>
+                        </div>
+                        <small>Caída media del F1: {{ variable.importancia_f1 }}</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <aside class="importance-help">
+                <span class="analysis-label">Cómo interpretar</span>
+                <p>La relevancia es <b>global</b>: resume el comportamiento del modelo en el conjunto de prueba y no significa que una sola variable cause el riesgo de un producto específico.</p>
+                <p>La clasificación individual continúa considerando simultáneamente todas las variables utilizadas durante el entrenamiento.</p>
+                <div class="method-pill">Permutation Importance · TEST temporal</div>
+            </aside>
+        </div>
+    </section>
+    {% endif %}
+
+        </div>
+    </details>
+
 </div>
 
 <script>
