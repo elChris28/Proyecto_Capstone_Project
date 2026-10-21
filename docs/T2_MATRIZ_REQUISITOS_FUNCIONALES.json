@@ -1,0 +1,473 @@
+{
+  "metadatos": {
+    "documento_fuente": "Capstone_Project_Informe_PC09.docx",
+    "version_base": "ZIP Proyecto_Capstone_Sprint2_DevOps_Seguro.zip (base del merge del Sprint 2)",
+    "requisitos_funcionales": 62,
+    "requisitos_no_funcionales": 14,
+    "casos_http_preparados": 13,
+    "ejecucion_local": "4 pruebas offline aprobadas; 13 casos Flask NO EJECUTADOS (Flask no instalado en entorno de preparación)",
+    "verificacion_git_previa": "30 pruebas aprobadas en GitHub Actions (suite previa, no incluye los nuevos 13 casos)",
+    "aceptacion_usuarios": "No realizada: el usuario confirmó que el jefe de almacén todavía no participó",
+    "avance_100_funcional": "NO ACREDITADO: pendientes matriz de requisitos y comprobaciones con MySQL/navegador"
+  },
+  "funcionales": [
+    {
+      "id": "RF-01",
+      "requisito": "El sistema deberá permitir al usuario ingresar consultas escritas mediante la interfaz del asistente inteligente.",
+      "verificacion": "Asistente: ST-01/02 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-02",
+      "requisito": "El sistema deberá mostrar en pantalla las preguntas realizadas por el usuario y las respuestas generadas por el asistente.",
+      "verificacion": "Asistente: ST-01/02 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-03",
+      "requisito": "El sistema deberá mantener el historial de la conversación durante la sesión activa del usuario.",
+      "verificacion": "Asistente: ST-03 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-04",
+      "requisito": "El sistema deberá permitir limpiar el historial de conversación para iniciar una nueva interacción.",
+      "verificacion": "Asistente: ST-03 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-05",
+      "requisito": "El sistema deberá identificar si una consulta está relacionada con productos, stock, ubicación, vencimiento, inventario o riesgo de quiebre de stock.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-06",
+      "requisito": "El sistema deberá clasificar la intención de una consulta utilizando el modelo de clasificación de intenciones implementado.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-07",
+      "requisito": "El sistema deberá clasificar una consulta como desconocida cuando no pueda determinar una intención válida con suficiente confianza.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-08",
+      "requisito": "El sistema deberá mostrar ejemplos de consultas disponibles cuando no pueda comprender la pregunta realizada por el usuario.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-09",
+      "requisito": "El sistema deberá detectar múltiples intenciones dentro de una misma consulta, permitiendo responder hasta un máximo de tres intenciones identificadas.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-10",
+      "requisito": "El sistema deberá identificar el producto mencionado en una consulta mediante comparación con los productos registrados.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-11",
+      "requisito": "El sistema deberá conservar temporalmente el último producto identificado para permitir preguntas de seguimiento sin necesidad de repetir su nombre.",
+      "verificacion": "Asistente: ST-03 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-12",
+      "requisito": "El sistema deberá permitir consultar el stock total disponible de un producto.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-13",
+      "requisito": "El sistema deberá permitir consultar la ubicación registrada de un producto dentro del inventario.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-14",
+      "requisito": "El sistema deberá permitir consultar los lotes registrados de un producto junto con sus fechas de vencimiento.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-15",
+      "requisito": "El sistema deberá calcular el estado de vencimiento de cada lote indicando si se encuentra vencido, vence hoy, está próximo a vencer o continúa vigente.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-16",
+      "requisito": "El sistema deberá indicar la cantidad de días restantes para el vencimiento de un lote cuando esta información sea solicitada.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-17",
+      "requisito": "El sistema deberá identificar los productos cuyo stock actual sea menor o igual al stock mínimo registrado.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-18",
+      "requisito": "El sistema deberá listar los productos con stock crítico indicando su stock actual y stock mínimo.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-19",
+      "requisito": "El sistema deberá identificar los productos cuyos lotes vencen dentro de los próximos siete días.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-20",
+      "requisito": "El sistema deberá mostrar los productos próximos a vencer indicando producto, lote, fecha y estado del vencimiento.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-21",
+      "requisito": "El sistema deberá registrar en la base de datos las consultas realizadas al asistente, incluyendo pregunta, intención, producto identificado y respuesta generada.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-22",
+      "requisito": "El sistema deberá disponer de accesos rápidos para realizar consultas frecuentes de stock, ubicación, vencimiento, productos críticos, productos por vencer y riesgo de quiebre.",
+      "verificacion": "Asistente: ST-01/02 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-23",
+      "requisito": "El sistema deberá permitir utilizar reconocimiento de voz para introducir consultas cuando esta funcionalidad sea soportada por el navegador.",
+      "verificacion": "Asistente: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-24",
+      "requisito": "El sistema deberá calcular el riesgo de quiebre de stock de los productos para un horizonte de siete días.",
+      "verificacion": "Predicción: ST-05/06 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-25",
+      "requisito": "El sistema deberá permitir consultar el riesgo de quiebre de stock de un producto específico.",
+      "verificacion": "Predicción: ST-08 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-26",
+      "requisito": "El sistema deberá mostrar para un producto su probabilidad de riesgo, nivel de riesgo, stock actual, ventas de los últimos siete días, demanda estimada, stock proyectado y recomendación.",
+      "verificacion": "Predicción: ST-08 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-27",
+      "requisito": "El sistema deberá informar cuando un producto registrado en MySQL no posea historial suficiente para realizar una predicción de riesgo.",
+      "verificacion": "Predicción: ST-08 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-28",
+      "requisito": "El sistema deberá permitir consultar de manera general los productos que presentan riesgo de quiebre de stock durante los próximos siete días.",
+      "verificacion": "Predicción: ST-05/06 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-29",
+      "requisito": "El sistema deberá informar cuando no existan productos en riesgo alto ni en nivel medio de vigilancia.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-30",
+      "requisito": "El sistema deberá clasificar operacionalmente el riesgo de los productos en los niveles ALTO, MEDIO y BAJO.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-31",
+      "requisito": "El sistema deberá considerar como riesgo ALTO las probabilidades iguales o mayores al 75 %, MEDIO las probabilidades desde 50 % hasta menos de 75 % y BAJO las probabilidades menores al 50 %.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-32",
+      "requisito": "El sistema deberá generar un resumen con la cantidad y porcentaje de productos clasificados en riesgo ALTO, MEDIO y BAJO.",
+      "verificacion": "Predicción: ST-05/06 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-33",
+      "requisito": "El sistema deberá mostrar los cinco productos con mayor prioridad de riesgo dentro del módulo de predicción.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-34",
+      "requisito": "El sistema deberá mostrar por producto información de stock actual, stock de seguridad, punto de reorden, ventas históricas, demanda estimada, stock proyectado, cobertura y probabilidad de riesgo.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-35",
+      "requisito": "El sistema deberá permitir buscar productos dentro del módulo predictivo mediante el nombre o código del producto.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-36",
+      "requisito": "El sistema deberá permitir filtrar las predicciones según los niveles ALTO, MEDIO, BAJO o mostrar todos los productos.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-37",
+      "requisito": "El sistema deberá permitir visualizar y ocultar el análisis detallado correspondiente a cada producto evaluado.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-38",
+      "requisito": "El sistema deberá mostrar los factores observados y la recomendación operativa correspondiente a los productos evaluados.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-39",
+      "requisito": "El sistema deberá mostrar la comparación de los modelos de Machine Learning evaluados utilizando Accuracy, Precision, Recall, F1-Score y su respectivo umbral.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-40",
+      "requisito": "El sistema deberá mostrar las variables de mayor importancia global utilizadas por el modelo predictivo.",
+      "verificacion": "Predicción: MF: comprobación real",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-41",
+      "requisito": "El sistema deberá permitir registrar manualmente una evaluación actual del riesgo de quiebre de stock mediante la opción “Registrar evaluación”.",
+      "verificacion": "Predicción: ST-10/11 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-42",
+      "requisito": "El sistema deberá almacenar cada evaluación registrada junto con su fecha, horizonte, modelo utilizado, umbrales, cantidad de productos por nivel de riesgo y probabilidad promedio.",
+      "verificacion": "Predicción: ST-10/11 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-43",
+      "requisito": "El sistema deberá almacenar el detalle de los productos correspondientes a cada evaluación registrada, incluyendo stock actual, demanda estimada, stock proyectado, probabilidad y nivel de riesgo.",
+      "verificacion": "Predicción: ST-10/11 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-44",
+      "requisito": "El sistema deberá mostrar las seis evaluaciones de riesgo registradas más recientemente en el módulo predictivo.",
+      "verificacion": "Predicción: ST-10/11 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-45",
+      "requisito": "El sistema deberá permitir consultar el historial de predicciones registradas de un producto específico.",
+      "verificacion": "Predicción: ST-10/11 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-46",
+      "requisito": "El sistema deberá disponer de una campana de alertas predictivas en la pantalla principal del asistente.",
+      "verificacion": "Alertas: ST-09 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-47",
+      "requisito": "La campana deberá mostrar la cantidad actual de productos en riesgo ALTO, MEDIO y BAJO.",
+      "verificacion": "Alertas: ST-09 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-48",
+      "requisito": "La campana de alertas deberá mostrar hasta cinco productos de mayor prioridad indicando producto, categoría, stock, demanda estimada y porcentaje de riesgo.",
+      "verificacion": "Alertas: ST-09 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-49",
+      "requisito": "El sistema deberá actualizar la información de la campana consultando la evaluación predictiva actual sin registrar automáticamente una nueva evaluación histórica.",
+      "verificacion": "Alertas: ST-09 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-50",
+      "requisito": "El sistema deberá proporcionar un endpoint REST para obtener el resumen de alertas predictivas.",
+      "verificacion": "Alertas: ST-09 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-51",
+      "requisito": "El sistema deberá proporcionar un endpoint REST para obtener las predicciones de riesgo de stock.",
+      "verificacion": "Predicción: ST-06 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-52",
+      "requisito": "El endpoint de predicciones deberá admitir actualmente únicamente un horizonte de siete días y deberá devolver un error cuando se solicite un horizonte diferente.",
+      "verificacion": "Predicción: ST-07 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-53",
+      "requisito": "El sistema deberá proporcionar un endpoint REST para consultar el detalle predictivo de un producto utilizando su identificador.",
+      "verificacion": "Predicción: ST-08 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-54",
+      "requisito": "El sistema deberá indicar mediante la API cuando un producto no existe o no posee historial suficiente para generar su detalle predictivo.",
+      "verificacion": "Predicción: ST-08 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-55",
+      "requisito": "El dashboard deberá mostrar las métricas Accuracy, Precision, Recall y F1-Score del modelo de clasificación de intenciones.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-56",
+      "requisito": "El dashboard deberá mostrar el total de consultas registradas por el asistente.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-57",
+      "requisito": "El dashboard deberá mostrar la distribución de las consultas agrupadas por intención detectada.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-58",
+      "requisito": "El dashboard deberá identificar y mostrar los productos con mayor cantidad de consultas realizadas al asistente.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-59",
+      "requisito": "El dashboard deberá mostrar como producto más buscado aquel que tenga la mayor cantidad de consultas registradas.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-60",
+      "requisito": "El dashboard deberá mostrar la cantidad de alertas logísticas obtenida a partir de productos con stock crítico y productos próximos a vencer.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-61",
+      "requisito": "El dashboard deberá presentar una tabla con los productos que tengan stock crítico.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    },
+    {
+      "id": "RF-62",
+      "requisito": "El dashboard deberá presentar una tabla con los productos próximos a vencer.",
+      "verificacion": "Dashboard: ST-04 + MF",
+      "estado": "Por verificar en aplicación real"
+    }
+  ],
+  "no_funcionales": [
+    {
+      "id": "RNF-01",
+      "requisito": "El sistema deberá mantener una Arquitectura en Capas, separando presentación, aplicación, dominio e infraestructura.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-02",
+      "requisito": "La capa de presentación deberá encargarse de las rutas HTTP, plantillas HTML, estilos y comunicación con los servicios de aplicación.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-03",
+      "requisito": "La lógica de los casos de uso deberá mantenerse en servicios de aplicación y separada de las consultas SQL.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-04",
+      "requisito": "El acceso a MySQL deberá mantenerse encapsulado mediante el patrón Repository, utilizando los repositorios de productos, consultas e historial predictivo existentes.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-05",
+      "requisito": "Las dependencias de los servicios deberán gestionarse mediante inyección de dependencias utilizando el ServiceContainer del proyecto.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-06",
+      "requisito": "La ejecución de los diferentes algoritmos predictivos deberá mantenerse desacoplada mediante el patrón Strategy implementado en el sistema.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-07",
+      "requisito": "La notificación generada al registrar una evaluación deberá mantenerse desacoplada mediante el patrón Observer implementado en el proyecto.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-08",
+      "requisito": "Los procesos de entrenamiento y análisis de los modelos de Machine Learning deberán mantenerse separados del flujo de ejecución de la aplicación web.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-09",
+      "requisito": "La aplicación web no deberá entrenar nuevamente los modelos cada vez que el usuario realice una consulta; deberá utilizar los modelos previamente entrenados y almacenados.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-10",
+      "requisito": "La configuración de conexión a MySQL y la clave utilizada por las sesiones Flask deberán mantenerse centralizadas en el archivo de configuración y admitir valores obtenidos mediante variables de entorno.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-11",
+      "requisito": "El sistema deberá utilizar MySQL como fuente del catálogo e inventario actual utilizado durante la ejecución de las consultas y predicciones.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-12",
+      "requisito": "La interfaz web deberá ser adaptable a diferentes tamaños de pantalla mediante las reglas responsive existentes y el uso de viewport.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-13",
+      "requisito": "La aplicación deberá mantener su interfaz y procesamiento de consultas orientados al idioma español, incluyendo normalización de texto y procesamiento lingüístico utilizado por el asistente.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    },
+    {
+      "id": "RNF-14",
+      "requisito": "Las dependencias principales del proyecto deberán mantenerse controladas mediante el archivo requirements.txt, donde se especifican las versiones utilizadas de Flask, MySQL Connector, spaCy, scikit-learn, pandas, joblib y demás librerías del proyecto.",
+      "verificacion": "Revisión técnica de código + instalación / entorno real",
+      "estado": "Por verificar en entorno real"
+    }
+  ]
+}
